@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Potta+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=B612&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+  text-transform: uppercase;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav {
+  width: 100vw;
+  display: block;
+  height: 40px;
+  background-color: black;
+}
+nav ul {
+  list-style-type: none;
+  height: 100%;
+}
+nav ul li {
+  /* cursor: pointer; */
+  padding: 4px;
+  display: inline-flex;
+  float: left;
+  margin-right: 10px;
+}
+nav ul li a {
+  margin-top: 3px;
+  border: 1px solid black;
+  text-transform: uppercase;
+  display: block;
+  padding-left: 4px;
+  padding-right: 4px;
+  color: white;
+  text-decoration: none;
+  transition-duration: 0.5s;
+}
+nav ul li a:hover {
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+}
+nav ul .right {
+  display: flex;
+  justify-content: end;
+}
+
+@media (max-width: 600px) {
+  nav {
+    width: 100vw;
+    display: block;
+    height: 40px;
+    background-color: black;
+  }
+  nav ul {
+    list-style-type: none;
+    height: 100%;
+  }
+  nav ul li {
+    /* cursor: pointer; */
+    padding: 0.4vw;
+    display: inline-block;
+    margin-right: 1vw;
+  }
+  nav ul li a {
+    font-size: 2.5vw;
+    margin-top: 3px;
+    border: 1px solid black;
+    text-transform: uppercase;
+    display: block;
+    padding-left: 0.4vw;
+    padding-right: 0.4vw;
+    color: white;
+    text-decoration: none;
+    transition-duration: 0.5s;
+  }
+  nav ul li a:hover {
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+  }
+
+  .heading {
+    font-family: "Potta One", cursive;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 100px;
+  }
+
+  .sub-heading {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 30px;
+  }
+
+  .buttons {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .button {
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    padding: 4px;
+    font-size: 40px;
+    border-radius: 30px;
+    margin-left: 20%;
+    font-weight: bold;
+    transition-duration: 0.3s;
+  }
+
+  .button:hover {
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+  }
+
+  .signup {
+    margin-right: 20%;
+  }
+}
+.brand {
+  font-family: "Potta One", cursive;
+  color: white;
+  font-size: 20px;
+  margin-top: -3px;
+}
+
+.first-container {
+  justify-content: center;
+  border: 0px;
+  height: 100vh;
+}
+.first-container .heading {
+  font-family: "Potta One", cursive;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 10vw;
+  margin-top: 100px;
+}
+.first-container .sub-heading {
+  font-family: "Potta One", cursive;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 6vw;
+  margin-top: 30px;
+}
+.first-container .buttons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.first-container .button {
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+  padding: 10px;
+  font-size: 40px;
+  border-radius: 30px;
+  margin-left: 20%;
+  font-weight: bold;
+  transition-duration: 0.3s;
+}
+.first-container .button:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: black;
+}
+.first-container .signup {
+  margin-right: 20%;
+}
+
+.second-container {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+}
+.second-container .carousel-inner {
+  height: 100vh;
+}
+.second-container .carousel-caption {
+  font-size: 20px;
+  color: #fff;
+  top: 40vh;
+}
+.second-container .carousel-caption .carousel-image {
+  height: 80px;
+  margin-bottom: 30px;
+  margin-top: -80px;
+}
+.second-container .carousel-caption .fa-handshake {
+  scale: 4;
+  margin-bottom: -200px;
+  padding: 10px;
+}
+
+.third-container {
+  height: 100vh;
+}
+.third-container .images {
+  display: flex;
+  justify-content: space-around;
+}
+.third-container .images .contact-image {
+  height: 100px;
+  margin-top: 40vh;
+}
+.third-container .images figcaption {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.fourth-container {
+  height: 50vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  font-size: 0.9em;
+  font-family: "B612", sans-serif;
+}
+.fourth-container .first,
+.fourth-container .second {
+  color: white;
+  margin-top: 60px;
+}
+.fourth-container .first ul,
+.fourth-container .second ul {
+  list-style-type: none;
+}
+.fourth-container .first ul li,
+.fourth-container .second ul li {
+  margin: 6px;
+}
+.fourth-container .first ul li a,
+.fourth-container .second ul li a {
+  color: #fff;
+}
+.fourth-container .first ul hr,
+.fourth-container .second ul hr {
+  color: white;
+  border: 1px solid white;
+}
+.fourth-container .first ul .footer-heading,
+.fourth-container .second ul .footer-heading {
+  font-size: 1.2em;
+}
+.fourth-container .first {
+  margin-right: 20px;
+}
+.fourth-container .second {
+  margin-left: 20px;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CollabTree</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function onHoverfb() {
+            $("#fbImg").attr('src', 'images/fb-lt.svg');
+        }
+
+        function offHoverfb() {
+            $("#fbImg").attr('src', 'images/fb-dk.svg');
+        }
+
+
+        function onHovermail() {
+            $("#mailImg").attr('src', 'images/mail-lt.svg');
+        }
+
+        function offHovermail() {
+            $("#mailImg").attr('src', 'images/mail-dk.svg');
+        }
+
+
+        function onHoverphone() {
+            $("#phoneImg").attr('src', 'images/ph-lt.svg');
+        }
+
+        function offHoverphone() {
+            $("#phoneImg").attr('src', 'images/ph-dk.svg');
+        }
+    </script>
+
+</head>
+
+<body>
+    <nav>
+
+        <ul>
+            <li><a href="#" class="brand">CollabTree</a></li>
+            <div class="right">
+                <li class="right"><a href="#about">About</a></li>
+                <li class="right"><a href="#">Login</a></li>
+                <li class="right"><a href="#">Sign up</a></li>
+                <li class="right"><a href="#contact">Contact Us</a></li>
+
+
+            </div>
+        </ul>
+
+    </nav>
+
+
+    <div class="first-container">
+        <div class="heading">
+            CollabTree
+        </div>
+        <div class="sub-heading">
+            Let's Grow
+        </div>
+        <div class="buttons">
+            <input type="button" value="Login" class="button login">
+            <input type="button" value="SignUp" class="button signup">
+        </div>
+    </div>
+    <div class="second-container" id="about">
+        <div class="container mt-5">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item ">
+                        <div class="carousel-caption">
+                            <img src="images/learn.svg" alt="Learn-svg" class="carousel-image">
+                            <h3>Let's Learn Together</h3>
+                            <p>A Place Where You Can Learn!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption">
+                            <img src="images/work.svg" alt="work-svg" class="carousel-image">
+                            <h3>Let's Work Together</h3>
+                            <p>A Place Where You Can Work!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption">
+                            <img src="images/world.svg" alt="World-svg" class="carousel-image">
+                            <h3>Let's Get Connected</h3>
+                            <p>Connect With The World!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption">
+                            <img src="images/share.svg" alt="Share-svg" class="carousel-image">
+                            <h3>Got More?</h3>
+                            <p>Share Your Knowledge With The World!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item active">
+                        <div class="carousel-caption">
+                            <i class="far fa-handshake carousel-image"></i>
+                            <h3>CollabTree</h3>
+                            <p>Let's Learn!</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="third-container" id="contact">
+        <div class="images">
+
+            <figure>
+                <a href="#"><img class="contact-image" id="mailImg" src="images/mail-dk.svg" alt="logo" onmouseover="onHovermail();" onmouseout="offHovermail();" />
+                    <figcaption>Mail</figcaption>
+                </a>
+            </figure>
+            <figure>
+                <a href="#"><img class="contact-image" id="phoneImg" src="images/ph-dk.svg" alt="logo" onmouseover="onHoverphone();" onmouseout="offHoverphone();" />
+                    <figcaption>Helpline</figcaption>
+                </a>
+            </figure>
+            <figure>
+                <a href="#"><img class="contact-image" id="fbImg" src="images/fb-dk.svg" alt="logo" onmouseover="onHoverfb();" onmouseout="offHoverfb();" />
+                    <figcaption id="fbImg">Facebook</figcaption>
+                </a>
+            </figure>
+
+        </div>
+
+    </div>
+
+    <footer class="fourth-container">
+        <div class="first">
+            <ul>
+                <li class="footer-heading">Company</li>
+                <hr>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Trust, Safety & Security</a></li>
+
+            </ul>
+        </div>
+        <div class="second">
+            <ul>
+                <li class="footer-heading">Resources</li>
+                <hr>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Customer Support</a></li>
+                <li><a href="#">Customer Stories</a></li>
+                <li><a href="#">Upwork Reviews</a></li>
+            </ul>
+        </div>
+        <!-- <div class="middle">
+            2020 &#169;
+        </div> -->
+    </footer>
+
+</body>
+
+</html>
