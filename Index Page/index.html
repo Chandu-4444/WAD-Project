@@ -14,25 +14,25 @@
     <link rel="stylesheet" href="styles.css">
     <script>
         function onHoverfb() {
-            $("#fbImg").attr('src', 'images/fb-lt.svg');
+            $("#fbImg").attr('src', '../images/fb-lt.svg');
         }
 
         function offHoverfb() {
-            $("#fbImg").attr('src', 'images/fb-dk.svg');
+            $("#fbImg").attr('src', '../images/fb-dk.svg');
         }
 
 
         function onHovermail() {
-            $("#mailImg").attr('src', 'images/mail-lt.svg');
+            $("#mailImg").attr('src', '../images/mail-lt.svg');
         }
 
         function offHovermail() {
-            $("#mailImg").attr('src', 'images/mail-dk.svg');
+            $("#mailImg").attr('src', '../images/mail-dk.svg');
         }
 
 
         function onHoverphone() {
-            $("#phoneImg").attr('src', 'images/ph-lt.svg');
+            $("#phoneImg").attr('src', '../images/ph-lt.svg');
         }
 
         function offHoverphone() {
@@ -49,8 +49,8 @@
             <li><a href="#" class="brand">CollabTree</a></li>
             <div class="right">
                 <li class="right"><a href="#about">About</a></li>
-                <li class="right"><a href="#">Login</a></li>
-                <li class="right"><a href="#">Sign up</a></li>
+                <li class="right"><a href="../Authentication Form/Login_Form.html">Login</a></li>
+                <li class="right"><a href="../Authentication Form/Sign_Up.html">Sign up</a></li>
                 <li class="right"><a href="#contact">Contact Us</a></li>
             </div>
         </ul>
@@ -66,8 +66,8 @@
             Let's Grow
         </div>
         <div class="buttons">
-            <input type="button" value="Login" class="button login">
-            <input type="button" value="SignUp" class="button signup">
+            <input type="button" value="Login" class="button login" onclick="location.href='../Authentication Form/Login_Form.html'">
+            <input type="button" value="SignUp" class="button signup" onclick="location.href='../Authentication Form/Sign_Up.html'">
         </div>
     </div>
     <div class="second-container" id="about">
@@ -76,28 +76,28 @@
                 <div class="carousel-inner">
                     <div class="carousel-item ">
                         <div class="carousel-caption">
-                            <img src="images/learn.svg" alt="Learn-svg" class="carousel-image">
+                            <img src="../images/learn.svg" alt="Learn-svg" class="carousel-image">
                             <h3>Let's Learn Together</h3>
                             <p>A Place Where You Can Learn!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-caption">
-                            <img src="images/work.svg" alt="work-svg" class="carousel-image">
+                            <img src="../images/work.svg" alt="work-svg" class="carousel-image">
                             <h3>Let's Work Together</h3>
                             <p>A Place Where You Can Work!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-caption">
-                            <img src="images/world.svg" alt="World-svg" class="carousel-image">
+                            <img src="../images/world.svg" alt="World-svg" class="carousel-image">
                             <h3>Let's Get Connected</h3>
                             <p>Connect With The World!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-caption">
-                            <img src="images/share.svg" alt="Share-svg" class="carousel-image">
+                            <img src="../images/share.svg" alt="Share-svg" class="carousel-image">
                             <h3>Got More?</h3>
                             <p>Share Your Knowledge With The World!</p>
                         </div>
@@ -126,17 +126,17 @@
         <div class="images">
 
             <figure>
-                <a href="#"><img class="contact-image" id="mailImg" src="images/mail-dk.svg" alt="logo" onmouseover="onHovermail();" onmouseout="offHovermail();" />
+                <a href="#"><img class="contact-image" id="mailImg" src="../images/mail-dk.svg" alt="logo" onmouseover="onHovermail();" onmouseout="offHovermail();" />
                     <figcaption>Mail</figcaption>
                 </a>
             </figure>
             <figure>
-                <a href="#"><img class="contact-image" id="phoneImg" src="images/ph-dk.svg" alt="logo" onmouseover="onHoverphone();" onmouseout="offHoverphone();" />
+                <a href="#"><img class="contact-image" id="phoneImg" src="../images/ph-dk.svg" alt="logo" onmouseover="onHoverphone();" onmouseout="offHoverphone();" />
                     <figcaption>Helpline</figcaption>
                 </a>
             </figure>
             <figure>
-                <a href="#"><img class="contact-image" id="fbImg" src="images/fb-dk.svg" alt="logo" onmouseover="onHoverfb();" onmouseout="offHoverfb();" />
+                <a href="#"><img class="contact-image" id="fbImg" src="../images/fb-dk.svg" alt="logo" onmouseover="onHoverfb();" onmouseout="offHoverfb();" />
                     <figcaption id="fbImg">Facebook</figcaption>
                 </a>
             </figure>
