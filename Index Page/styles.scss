@@ -14,6 +14,8 @@
     }
     
     nav {
+        position: fixed;
+        top: 0;
         width: 100vw;
         display: block;
         height: 40px;
@@ -38,11 +40,12 @@
                     padding-right: 4px;
                     color: white;
                     text-decoration: none;
-                    transition-duration: 0.5s;
+                    transition: 0.4s all;
                 }
                 a:hover {
                     border-right: 1px solid white;
                     border-left: 1px solid white;
+                    text-decoration: underline ;
                 }
             }
             .right {

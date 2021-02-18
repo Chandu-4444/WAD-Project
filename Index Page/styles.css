@@ -13,6 +13,8 @@ body {
 }
 
 nav {
+  position: fixed;
+  top: 0;
   width: 100vw;
   display: block;
   height: 40px;
@@ -38,11 +40,12 @@ nav ul li a {
   padding-right: 4px;
   color: white;
   text-decoration: none;
-  transition-duration: 0.5s;
+  transition: 0.4s all;
 }
 nav ul li a:hover {
   border-right: 1px solid white;
   border-left: 1px solid white;
+  text-decoration: underline;
 }
 nav ul .right {
   display: flex;

@@ -17,6 +17,7 @@ body{
     padding: 10px;
 }
 .container{
+    box-shadow: 10px 10px 20px 6px #0e0e0e;
     position: relative;
     margin-top: 60px;
     width: 400px;
@@ -27,6 +28,7 @@ body{
     background-color: black;
     padding: 50px;
     border-radius: 10px;
+    transition: 0.3s all;
     .email{
         color: white;
         margin-left: -200px;
@@ -91,11 +93,14 @@ body{
         text-decoration: underline;
     }
     
-
-    
-
-
-    
-
-   
 }
+
+.container:hover{
+    scale: 1.1;
+    box-shadow: 10px 10px 50px 2px #0e0e0e;
+   
+   
+
+}
+
+
