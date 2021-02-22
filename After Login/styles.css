@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
 nav {
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
   display: block;
   height: 40px;
   background-color: black;
@@ -45,8 +46,9 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 nav ul .right {
-  display: flex;
-  justify-content: end;
+  float: right;
+  /* display: flex;
+  justify-content: end; */
 }
 
 .searchbar {

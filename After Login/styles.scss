@@ -12,7 +12,7 @@ body{
 nav {
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100%;
     display: block;
     height: 40px;
     background-color: black;
@@ -47,6 +47,7 @@ nav {
         .right {
             display: flex;
             justify-content: end;
+            float: right;
         }
     }
 }
@@ -81,8 +82,9 @@ nav {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+
     .job{
-       
+        
         text-align: center;
         height: 50%;
         flex-basis: auto;
@@ -90,6 +92,7 @@ nav {
         width: 20%;
         margin: 5px;
         .title{
+            color: black;
             font-weight: 800;
             margin: 10px 0 10px;
             width: 100%;
