@@ -47,8 +47,6 @@ nav ul li a:hover {
 }
 nav ul .right {
   float: right;
-  /* display: flex;
-  justify-content: end; */
 }
 
 .searchbar {
@@ -82,6 +80,8 @@ nav ul .right {
   flex-wrap: wrap;
 }
 .container .job {
+  display: block;
+  text-decoration: none;
   text-align: center;
   height: 50%;
   flex-basis: auto;
