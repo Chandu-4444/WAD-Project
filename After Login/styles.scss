@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
     
 }
 body{
@@ -45,8 +46,9 @@ nav {
             }
         }
         .right {
-            display: flex;
-            justify-content: end;
+            // display: flex;
+            // justify-content: end;
+            float: right;
         }
     }
 }
@@ -82,7 +84,8 @@ nav {
     justify-content: center;
     flex-wrap: wrap;
     .job{
-       
+        display: block;
+        text-decoration: none;
         text-align: center;
         height: 50%;
         flex-basis: auto;

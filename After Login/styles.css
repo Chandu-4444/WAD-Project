@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 body {
@@ -45,8 +46,7 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 nav ul .right {
-  display: flex;
-  justify-content: end;
+  float: right;
 }
 
 .searchbar {
@@ -80,6 +80,8 @@ nav ul .right {
   flex-wrap: wrap;
 }
 .container .job {
+  display: block;
+  text-decoration: none;
   text-align: center;
   height: 50%;
   flex-basis: auto;
