@@ -72,7 +72,8 @@ nav ul li .dropdown-content a {
 nav ul li .dropdown a:hover {
   background-color: #f8f8f8;
   color: black;
-}
+} 
+
 nav ul li .show {
   display: block;
 }
@@ -226,23 +227,27 @@ nav ul .right {
   text-decoration: none;
   border: 1.5px solid black;
   margin: 15px;
-  height: 20%;
+  height: 200px;
   width: 20%;
   text-align: center;
   transition: 0.1s scale ease-in-out;
   -webkit-transition: 0.1s all ease-in-out;
+  overflow-y: hidden;
 }
 .categories .cats .image {
-  width: 100%;
-  height: 50%;
+  width: auto;
+  height: 80%;
   background-color: black;
+  overflow-y: hidden;
 }
+
 .categories .cats .image img {
   width: 100%;
 }
 .categories .cats .name {
   padding: 10px;
   background-color: black;
+  height: 25%;
 }
 
 .fourth-container {
