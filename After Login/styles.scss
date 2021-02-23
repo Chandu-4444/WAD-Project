@@ -32,6 +32,7 @@ nav {
         
 
 
+<<<<<<< HEAD
         .dropbtn {
             background-color: #000000;
             color: white;
@@ -163,6 +164,26 @@ nav {
 .searchbar::placeholder {
   position: relative;
   font-size: 20px;
+=======
+.searchbar::placeholder{
+    position: absolute;
+    font-size: 20px;
+}
+
+.latest{
+    font-size: 25px;
+    text-align: center;
+    margin-top:20px;
+    padding: 5px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    // background-color: black;
+    color: black;
+    font-weight: 900;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+>>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
 }
 
 .searchbar:focus {
@@ -281,6 +302,7 @@ nav {
 }
 
 .fourth-container {
+<<<<<<< HEAD
   margin-top: 20px;
   height: 50vh;
   background-color: black;
@@ -299,6 +321,35 @@ nav {
         margin: 6px;
         a {
           color: #fff;
+=======
+    margin-top: 20px;
+    height: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    font-size: 0.9em;
+    font-family: 'B612', sans-serif;
+    .first,
+    .second {
+        // border: 1px solid white;
+        color: white;
+        margin-top: 60px;
+        ul {
+            list-style-type: none;
+            li {
+                margin: 6px;
+                a {
+                    color: #fff;
+                }
+            }
+            hr {
+                color: white;
+                border: 1px solid white;
+            }
+            .footer-heading {
+                font-size: 1.2em;
+            }
+>>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
         }
       }
       hr {
