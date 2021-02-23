@@ -76,6 +76,10 @@ nav ul li .dropdown a:hover {
 nav ul li .show {
   display: block;
 }
+nav ul li .dropdown button img{
+  height: 1%;
+  width: 13px;
+}
 nav ul li .barlinks {
   margin-top: 3px;
   border: 1px solid black;
