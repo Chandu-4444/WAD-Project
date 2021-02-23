@@ -20,15 +20,32 @@
   <body>
     <nav>
       <ul>
-        <li><a href="#" class="brand">CollabTree</a></li>
+        <li><a class="barlinks" href="#" class="brand">CollabTree</a></li>
         <div class="right">
-          <li ><a href="#">Blogs</a></li>
-          <li ><a href="#">Username</a></li>
+          <li><a class="barlinks" href="#">Blogs</a></li>
+          
+            <li> 
+              <div class="dropdown">
+                <button  onclick="myFunction()" class="dropbtn">Username</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="#">My profile</a>
+                  <a href="#">My Blogs</a>
+                  <hr>
+                  <a href="#">Sign out</a>
+                </div>
+              </div>
+            
+            
+            </li>
+
+
         </div>
       </ul>
     </nav>
-
-    <input placeholder="search" type="text" class="searchbar" />
+    <div class="s">
+      <input placeholder="search" type="text" class="searchbar" />
+      <button class="sbtn">Search</button>
+    </div>
 
     <!-- Latest -->
 
@@ -99,7 +116,6 @@
         <div class="title">Job</div>
         <div class="desc">Description</div>
       </a>
-      
     </div>
 
     <div class="latest">Categories</div>
@@ -180,5 +196,23 @@
             2020 &#169;
         </div> -->
     </footer>
+  <script >
+      function myFunction(){
+      document.getElementById('myDropdown').classList.toggle('show');
+    };
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
   </body>
 </html>
