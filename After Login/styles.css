@@ -169,14 +169,8 @@ nav ul .right {
   flex-wrap: wrap;
 }
 .container .job:hover {
-<<<<<<< HEAD
-  text-decoration: none;
-  transform: scale(1.1);
-  box-shadow: 3px 3px 10px 2px #383838;
-=======
   text-decoration: underline;
   transform: scale(1.1);
->>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
 }
 .container .job {
   min-width: 200px;
@@ -192,11 +186,7 @@ nav ul .right {
   width: 20%;
   margin: 15px;
   transition: 0.1s scale ease-in-out;
-<<<<<<< HEAD
-  -webkit-transition: 0.1s all ease-in;
-=======
   -webkit-transition: 0.1s all ease-in-out;
->>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
   background-color: white;
 }
 .container .job .title {
@@ -222,10 +212,6 @@ nav ul .right {
   margin-bottom: 30px;
 }
 .categories .cats:hover {
-<<<<<<< HEAD
-  box-shadow: 3px 3px 10px 2px #6e6d6d;
-=======
->>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
   transform: scale(1.1);
 }
 .categories .cats {
@@ -236,20 +222,11 @@ nav ul .right {
   text-decoration: none;
   border: 1.5px solid black;
   margin: 15px;
-<<<<<<< HEAD
-  margin-bottom: 30px;
-  height: 20%;
-  width: 20%;
-  text-align: center;
-  transition: 0.1s all ease-in-out;
-  -webkit-transition: 0.1s all ease-in;
-=======
   height: 20%;
   width: 20%;
   text-align: center;
   transition: 0.1s scale ease-in-out;
   -webkit-transition: 0.1s all ease-in-out;
->>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
 }
 .categories .cats .image {
   width: 100%;

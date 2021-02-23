@@ -32,139 +32,6 @@ nav {
         
 
 
-<<<<<<< HEAD
-        .dropbtn {
-            background-color: #000000;
-            color: white;
-            // padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            padding: 2px;
-            border-left: 1px solid black;
-            border-right: 1px solid black;
-            transition: 0.5s border ease;
-          }
-          
-          .dropbtn:hover {
-              padding: 2px;
-            border-right: 1px solid white;
-            border-left: 1px solid white;
-            text-decoration: underline;
-          }
-          
-      
-          
-          .dropdown-content {
-            // height: 160px;
-            // display: none;
-            // position: absolute;
-            // background-color: #f1f1f1;
-            // min-width: 160px;
-            // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            // z-index: 1;
-
-                display: none;
-                  position: absolute;
-                  min-width: 160px;
-                  top: 40px;
-                  a {
-                    padding: 9px;
-                    float: none;
-                    display: block;
-                    height: 30px;
-                    color: rgb(255, 255, 255);
-                    text-decoration: none;
-                    background-color: #2e2e2e;
-                    transition: 0.2s all ease-in-out;
-                  }
-          }
-          
-        
-          
-          .dropdown a:hover {
-              background-color: rgb(248, 248, 248);
-              color: black;
-        }
-          
-          .show {display: block;}
-
-     
-   
-      /* cursor: pointer; */
-      padding: 4px;
-      display: inline-flex;
-      float: left;
-      // /* height: 100%; */
-      margin-right: 10px;
-      .barlinks {
-        margin-top: 3px;
-        border: 1px solid black;
-        text-transform:capitalize;
-        display: block;
-        padding-left: 4px;
-        padding-right: 4px;
-        color: white;
-        text-decoration: none;
-        transition: 0.4s all;
-      }
-      .barlinks:hover {
-        border-right: 1px solid white;
-        border-left: 1px solid white;
-        text-decoration: underline;
-      }
-    }
-    .right {
-      // display: flex;
-      // justify-content: end;
-      float: right;
-    }
-  }
-}
-
-.searchbar {
-  position: relative;
-  display: block;
-  margin-top: 100px;
-  margin-bottom: 50px;
-  border: 2px solid black;
-  margin-left: auto;
-  margin-right: auto;
-  width: 35%;
-  border-radius: 4px;
-  padding: 4px;
-  height: 40px;
-  background: url("../images/search.png") no-repeat scroll 4px 6px;
-  padding-left: 40px;
-}
-
-.s {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  .sbtn {
-    position: relative;
-    align-self: center;
-    justify-self: center;
-    margin: 10px;
-    margin-top: -30px;
-    width: 100px;
-    padding: 2px;
-  }
-  .sbtn:active {
-    color: white;
-    background-color: black;
-    padding: 2px;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-  }
-}
-
-.searchbar::placeholder {
-  position: relative;
-  font-size: 20px;
-=======
 .searchbar::placeholder{
     position: absolute;
     font-size: 20px;
@@ -183,7 +50,6 @@ nav {
     font-weight: 900;
     border-bottom: 2px solid black;
     border-top: 2px solid black;
->>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
 }
 
 .searchbar:focus {
@@ -302,26 +168,6 @@ nav {
 }
 
 .fourth-container {
-<<<<<<< HEAD
-  margin-top: 20px;
-  height: 50vh;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  font-size: 0.9em;
-  font-family: "B612", sans-serif;
-  .first,
-  .second {
-    // border: 1px solid white;
-    color: white;
-    margin-top: 60px;
-    ul {
-      list-style-type: none;
-      li {
-        margin: 6px;
-        a {
-          color: #fff;
-=======
     margin-top: 20px;
     height: 50%;
     background-color: black;
@@ -349,7 +195,6 @@ nav {
             .footer-heading {
                 font-size: 1.2em;
             }
->>>>>>> cbd3f3558c3c19b7f3e432c654c699eb8a0a2b23
         }
       }
       hr {
@@ -371,4 +216,5 @@ nav {
   //     color: white;
   //     align-self: flex-end;
   // }
+}
 }
