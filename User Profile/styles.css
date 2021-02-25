@@ -154,26 +154,20 @@
 }
 
 .left .skills{
-/*  border: 1px solid black;
-  position: absolute;
-  /* margin-top: 20px; */
   border-top: 2px solid white;
   width: 100%;
   height: auto;
   text-align: center;
-  background-color: rgb(214, 191, 17);
+  background-color: rgba(51, 233, 187, 0.329);
   padding: 10px;
   padding-top: 2px;
 }
 
 .left .skills .skill{
   margin:2px;
-  width: 90px;
   display: inline-block;
-  border: 1px solid black;
   padding: 3px;
   border-radius: 15px;
-  background-color: rgb(17, 214, 47);
   color: white;
 }
 
