@@ -251,8 +251,7 @@ nav ul .right {
 }
 
 .fourth-container {
-  margin-top: 40px;
-  height: 30vh;
+  height: 50vh;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -275,6 +274,7 @@ nav ul .right {
 .fourth-container .first ul li a,
 .fourth-container .second ul li a {
   color: #fff;
+  text-decoration: none;
 }
 .fourth-container .first ul hr,
 .fourth-container .second ul hr {
@@ -291,5 +291,8 @@ nav ul .right {
 .fourth-container .second {
   margin-left: 20px;
 }
+
+/*# sourceMappingURL=styles.css.map */
+
 
 /*# sourceMappingURL=styles.css.map */
