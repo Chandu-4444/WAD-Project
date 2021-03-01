@@ -1,3 +1,9 @@
+body
+{
+background: linear-gradient(90deg,#a8ff78,#50A7C2);
+
+}
+
 *{
     margin:0;
     padding:0;
@@ -174,7 +180,7 @@
 .contact{
   display: flex;
   flex-direction: column;
-  background-color: rgb(230, 122, 34);
+  background-color: rgb(34, 230, 204);
 }
 .contact h1{
   margin: 10px 0 20px;
@@ -215,7 +221,7 @@
 }
 
 .cont{
-  background-color: rgb(132, 252, 3);
+  background-color: rgb(3, 152, 252);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -229,7 +235,7 @@
 
 
 .project{
-  background-color: rgb(252, 3, 219);
+  background-color: rgb(3, 252, 210);
 
 
   border-right: 2px solid black;
