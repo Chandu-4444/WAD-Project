@@ -65,6 +65,30 @@
     </form>
     
   </div>
+
+  <div id="modal-wrapper2" class="modal">
+
+    <form class="modal-content animate" action="index.html">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('modal-wrapper2').style.display='none'" class="close" title="Close PopUp">&times;</span>
+        <h1 style="text-align:center">Sign Up</h1>
+      </div>
+      <div class="container">
+        <input  type="text" placeholder="Username" name="uname">  
+        <input type="password" placeholder="Password" name="psw">  
+        <input type="password" placeholder="Confirm Password" name="psw">
+        <div class="row">
+          <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+              <button type="submit"  class="btn btn-success btn-lg find-buttons" style="padding-left: 20px;">Sign Up</button>    
+            </div>
+        </div>
+      </div>
+   
+    </form>
+    
+  </div>
+
   <!-- title container -->
 
   <section class="container" id="title">
@@ -83,7 +107,7 @@
             <button class="navlinkbt" onclick="document.getElementById('modal-wrapper').style.display='block'">Log In</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Authentication Form/Sign_Up.html">Sign Up</a>
+            <button class="navlinkbt" onclick="document.getElementById('modal-wrapper2').style.display='block'">SignUp</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Contact Us</a>
