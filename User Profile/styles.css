@@ -37,10 +37,12 @@ background: linear-gradient(90deg,#a8ff78,#50A7C2);
   }
   nav ul li .dropbtn {
     background-color: #000000;
+    
     color: white;
     font-size: 16px;
     border: none;
-    margin-top: 5px;
+    min-width: 100px;
+    margin-top: 0px;
     cursor: pointer;
     padding: 2px;
     border-left: 1px solid black;
@@ -59,6 +61,9 @@ background: linear-gradient(90deg,#a8ff78,#50A7C2);
     min-width: 160px;
     top: 40px;
   }
+
+
+
   nav ul li .dropdown-content a {
     padding: 9px;
     float: none;
@@ -177,9 +182,15 @@ background: linear-gradient(90deg,#a8ff78,#50A7C2);
   color: white;
 }
 
+.contact-heading{
+  background-color: rgb(34, 230, 204);
+  border-bottom: 4px dotted black;
+
+}
 .contact{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   background-color: rgb(34, 230, 204);
 }
 .contact h1{
