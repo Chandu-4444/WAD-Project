@@ -1,238 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
+  <meta charset="utf-8">
+  <title></title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets-->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
-    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous" />
+
+  <!-- Font Awesome -->
+
+  <script src="https://kit.fontawesome.com/4f13e85b46.js" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap Scripts -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li><a class="barlinks" href="#" class="brand">CollabTree</a></li>
-      <div class="right">
-        <li><a class="barlinks" href="#">Blogs</a></li>
-        <li>
-          <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">
-              <!-- <span class="user">Username</span>   -->
-              Username
-              <i onclick="myFunction()" class="fas fa-caret-down"></i>
-            </button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="#">My profile</a>
-              <a href="#">My Blogs</a>
-              <hr>
-              <a href="#">Settings</a>
-              <a href="../Index Page/index.html">Logout</a>
-            </div>
-          </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">COLLABTREE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarCollapsedContent" aria-controls="NavbarCollapsedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="NavbarCollapsedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">About Me</a>
         </li>
-      </div>
-    </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Messages</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
   </nav>
 
-  <div class="content">
 
 
-    <div class="left">
 
-      <div class="user-image">
-        <div class="about">
-          About Me
-        </div>
-        <img class="image" src="../images/comp.jpg" alt="User" srcset="">
-        <div class="user-caption">
-          <div class="name">
-            Username
-          </div>
-          <div class="job-title">
-            Title
-          </div>
-        </div>
-      </div>
-
-      <div class="skills">
-        <h1>My Skills</h1>
-        <div class="skill">
-          <img src="https://img.shields.io/badge/-java-red?style=for-the-badge&logo=java&logoColor=white" alt="Java">
-        </div>
-        <div class="skill">
-          <img src="https://img.shields.io/badge/-C++-green?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
-        </div>
-        <div class="skill">
-          <img src="https://img.shields.io/badge/-html-blue?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-Python-gold?style=for-the-badge&logo=python&logoColor=blue" alt="Python">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-Django-steelblue?style=for-the-badge&logo=Django" alt="Django">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-CSS-red?style=for-the-badge&logo=CSS3&logoColor=white" alt="CSS">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-Git-ash?style=for-the-badge&logo=Git" alt="Git">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-MySQL-silver?style=for-the-badge&logo=MySql&logoColor=black" alt="MySql">
-        </div>
-        <div class="skill"> 
-          <img src=" https://img.shields.io/badge/-C-black?style=for-the-badge&logo=C" alt="C">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-JS-maroon?style=for-the-badge&logo=Javascript&logoColor=gold" alt="Javascript">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-Bootstrap-brown?style=for-the-badge&logo=Bootstrap" alt="Bootstrap">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-Linux-hotpink?style=for-the-badge&logo=Linux" alt="Linux">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-Github-grey?style=for-the-badge&logo=Github" alt="Github">
-        </div>
-        <div class="skill">
-          <img src=" https://img.shields.io/badge/-flutter-indigo?style=for-the-badge&logo=flutter" alt="flutter">
-        </div>
-
-      </div>
-      <div class="contact">
-        <h1>Contact Me</h1>
-        <a href="#">email.com</a>
-        <a href="#">facebook.com</a>
-        <a href="#">linkedin</a>
-      </div>
-
-    </div>
-  </div>
-  <div class="right-container">
-    <h1>My Projects</h1>
-    <div class="projects">
-      <div class="cont">
-
-
-        <div class="project">
-          PROJECT TITLE
-        </div>
-        <div class="review">
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-
-          Review
-        </div>
-      </div>
-      <div class="cont">
-
-
-        <div class="project">
-          PROJECT TITLE
-        </div>
-        <div class="review">
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-
-          Review
-        </div>
-      </div>
-      <div class="cont">
-
-
-        <div class="project">
-          PROJECT TITLE
-        </div>
-        <div class="review">
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-
-          Review
-        </div>
-      </div>
-      <div class="cont">
-
-
-        <div class="project">
-          PROJECT TITLE
-        </div>
-        <div class="review">
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-
-          Review
-        </div>
-      </div>
-      <div class="cont">
-
-
-        <div class="project">
-          PROJECT TITLE
-        </div>
-        <div class="review">
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-
-          Review
-        </div>
-      </div>
-      <div class="cont">
-
-
-        <div class="project">
-          PROJECT TITLE
-        </div>
-        <div class="review">
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-          <i class="fa fa-star empty" aria-hidden="true"></i>
-
-          Review
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    function myFunction() {
-      document.getElementById('myDropdown').classList.toggle('show');
-    };
-
-    window.onclick = function (event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
-  </script>
 </body>
 
 </html>
