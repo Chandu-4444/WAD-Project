@@ -1,25 +1,53 @@
-/* Navbar */
+/* navigation bar */
 
 .navbar {
   background-color: #94ebcd;
   padding: 1% 5%;
 }
 
-.nav-link{
-  margin: 0 7px;
+.nav-link {
+  margin: 0 5px;
 }
 
+/* Profile section */
 
-.profile-head {
-    transform: translateY(5rem)
+#profile {
+  padding-top: 3.5%;
 }
 
-.cover {
-    background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
-    background-size: cover;
-    background-repeat: no-repeat
+/* Card */
+
+.card {
+  /* border-radius: 20px; */
+  overflow: hidden;
+  background-color: white;
 }
 
-body {
-    background: white;
+.card-header {
+  background-image: url(https://i.ibb.co/gV8K5t0/frreeelancer.jpg);
+  background-size:cover;
+  height: 15rem;
+}
+
+.card-footer {
+  background-color: #94ebcd;
+  text-align: center;
+}
+
+.card-body {
+  background-color: #94ebcd;
+}
+
+.profile-picture {
+  border-radius: 50px;
+  border: 5px solid white;
+  overflow: hidden;
+  width: 30%;
+  margin: -70px 0 30px;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
