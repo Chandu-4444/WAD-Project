@@ -211,16 +211,7 @@ nav ul .right {
   height: 80px;
 }
 
-.categories {
-  margin-top: 10px;
-  height: 40%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
+
 .categories .cats:hover {
   transform: scale(1.1);
 }
@@ -253,6 +244,17 @@ nav ul .right {
   padding: 10px;
   background-color: black;
   height: 25%;
+}
+
+.categories {
+  margin-top: 10px;
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .fourth-container {
