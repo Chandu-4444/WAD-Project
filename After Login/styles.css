@@ -6,8 +6,7 @@
 }
 
 body {
-  background-image: url("../images/bk.jpg");
-  background-color: white;
+  background-color: #94ebcd;
   font-family: sans-serif;
 }
 
@@ -135,14 +134,16 @@ nav ul .right {
   margin: 10px;
   margin-top: -30px;
   width: 100px;
-  padding: 2px;
+  padding: 5px;
+  background-color: rgb(22, 119, 35);
+  color: white;
 }
 .s .sbtn:active {
   color: white;
-  background-color: black;
+  background-color: rgb(7, 185, 22);
   padding: 2px;
-  border-top: 5px solid black;
-  border-bottom: 5px solid black;
+  border-top: 5px solid rgb(7, 185, 22);
+  border-bottom: 5px solid  rgb(7, 185, 22);
 }
 
 .searchbar::placeholder {
@@ -207,7 +208,7 @@ nav ul .right {
 }
 .container .job .desc {
   font-size: 0.9em;
-  background-color: #3d81ff;
+  background-color: #4fd044;
   height: 80px;
 }
 
