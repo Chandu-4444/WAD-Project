@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign UP</title>
+    <link rel="stylesheet" href="{% static 'Authentication Form/styles.css' %}">
+</head>
+<body>
+    <h1 class="heading">Sign Up</h1>
+    <div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <label for="username" class="email" >Username: </label>
+        <br>
+        <!-- <input type="text" placeholder="Email"> -->
+        <div class="inp">{{ form.username }}</div>
+        
+        <br>
+        <label for="email" class="email" >Email: </label>
+        <br>
+        <div class="inp">{{ form.email }}</div>
+        <br>
+        <label for="job_title" class="email" >Job Title: </label>
+        <br>
+        <div class="inp">{{ form.job_title }}</div>
+
+        <br>
+        <label for="password" class="password" >Password: </label>
+        <br>
+        <!-- <input type="password" name="password" placeholder="Password"> -->
+        <div class="inp">{{ form.password1 }}</div>        <br>
+        <label for="password" class="password passlab2" >Once More: </label>
+        <br>
+        <!-- <input type="password" name="password" placeholder="Password" class="pass2"> -->
+        <div class="inp">{{ form.password2 }}</div>        <br>
+        <input type="submit" value="Sign Up" class="btn">
+    </form>
+    
+    <p class="recommen">Already a member? <a href="../accounts/login" class="login">login</a> </p>
+
+    <p>By signing up, you agree to our <a href="#">Terms&Privacy</a> </p>
+</div>
+    
+</body>
+</html>

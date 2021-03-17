@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: rgb(248, 239, 227);
+
+}
+
+.heading{
+    text-align: center;
+    margin-top: 40px;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+}
+.container{
+    box-shadow: 10px 10px 20px 6px #0e0e0e;
+    position: relative;
+    margin-top: 60px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    text-align: center;
+    background-color: black;
+    padding: 50px;
+    border-radius: 10px;
+    transition: 0.4s all;
+    .email{
+        color: white;
+        margin-left: -200px;
+    }
+    .password{
+        color: white;
+        margin-left: -170px;
+    }
+    .passlab2{
+        margin-left: -160px;
+    }
+    
+    
+
+    input[type=text]{
+        padding: 10px;
+        margin: 10px;
+        
+    }
+    input[type=password]{
+        padding: 10px;
+        margin: 10px;
+    }
+    .btn{
+        margin-top: 20px;
+        width: 600px;
+        padding: 3px;
+        background-color: white;
+        transition: 0.4s background-color;
+        border-radius: 5px;
+        width: 80px;
+        font-size: 17px;
+    }
+    .btn:hover{
+        background-color: black;
+        color: white;
+    }
+
+    // .signup{
+    //     color:white;
+    //     margin-left: -300px;
+    //     text-decoration: none;
+    // }
+    // .signup:hover{
+    //     text-decoration: underline;
+    // }
+
+
+    
+   
+    p{
+        margin: 10px;
+        font-size: 13px;
+        color: white;
+        margin-bottom: 0px;
+    }
+    a{
+        color: rgb(171, 211, 247);
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+    
+}
+
+.container:hover{
+    scale: 1.1;
+    box-shadow: 10px 10px 50px 2px #0e0e0e;
+   
+   
+
+}
+
+
