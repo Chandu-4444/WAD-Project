@@ -6,6 +6,7 @@
 }
 
 body {
+
   background-color: #94ebcd;
   font-family: sans-serif;
 }
@@ -14,7 +15,7 @@ body {
   display: block;
 }
 
-nav {
+/* nav {
   overflow: visible;
   z-index: 1;
   position: fixed;
@@ -29,7 +30,7 @@ nav ul {
   height: 100%;
 }
 nav ul li {
-  /* cursor: pointer; */
+
   padding: 4px;
   display: inline-flex;
   float: left;
@@ -103,10 +104,21 @@ nav ul li .barlinks:hover {
 }
 nav ul .right {
   float: right;
+} */
+
+
+.navbar{
+  z-index: 2;;
+  top: 0;
+  position: fixed;
+  border-bottom: 2px solid white;
+  background-color: #5cffc6;
+  color: black;
+  width: 100%;
 }
 
 .searchbar {
-  position: relative;
+  position: relative !important;
   display: block;
   margin-top: 100px;
   margin-bottom: 50px;

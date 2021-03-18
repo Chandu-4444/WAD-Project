@@ -17,7 +17,7 @@ p {
   font-family: "Montserrat";
   font-weight: bold;
   font-size: 70px;
-  padding-bottom: 25px;
+  padding-bottom: 0px;
   color: black;
 }
 
@@ -28,7 +28,7 @@ p {
 
 /* Containers */
 .container-fluid {
-  padding: 2% 10% 7% 10%;
+  padding: 2% 6% 2% 6%;
 }
 
 /* Sections */
@@ -43,7 +43,10 @@ p {
 
 /* Navigation Bar */
 .navbar {
-  padding: 0 0 4.5rem;
+  
+  /* padding: 0 0 4.5rem; */
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
 }
 
 .navbar-brand {
@@ -271,4 +274,10 @@ input[type=text], input[type=password] {
     text-align: center;
   }
 
+}
+
+
+.adsbygoogle
+{
+  background-color: #94ebcd;
 }

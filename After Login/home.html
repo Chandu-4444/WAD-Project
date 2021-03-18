@@ -6,15 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CollabTree</title>
     <link
+      href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
       integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .searchbar {
+        position: relative !important;
+        display: block;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        border: 2px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        width: 35%;
+        border-radius: 4px;
+        padding: 4px;
+        height: 40px;
+        background: url("../images/search.png") no-repeat scroll 4px 6px;
+        padding-left: 40px;
+      }
+
+      .s {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+      }
+      .s .sbtn {
+        position: relative;
+        align-self: center;
+        justify-self: center;
+        margin: 10px;
+        margin-top: -30px;
+        width: 100px;
+        padding: 5px;
+        background-color: rgb(22, 119, 35);
+        color: white;
+      }
+      .s .sbtn:active {
+        color: white;
+        background-color: rgb(7, 185, 22);
+        padding: 2px;
+        border-top: 5px solid rgb(7, 185, 22);
+        border-bottom: 5px solid rgb(7, 185, 22);
+      }
+
+      .searchbar::placeholder {
+        position: relative;
+        font-size: 20px;
+      }
+
+      .searchbar:focus {
+        border: 3px solid black;
+      }
+    </style>
   </head>
   <body>
-    <nav>
+    <!-- <nav>
       <ul>
         <li><a class="barlinks" href="../Index Page/index.html" class="brand">CollabTree</a></li>
         <div class="right">
@@ -22,7 +78,7 @@
             <li>
               <div class="dropdown">
                 <button  onclick="myFunction()" class="dropbtn">
-                  <!-- <span class="user">Username</span>   -->
+                   <span class="user">Username</span>
                   Username
             <i  class="fas fa-caret-down"></i>
                 </button>
@@ -37,7 +93,54 @@
             </li>
         </div>
       </ul>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <a class="navbar-brand" href="#">COLLABTREE</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#NavbarCollapsedContent"
+        aria-controls="NavbarCollapsedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="NavbarCollapsedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="../User Profile/profile.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Blog Section/blog-template.html">Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
     </nav>
+
     <div class="s">
       <input placeholder="search" type="text" class="searchbar" />
       <button class="sbtn">Search</button>
@@ -192,23 +295,26 @@
             2020 &#169;
         </div> -->
     </footer>
-  <script >
-      function myFunction(){
-      document.getElementById('myDropdown').classList.toggle('show');
-    };
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
+    <script>
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
           }
         }
-      }
-    }
-  </script>
+      };
+    </script>
   </body>
 </html>

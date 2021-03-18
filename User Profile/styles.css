@@ -1,128 +1,60 @@
-/* navigation bar */
-
 body{
-  margin-top:20px;
-  color: #1a202c;
-  text-align: left;
-  background-color: #e2e8f0;    
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
 }
 .main-body {
-  padding: 15px;
+    padding: 15px;
 }
 .card {
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
 }
 
 .card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 0 solid rgba(0,0,0,.125);
-  border-radius: .25rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }
 
 .card-body {
-  flex: 1 1 auto;
-  min-height: 1px;
-  padding: 1rem;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
 }
 
 .gutters-sm {
-  margin-right: -8px;
-  margin-left: -8px;
+    margin-right: -8px;
+    margin-left: -8px;
 }
 
 .gutters-sm>.col, .gutters-sm>[class*=col-] {
-  padding-right: 8px;
-  padding-left: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
 }
 .mb-3, .my-3 {
-  margin-bottom: 1rem!important;
+    margin-bottom: 1rem!important;
 }
 
 .bg-gray-300 {
-  background-color: #e2e8f0;
+    background-color: #e2e8f0;
 }
 .h-100 {
-  height: 100%!important;
+    height: 100%!important;
 }
 .shadow-none {
-  box-shadow: none!important;
+    box-shadow: none!important;
 }
 
-.navbar {
-  background-color: #94ebcd;
-  padding: 1% 5%;
-} 
-
-.nav-link {
-  margin: 0 5px;
+.navbar{
+    background-color: rgb(75, 216, 216);
+    margin-top: -40px;
+    margin-bottom: 2px;
 }
 
-/* Profile section */
-
-#profile {
-  padding-top: 3.5%;
-}
-
-/* Card */
-
-.card {
-  /* border-radius: 20px; */
-  overflow: hidden;
-  background-color: white;
-}
-
-.card-header {
-  background-image: url(https://i.ibb.co/gV8K5t0/frreeelancer.jpg);
-  background-size:cover;
-  height: 22.5rem;
-}
-
-.card-footer {
-  background-color: #94ebcd;
-  text-align: center;
-}
-
-.card-body {
-  background-color: #94ebcd;
-}
-
-.profile-picture {
-  border-radius: 50px;
-  border: 5px solid white;
-  overflow: hidden;
-  width: 30%;
-  margin: -70px 0 30px;
-}
-
-.profile-picture img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-
-/* hashtags division */
-
-.hashtags-ul {
-  list-style: none;
-}
-
-
-/* profile */
-
- .profile-subsections {
-  margin: 10px 20px;
-} 
-
-.navbar-custom{
-  top: 0;
-  z-index: 2;
-  
-  
-}

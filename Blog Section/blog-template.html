@@ -29,96 +29,7 @@
           margin-top: 45px;
         }
       }
-      nav {
-  overflow: visible;
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: block;
-  height: 40px;
-  background-color: black;
-}
-nav ul {
-  list-style-type: none;
-  height: 100%;
-}
-nav ul li {
-  /* cursor: pointer; */
-  padding: 4px;
-  display: inline-flex;
-  float: left;
-  margin-right: 10px;
-}
-nav ul li .dropbtn {
-  background-color: #000000;
-  color: white;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  padding: 2px;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  transition: 0.5s border ease;
-}
-nav ul li .dropbtn:hover {
-  padding: 2px;
-  border-right: 1px solid white;
-  border-left: 1px solid white;
-  text-decoration: underline;
-}
-nav ul li .dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  top: 40px;
-}
-nav ul li .dropdown-content a {
-  padding: 9px;
-  float: none;
-  display: block;
-  height: 30px;
-  color: white;
-  text-decoration: none;
-  background-color: #2e2e2e;
-  transition: 0.2s all ease-in-out;
-}
 
-.fa-caret-down{
-  margin-bottom: -3px;
-}
-
-nav ul li .dropdown a:hover {
-  background-color: #f8f8f8;
-  color: black;
-} 
-
-nav ul li .show {
-  display: block;
-}
-nav ul li .dropdown button img{
-  height: 1%;
-  width: 13px;
-}
-nav ul li .barlinks {
-  margin-top: 3px;
-  border: 1px solid black;
-  text-transform: capitalize;
-  display: block;
-  padding-left: 4px;
-  padding-right: 4px;
-  color: white;
-  text-decoration: none;
-  transition: 0.4s all;
-}
-nav ul li .barlinks:hover {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
-  text-decoration: underline;
-}
-nav ul .right {
-  float: right;
-}
     </style>
 
     <!-- Navbar -->
@@ -173,7 +84,7 @@ nav ul .right {
         </div>
       </div>
     </nav> -->
-    <nav>
+    <!-- <nav>
       <ul>
         <li><a class="barlinks" href="../Index Page/index.html" class="brand">CollabTree</a></li>
         <div class="right">
@@ -181,7 +92,6 @@ nav ul .right {
             <li>
               <div class="dropdown">
                 <button  onclick="myFunction()" class="dropbtn">
-                  <!-- <span class="user">Username</span>   -->
                   Username
             <i  class="fas fa-caret-down"></i>
                 </button>
@@ -196,6 +106,53 @@ nav ul .right {
             </li>
         </div>
       </ul>
+    </nav> -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <a class="navbar-brand" href="#">COLLABTREE</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#NavbarCollapsedContent"
+        aria-controls="NavbarCollapsedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="NavbarCollapsedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="../User Profile/profile.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Index Page/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Blog Section/blog-template.html">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Blog Section/blog-template.html">Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
     </nav>
     <!-- Navbar -->
 
@@ -234,6 +191,11 @@ nav ul .right {
                   Some quick example text to build on the card title and make up the bulk of the
                   card's content.
                 </p>
+                <div class="tags-container">
+                  <span>#tags</span>
+                  <span>#tags</span>
+                  <span>#tags</span>
+                </div>
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
@@ -253,6 +215,11 @@ nav ul .right {
                   Some quick example text to build on the card title and make up the bulk of the
                   card's content.
                 </p>
+                <div class="tags-container">
+                  <span>#tags</span>
+                  <span>#tags</span>
+                  <span>#tags</span>
+                </div>
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
@@ -272,6 +239,11 @@ nav ul .right {
                   Some quick example text to build on the card title and make up the bulk of the
                   card's content.
                 </p>
+                <div class="tags-container">
+                  <span>#tags</span>
+                  <span>#tags</span>
+                  <span>#tags</span>
+                </div>
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
@@ -293,6 +265,11 @@ nav ul .right {
                   Some quick example text to build on the card title and make up the bulk of the
                   card's content.
                 </p>
+                <div class="tags-container">
+                  <span>#tags</span>
+                  <span>#tags</span>
+                  <span>#tags</span>
+                </div>
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
@@ -312,6 +289,11 @@ nav ul .right {
                   Some quick example text to build on the card title and make up the bulk of the
                   card's content.
                 </p>
+                <div class="tags-container">
+                  <span>#tags</span>
+                  <span>#tags</span>
+                  <span>#tags</span>
+                </div>
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
@@ -331,6 +313,11 @@ nav ul .right {
                   Some quick example text to build on the card title and make up the bulk of the
                   card's content.
                 </p>
+                <div class="tags-container">
+                  <span>#tags</span>
+                  <span>#tags</span>
+                  <span>#tags</span>
+                </div>
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
@@ -404,6 +391,9 @@ nav ul .right {
     <!-- MDB -->
      <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="js/script.js"></script> 
     <script >
       function myFunction(){
