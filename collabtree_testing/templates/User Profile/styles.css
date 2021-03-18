@@ -1,0 +1,264 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.show {
+    display: block;
+  }
+
+  nav {
+    overflow: visible;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: block;
+    height: 40px;
+    background-color: black;
+  }
+  nav ul {
+    list-style-type: none;
+    height: 100%;
+  }
+  nav ul li {
+    /* cursor: pointer; */
+    padding: 4px;
+    display: inline-flex;
+    float: left;
+    margin-right: 10px;
+  }
+  nav ul li .dropbtn {
+    background-color: #000000;
+    color: white;
+    font-size: 16px;
+    border: none;
+    margin-top: 5px;
+    cursor: pointer;
+    padding: 2px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    transition: 0.5s border ease;
+  }
+  nav ul li .dropbtn:hover {
+    padding: 2px;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    text-decoration: underline;
+  }
+  nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    top: 40px;
+  }
+  nav ul li .dropdown-content a {
+    padding: 9px;
+    float: none;
+    display: block;
+    height: 30px;
+    color: white;
+    text-decoration: none;
+    background-color: #2e2e2e;
+    transition: 0.2s all ease-in-out;
+  }
+  nav ul li .dropdown a:hover {
+    background-color: #f8f8f8;
+    color: black;
+  }
+
+  nav ul li .show {
+    display: block;
+  }
+  nav ul li .dropdown button img{
+    height: 1%;
+    width: 13px;
+  }
+  nav ul li .barlinks {
+    margin-top: 3px;
+    border: 1px solid black;
+    text-transform: capitalize;
+    display: block;
+    padding-left: 4px;
+    padding-right: 4px;
+    color: white;
+    text-decoration: none;
+    transition: 0.4s all;
+  }
+  nav ul li .barlinks:hover {
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    text-decoration: underline;
+  }
+  nav ul .right {
+    float: right;
+  }
+
+  .content{
+    display: flex;
+
+  }
+
+  .left{
+    overflow-y: scroll;
+    position: fixed;
+    flex: 1;
+    float: left;
+    text-align: center;
+      height: 100vh;
+      width: 450px;
+      border-right: 4px solid black;
+  }
+  .left .about{
+    padding-top: 50px;
+    width: 100%;
+    padding-bottom: 10px;
+    background-color: rgb(17, 208, 214);
+    font-size: 2em;
+    border-bottom: 2px solid white;
+
+  }
+
+  .left .user-image{
+    background-color: cyan;
+    padding-bottom: 10px;
+  }
+
+.image{
+
+    border: 2px solid black;
+    height: 100px;
+    margin-top: 60px;
+
+}
+.user-caption{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.user-caption .name{
+    font-size: 1.5em;
+
+}
+
+.user-caption .job-title{
+    font-size: 1.3em;
+}
+.left .skills .skill-title{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: 4px dotted black;
+  border-top: 4px dotted black;
+}
+
+.left .skills{
+  border-top: 2px solid white;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  background-color: rgba(51, 233, 187, 0.329);
+  padding: 10px;
+  padding-top: 2px;
+}
+
+.left .skills .skill{
+  margin:2px;
+  display: inline-block;
+  padding: 3px;
+  border-radius: 15px;
+  color: white;
+}
+
+.contact{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(230, 122, 34);
+}
+.contact h1{
+  margin: 10px 0 20px;
+  border-bottom: 5px dotted black;
+}
+
+.skills h1{
+  margin: 10px 0 10px;
+  border-bottom: 5px dotted black;
+
+}
+
+.contact a{
+  margin: 10px;
+}
+
+
+
+.right-container{
+  margin-left: 450px;
+  border: 1px solid black;
+  margin-top: 40px;
+  flex: 2;
+  text-align: center;
+}
+
+
+
+.right-container h1{
+  margin-top: 40px;
+}
+
+.projects{
+  min-width: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cont{
+  background-color: rgb(132, 252, 3);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  margin: 10px;
+}
+.project, .review{
+  padding: 30px;
+}
+
+
+
+.project{
+  background-color: rgb(252, 3, 219);
+
+
+  border-right: 2px solid black;
+}
+
+.full{
+  color: gold;
+}
+.empty{
+  color: white;
+}
+
+
+@media(max-width: 800px)
+{
+  
+  .left{
+    position: relative;
+    height: auto;
+    margin-right: 0;
+    padding: 0;
+  }
+  .right-container{
+    float: left;
+    margin-left: 0;
+    width: 100%;
+  }
+
+
+
+  
+}
