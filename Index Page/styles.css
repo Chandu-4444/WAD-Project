@@ -43,7 +43,7 @@ p {
 
 /* Navigation Bar */
 .navbar {
-  
+  padding-top: 200px;
   /* padding: 0 0 4.5rem; */
   padding-bottom: 10px;
   border-bottom: 2px solid white;

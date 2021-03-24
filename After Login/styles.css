@@ -6,8 +6,8 @@
 }
 
 body {
-
-  background-color: #94ebcd;
+  background-image: url("../images/bk.jpg");
+  background-color: white;
   font-family: sans-serif;
 }
 
@@ -112,9 +112,13 @@ nav ul .right {
   top: 0;
   position: fixed;
   border-bottom: 2px solid white;
-  background-color: #5cffc6;
-  color: black;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
   width: 100%;
+}
+
+.navbar-color{
+  color: white !important;
 }
 
 .searchbar {
@@ -220,7 +224,7 @@ nav ul .right {
 }
 .container .job .desc {
   font-size: 0.9em;
-  background-color: #4fd044;
+  background-color: #3d81ff;
   height: 80px;
 }
 
@@ -311,6 +315,7 @@ nav ul .right {
 .fourth-container .second {
   margin-left: 20px;
 }
+
 
 /*# sourceMappingURL=styles.css.map */
 
