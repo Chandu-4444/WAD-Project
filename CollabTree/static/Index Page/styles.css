@@ -1,0 +1,286 @@
+body {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Headings */
+.big-heading {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 70px;
+  padding-bottom: 0px;
+  color: black;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+/* Containers */
+.container-fluid {
+  padding: 2% 6% 2% 6%;
+}
+
+/* Sections */
+.colored-section {
+  background-color: #94ebcd;
+  color: #fff;
+}
+
+.white-section {
+  background-color: #fff;
+}
+
+/* Navigation Bar */
+.navbar {
+  padding-top: 200px;
+  
+  /* padding: 0 0 4.5rem; */
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat-Light";
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: green;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #00611C;
+}
+
+/* Authentication forms */
+input[type=text], input[type=password] {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 26px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.ckbox {
+  margin-top: 35px;
+  padding-left: 40px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 4% auto 15% auto;
+  border: 1px solid #888;
+  width: 40%;
+  padding-bottom: 30px;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  animation: zoom 0.6s
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+/* Buttons */
+.download-button {
+  margin: 5% 3% 5% 0;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #198754;
+  border-color: #198754;
+}
+
+/* Title Section */
+#title {
+  background-color: #94ebcd;
+  color: #fff;
+  text-align: left;
+}
+
+.collabtree-title {
+  color: #005a00;
+}
+
+/* Title Image */
+.title-image {
+  width: 100%;
+}
+
+/* Features Section */
+#features {
+  position: relative;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+.feature-box {
+  padding: 4.5%;
+}
+
+.icon {
+  color: #00611C;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: green;
+}
+
+/* carousel Section */
+#about-carousel {
+  background-color: #94ebcd;
+}
+
+.carousel-text {
+  font-size: 3rem;
+  line-height: 1.5;
+  color: black;
+  font-weight: bold;
+}
+
+#press {
+  background-color: #94ebcd;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* Pricing Section */
+#top-skills {
+  padding: 100px;
+}
+
+.topskills-column {
+  padding: 3% 2%;
+}
+
+/* CTA Section */
+/* Footer Section */
+.social-icon {
+  margin: 20px 10px;
+  color: #00611C;
+}
+
+.social-icon:hover {
+  color: green;
+}
+
+.footer-anchor {
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+
+.footer-anchor:link {
+  color: #265301;
+}
+
+.footer-anchor:visited {
+  color: #437A16;
+}
+
+.footer-anchor:focus {
+  border-bottom: 1px solid;
+  background: #BAE498;
+}
+
+.footer-anchor:active {
+  background: #265301;
+  color: #CDFEAA;
+}
+
+.footer-hr {
+  width: 40%
+}
+
+.footer-ul {
+  list-style: none;
+}
+
+@media (max-width: 1028px) {
+  #title {
+    text-align: center;
+  }
+
+}
+
+
+.adsbygoogle
+{
+  background-color: #94ebcd;
+}
+
+
