@@ -39,10 +39,50 @@ def sign_up(request):
         else:
             return render(request, 'Index Page/index.html', {"form":UserCreation})
 
-
     else:
         return render(request, 'Index Page/index.html', {"form":UserCreation})
     
+
+def profile(request):
+    if request.method == "GET":
+        user_skills = UserAttribs.objects.get(user=request.user).skills
+        user_skills = str(user_skills)
+        print('Printing: '+str(user_skills))
+        user_skills = user_skills.split(',')
+        print(user_skills)
+        if user_skills[0] != '':
+            
+            print("entered if")
+            return render(request, 'User Profile/profile.html', {'skills':user_skills})
+        else:
+            print('Entered else')
+            return render(request, 'User Profile/profile.html')
+    elif request.method == "POST":
+        skills = request.POST['skills']
+        user_skills = UserAttribs.objects.get(user=request.user).skills
+        if skills == '':
+            return render(request, 'User Profile/profile.html', {'skills': user_skills.split(',')})
+
+        print(skills)
+        print(type(skills))
+        
+        print(user_skills)
+        print(type(user_skills))
+        if user_skills != '':
+            skills = skills+',' + str(user_skills)
+        else:
+            skills = skills+','
+
+        updated_skills = UserAttribs.objects.get(user=request.user)
+        updated_skills.skills = skills
+        updated_skills.save()
+        skills = str(updated_skills.skills)
+        skills = skills.split(',')
+        print(skills)
+        return render(request, 'User Profile/profile.html', {'skills': skills})
+        
+
+
 def otp_verification(request):
     global pin
     if request.method == "GET":
