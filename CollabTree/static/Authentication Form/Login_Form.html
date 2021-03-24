@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'Authentication Form/styles.css' %}">
+</head>
+<body>
+    <h1 class="heading">Login</h1>
+    <div class="container">
+    <form action="" method="post">
+        <label for="email" class="email" >Email: </label>
+        <br>
+        <input type="text" placeholder="Email">
+        <br>
+        <label for="password" class="password" >Password: </label>
+        <br>
+        <input type="password" name="password" placeholder="Password">
+        <br>
+        <input type="button" value="Login" class="btn">
+    </form>
+    
+    <!-- <p class="recommen">New here? <a href="Sign_Up.html" class="signup">signup</a> </p> -->
+    <p class="recommen">New Here? <a href="Sign_Up.html" class="signup">Sign up</a> </p>
+
+
+</div>
+    
+</body>
+</html>
