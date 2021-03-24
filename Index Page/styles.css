@@ -64,6 +64,10 @@ p {
   font-family: "Montserrat-Light";
 }
 
+.nav-link:hover{
+  cursor: pointer;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: green;
 }
