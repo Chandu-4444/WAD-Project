@@ -2,7 +2,15 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
+from backend.forms import UserCreation
+import smtplib, ssl
+import random
+from backend.models import UserAttribs
+from django.contrib.auth.models import User, Permission
 
+user = 0
+pin = 0
+signup_form = 0
 
 # Create your views here.
 
@@ -22,26 +30,6 @@ def index(request):
                 return HttpResponse('<h1>Wrong</h1>')
         else:
             return HttpResponse('<h1>Username cannot be empty</h1>')
-
-
-def sign_up(request):
-    global user
-    global signup_form
-    if request.method == "POST":
-        form = UserCreation(request.POST)
-        if form.is_valid:
-            signup_form = form
-            # login(request, user)
-            # return redirect("dashboard")
-            request.session['email'] = request.POST['email']
-            # login(request, user)
-            return redirect('otp_verification')
-        else:
-            return render(request, 'Index Page/index.html', {"form":UserCreation})
-
-    else:
-        return render(request, 'Index Page/index.html', {"form":UserCreation})
-    
 
 def profile(request):
     if request.method == "GET":
@@ -83,6 +71,25 @@ def profile(request):
         
 
 
+def sign_up(request):
+    global user
+    global signup_form
+    if request.method == "POST":
+        form = UserCreation(request.POST)
+        if form.is_valid:
+            signup_form = form
+            # login(request, user)
+            # return redirect("dashboard")
+            request.session['email'] = request.POST['email']
+            # login(request, user)
+            return redirect('otp_verification')
+        else:
+            return render(request, 'Index Page/index.html', {"form":UserCreation})
+
+
+    else:
+        return render(request, 'Index Page/index.html', {"form":UserCreation})
+    
 def otp_verification(request):
     global pin
     if request.method == "GET":
@@ -110,3 +117,10 @@ def otp_verification(request):
             # return redirect('signup')
         else:
             return render(request, "Registration/otp_form.html") 
+
+def dashboard(request):
+    print(request.user.username)
+    if request.user.is_authenticated and request.user.username != 'admin':
+        return render(request, 'After Login/home.html')
+    else:
+        return HttpResponse('<h1>Please Login</h1>')

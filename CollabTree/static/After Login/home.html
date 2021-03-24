@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CollabTree</title>
+    <link
+      href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .searchbar {
+        position: relative !important;
+        display: block;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        border: 2px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        width: 35%;
+        border-radius: 4px;
+        padding: 4px;
+        height: 40px;
+        background: url("../images/search.png") no-repeat scroll 4px 6px;
+        padding-left: 40px;
+      }
+
+      .s {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+      }
+      .s .sbtn {
+        position: relative;
+        align-self: center;
+        justify-self: center;
+        margin: 10px;
+        margin-top: -30px;
+        width: 100px;
+        padding: 5px;
+        background-color: rgb(22, 119, 35);
+        color: white;
+      }
+      .s .sbtn:active {
+        color: white;
+        background-color: rgb(7, 185, 22);
+        padding: 2px;
+        border-top: 5px solid rgb(7, 185, 22);
+        border-bottom: 5px solid rgb(7, 185, 22);
+      }
+
+      .searchbar::placeholder {
+        position: relative;
+        font-size: 20px;
+      }
+
+      .searchbar:focus {
+        border: 3px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <nav>
+      <ul>
+        <li><a class="barlinks" href="../Index Page/index.html" class="brand">CollabTree</a></li>
+        <div class="right">
+          <li><a class="barlinks" href="../Blog Section/blog-template.html">Blogs</a></li>
+            <li>
+              <div class="dropdown">
+                <button  onclick="myFunction()" class="dropbtn">
+                   <span class="user">Username</span>
+                  Username
+            <i  class="fas fa-caret-down"></i>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="../User Profile/profile.html">My profile</a>
+                  <a href="#">My Blogs</a>
+                  <hr>
+                  <a href="#">Settings</a>
+                  <a href="../Index Page/index.html">Logout</a>
+                </div>
+              </div>
+            </li>
+        </div>
+      </ul>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <a class="navbar-brand" href="#">COLLABTREE</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#NavbarCollapsedContent"
+        aria-controls="NavbarCollapsedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="NavbarCollapsedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="../User Profile/profile.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Blog Section/blog-template.html">Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="s">
+      <input placeholder="search" type="text" class="searchbar" />
+      <button class="sbtn">Search</button>
+    </div>
+
+    <!-- Latest -->
+
+    <div class="latest">Latest</div>
+
+    <div class="container">
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+      <a href="#" class="job">
+        <div class="title">Job</div>
+        <div class="desc">Description</div>
+      </a>
+    </div>
+
+    <div class="latest">Categories</div>
+
+    <div class="categories">
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/comp.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Development and IT</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/AI.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Artificial Intelligence</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/chip.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Electronics</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/finance.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Finance and Accounting</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/ML.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Machine Learning</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/marketing.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Sales and Marketing</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/content.jpg" alt="" srcset="" />
+        </div>
+        <div class="name">Content Writing</div>
+      </a>
+      <a href="#" class="cats">
+        <div class="image">
+          <img src="../images/more.png" alt="" srcset="" />
+        </div>
+        <div class="name">More</div>
+      </a>
+    </div>
+
+    <footer class="fourth-container">
+      <div class="first">
+        <ul>
+          <li class="footer-heading">Company</li>
+          <hr />
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Trust, Safety & Security</a></li>
+        </ul>
+      </div>
+      <div class="second">
+        <ul>
+          <li class="footer-heading">Resources</li>
+          <hr />
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Customer Support</a></li>
+          <li><a href="#">Customer Stories</a></li>
+          <li><a href="#">Upwork Reviews</a></li>
+        </ul>
+      </div>
+      <!-- <div class="middle">
+            2020 &#169;
+        </div> -->
+    </footer>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
