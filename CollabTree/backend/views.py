@@ -124,3 +124,5 @@ def dashboard(request):
         return render(request, 'After Login/home.html')
     else:
         return HttpResponse('<h1>Please Login</h1>')
+def blog(request):
+    return render(request, 'Blog Section/blog.html')

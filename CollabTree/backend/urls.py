@@ -9,5 +9,6 @@ urlpatterns = [
     path('profile/', views.profile, name = 'profile'),
     path('dashboard/', views.dashboard, name = 'dashboard'),
     path('otp_verification/', views.otp_verification, name="otp_verification"),
+    path('blogs/', views.blog, name="blogs")
 
 ]
