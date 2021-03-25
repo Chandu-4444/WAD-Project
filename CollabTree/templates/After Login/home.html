@@ -97,7 +97,7 @@
     </nav> -->
 
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-      <a class="navbar-brand" href="#">COLLABTREE</a>
+      <a class="navbar-brand navbar-color" href="#">COLLABTREE</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -116,16 +116,16 @@
             <a class="nav-link active" href="{% url 'profile' %}">About Me</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link navbar-color" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">My Projects</a>
+            <a class="nav-link navbar-color" href="#">My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+            <a class="nav-link navbar-color" href="{% url 'blogs' %}">Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Messages</a>
+            <a class="nav-link navbar-color" href="#">Messages</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -224,49 +224,50 @@
     <div class="categories">
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/comp.jpg" alt="" srcset="" />
+          <img src="{% static 'images/comp.jpg' %}" alt="" srcset="" />
         </div>
         <div class="name">Development and IT</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/AI.jpg" alt="" srcset="" />
+          <img src="{% static 'images/AI.jpg' %}" alt="" srcset="" />
         </div>
         <div class="name">Artificial Intelligence</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/chip.jpg" alt="" srcset="" />
+          <img src="{% static 'images/chip.jpg' %}" alt="" srcset="" />
         </div>
         <div class="name">Electronics</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/finance.jpg" alt="" srcset="" />
+          <!-- <img src="../images/finance.jpg" alt="" srcset="" /> -->
+          <img src="{% static 'images/finance.jpg' %}" alt="">
         </div>
         <div class="name">Finance and Accounting</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/ML.jpg" alt="" srcset="" />
+          <img src="{% static 'images/ML.jpg' %}" alt="" srcset="" />
         </div>
         <div class="name">Machine Learning</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/marketing.jpg" alt="" srcset="" />
+          <img src="{% static 'images/marketing.jpg' %}" alt="" srcset="" />
         </div>
         <div class="name">Sales and Marketing</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/content.jpg" alt="" srcset="" />
+          <img src="{% static 'images/content.jpg' %}" alt="" srcset="" />
         </div>
         <div class="name">Content Writing</div>
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <img src="../images/more.png" alt="" srcset="" />
+          <img src="{% static 'images/more.png' %}" alt="" srcset="" />
         </div>
         <div class="name">More</div>
       </a>
