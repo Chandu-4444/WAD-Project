@@ -120,8 +120,8 @@
     </nav> -->
 
 
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-      <a class="navbar-brand" href="#">COLLABTREE</a>
+    <nav class="navbarr navbar navbar-expand-lg navbar-light navbar-custom" style="background-color: black;">
+      <a class="navbar-brand navbar-color" style="color: white;" href="#">COLLABTREE</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -131,25 +131,28 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="background-color: white;"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="NavbarCollapsedContent">
+      <div class="collapse navbar-collapse" style="background-color: black;" id="NavbarCollapsedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'profile' %}">About Me</a>
+            <a class="nav-link active navbar-color" style="color: white;" href="../User Profile/profile.html">About Me</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Index Page/index.html">Home</a>
+            <a class="nav-link navbar-color" style="color: white;" href="../Index Page/index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Blog Section/blog-template.html">My Projects</a>
+            <a class="nav-link navbar-color" style="color: white;" href="../Blog Section/blog-template.html">My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Blog Section/blog-template.html">Blogs</a>
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'blogs' %}">Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Messages</a>
+            <a class="nav-link navbar-color" style="color: white;" href="#">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'logout' %}">Logout</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
