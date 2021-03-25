@@ -59,6 +59,11 @@ body{
     z-index: 2;
     position: fixed;
 }
+.collapse{
+    background-color: rgb(75, 216, 216);
+
+
+}
 
 .add{
     margin-left: 50%;
@@ -102,7 +107,7 @@ label{
 
 }
 
-.show {
+.showw {
     opacity: 1;
     background-color: white;
     pointer-events: auto;
