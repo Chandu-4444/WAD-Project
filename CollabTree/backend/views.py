@@ -39,27 +39,25 @@ def profile(request):
         user_skills = user_skills.split(',')
         print(user_skills)
         if user_skills[0] != '':
-            
+            user_skills = set(user_skills)
             print("entered if")
             return render(request, 'User Profile/profile.html', {'skills':user_skills})
         else:
             print('Entered else')
             return render(request, 'User Profile/profile.html')
     elif request.method == "POST":
+        print("Initial Request.POST: "+request.POST['skills'])
         skills = request.POST['skills']
         user_skills = UserAttribs.objects.get(user=request.user).skills
         if skills == '':
             return render(request, 'User Profile/profile.html', {'skills': user_skills.split(',')})
 
-        print(skills)
-        print(type(skills))
-        
-        print(user_skills)
-        print(type(user_skills))
+        # print(skills)
         if user_skills != '':
             skills = skills+',' + str(user_skills)
-        else:
-            skills = skills+','
+        # else:
+        #     # skills = skills+','
+            
 
         updated_skills = UserAttribs.objects.get(user=request.user)
         updated_skills.skills = skills
@@ -67,6 +65,9 @@ def profile(request):
         skills = str(updated_skills.skills)
         skills = skills.split(',')
         print(skills)
+        skills = set(skills)
+        request.POST = request.POST.copy()
+        request.POST['skills'] = ''
         return render(request, 'User Profile/profile.html', {'skills': skills})
         
 
@@ -120,7 +121,8 @@ def otp_verification(request):
 
 def dashboard(request):
     print(request.user.username)
-    if request.user.is_authenticated and request.user.username != 'admin':
+    # if request.user.is_authenticated and request.user.username != 'admin':
+    if request.user.is_authenticated:
         return render(request, 'After Login/home.html')
     else:
         return HttpResponse('<h1>Please Login</h1>')

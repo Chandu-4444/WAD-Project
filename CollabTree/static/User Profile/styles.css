@@ -88,7 +88,7 @@ body{
     height: auto;
 }
 
-.modal-container{
+.modal-container, .modal-details{
     border-radius: 40px;
     position: absolute;
     text-align: center;
@@ -112,4 +112,14 @@ label{
     background-color: white;
     pointer-events: auto;
   }
+
+
+  .edit-name{
+    background-color: rgb(75, 216, 216);
+      float: right;
+      width: 100px;
+      display: inline;
+      margin-left: 85%;
+  }
+
 
