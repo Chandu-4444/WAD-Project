@@ -101,7 +101,7 @@ def otp_verification(request):
         message = "Subject:{}\n\n{}".format("OTP", pin)
         s.sendmail("collabtree.team@gmail.com",email, message)
         s.quit()
-        return render(request, "Registration/otp_form.html")
+        return render(request, "Registration/otp_form.html",{'message' : "  "})
     if request.method=="POST":
         otp = request.POST['otp']
         if otp==str(pin):
@@ -116,7 +116,7 @@ def otp_verification(request):
             # request.method = "POST"
             # return redirect('signup')
         else:
-            return render(request, "Registration/otp_form.html") 
+            return render(request, "Registration/otp_form.html", {'message' : "Wrong OTP"}) 
 
 def dashboard(request):
     print(request.user.username)

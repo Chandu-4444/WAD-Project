@@ -32,7 +32,8 @@ body {
 }
 .container .email {
   color: white;
-  margin-left: -200px;
+  /* margin-left: -100px; */
+  padding-right: 35px;
 }
 .container .password {
   color: white;
