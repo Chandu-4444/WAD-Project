@@ -5,6 +5,10 @@ class UserAttribs(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     job_title = models.CharField(max_length=100, blank=True)
     skills = models.CharField(max_length=1000,blank=True)
+    phone_number = models.CharField(max_length=12, blank=True)
+    mobile_number = models.CharField(max_length=12,blank=True)
+    full_name = models.CharField(max_length=30, blank=True)
+    address = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.user.username

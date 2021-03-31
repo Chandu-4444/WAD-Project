@@ -37,38 +37,92 @@ def profile(request):
         user_skills = str(user_skills)
         print('Printing: '+str(user_skills))
         user_skills = user_skills.split(',')
+        while ('' in user_skills):
+            user_skills.remove('')
         print(user_skills)
-        if user_skills[0] != '':
-            user_skills = set(user_skills)
-            print("entered if")
-            return render(request, 'User Profile/profile.html', {'skills':user_skills})
-        else:
-            print('Entered else')
-            return render(request, 'User Profile/profile.html')
+        return render(request, 'User Profile/profile.html', {'skills': user_skills})
+        # if user_skills[0] != '':
+        #     user_skills = set(user_skills)
+        #     return render(request, 'User Profile/profile.html', {'skills':user_skills})
+        # else:
+        #     print('Entered else')
+        #     return render(request, 'User Profile/profile.html')
     elif request.method == "POST":
         print("Initial Request.POST: "+request.POST['skills'])
         skills = request.POST['skills']
+        full_name = request.POST['name']
+        mobile = request.POST['mobile']
+        phone = request.POST['phone']
+        address = request.POST['address']
+        print(skills, full_name, mobile, phone, address)
         user_skills = UserAttribs.objects.get(user=request.user).skills
-        if skills == '':
-            return render(request, 'User Profile/profile.html', {'skills': user_skills.split(',')})
 
-        # print(skills)
-        if user_skills != '':
-            skills = skills+',' + str(user_skills)
-        # else:
-        #     # skills = skills+','
-            
 
         updated_skills = UserAttribs.objects.get(user=request.user)
-        updated_skills.skills = skills
+        if full_name!= '':
+            updated_skills.full_name = full_name
+        if phone!= '':
+            updated_skills.phone_number = phone
+        if mobile!= '':
+            updated_skills.mobile_number = mobile
+        if address!= '':
+            updated_skills.address = address
+        if skills!='':
+            skills = skills+','+updated_skills.skills
+            skills = skills.lower()
+            skills = skills.split(',')
+            skills = [s.strip() for s in skills]
+
+            while ('' in skills):
+                skills.remove('')
+            skills = set(skills)                
+            print(skills)
+            updated_skills.skills = ','.join(skills)
+        elif skills =='':
+            skills = updated_skills.skills.lower()
+            skills = skills.split(',')
+            skills = [s.strip() for s in skills]
+
+            while ('' in skills):
+                skills.remove('')
+            skills = set(skills)
+        
+        skills = list(skills)
+
+
+
+   
+        # skills = str(skills).lower()
+        color_list = []
+        skill_colors = dict()
+        list_color_pair = []
+        for _ in range(len(skills)):
+            random_number = random.randint(0,16777215)
+            hex_number = str(hex(random_number))
+            hex_number =hex_number[2:]
+            color_list.append(hex_number)
+            # skill_colors[skills[_]] = hex_number
+            skill_colors['ski'] = skills[_]
+            skill_colors['col'] = hex_number
+            list_color_pair.append({'ski': skills[_], 'col': hex_number})
+        print(list_color_pair) 
+
+
+        
+
+        # skills = set(skills)
+
         updated_skills.save()
-        skills = str(updated_skills.skills)
-        skills = skills.split(',')
-        print(skills)
-        skills = set(skills)
-        request.POST = request.POST.copy()
-        request.POST['skills'] = ''
-        return render(request, 'User Profile/profile.html', {'skills': skills})
+        full_name = updated_skills.full_name
+        phone = updated_skills.phone_number
+        mobile = updated_skills.mobile_number
+        address = updated_skills.address
+        # updated_skills.skill = str(skills)
+        # updated_skills.save()
+        # print("Saved in model: "+str(updated_skills.skills))
+        # request.POST = request.POST.copy()
+        # request.POST['skills'] = ''
+        return render(request, 'User Profile/profile.html', {'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
         
 
 
@@ -110,6 +164,10 @@ def otp_verification(request):
             # return redirect(reverse("dashboard"))
             user = signup_form.save()
             new_user = UserAttribs(user=user)
+            new_user.phone_number = 'Empty!'
+            new_user.mobile_number = 'Empty!'
+            new_user.full_name = 'Empty!'
+            new_user.address = 'Empty!'
             new_user.save()
             login(request, user)
             return redirect(reverse("dashboard"))

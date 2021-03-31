@@ -74,8 +74,8 @@
                       <h4>{{user.username}}</h4>
                       <p class="text-secondary mb-1">Full Stack Developer</p>
                       <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      {% comment %} <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button> {% endcomment %}
                     </div>
                   </div>
                 </div>
@@ -113,11 +113,20 @@
 
                   <div class="modal-details">
                     <form action="" method="post">
+                      {% csrf_token %}
                       <label for="name">Name</label>
-                      <input type="text">
-                      <label for="numeber">Mobile Number:</label>
-                      <input type="text">
-                      <input type="button" value="close" class="close-details">
+                      <input name="name" type="text" class="in">
+                      <label for="number">Mobile Number:</label>
+                      <input name="mobile" type="text" class="in">
+                      <label for="phone">Phone Number:</label>
+                      <input name="phone" type="text" class="in">
+                      <label for="address">Address:</label>
+                      <input type="text" name="address" class="in">
+                      <label for="skills">Skills:</label>
+                      <input type="text" name="skills" class="in">
+                      <input class="btnn" type="submit" value="submit">
+                      
+                      <input type="button" value="close" class="close-details btnn">
 
                     </form>
                   </div>
@@ -128,7 +137,7 @@
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Kenneth Valdez
+                      {{name}}
                     </div>
                   </div>
                   <hr>
@@ -146,7 +155,7 @@
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
+                      {{phone}}
                     </div>
                   </div>
                   <hr>
@@ -155,7 +164,7 @@
                       <h6 class="mb-0">Mobile</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (320) 380-4539
+                      {{mobile}}
                     </div>
                   </div>
                   <hr>
@@ -164,7 +173,7 @@
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                      {{address}}
                     </div>
                   </div>
                 </div>
@@ -173,7 +182,8 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body" style="background-color: rgb(166, 219, 201);">
-                      <h6 class="skill-head d-flex align-items-center mb-3 " style="font-size: 1.3em;">My Skills &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  style="font-size: 0.8em;"><button class="add-btn add">Add Skills</button></span> </h6>
+                      <!-- <h6 class="skill-head d-flex align-items-center mb-3 " style="font-size: 1.3em;">My Skills &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  style="font-size: 0.8em;"><button class="add-btn add">Add Skills</button></span> </h6> -->
+                      <h6 class="skill-head d-flex align-items-center mb-3 " style="font-size: 1.3em;">My Skills &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6>
 
                       <!-- Modal Container -->
                       <div class="modal-container">
@@ -192,8 +202,12 @@
                       
                       <div class="skills-section" style="display: block;">
                         {% for skill in skills %}
-                        <span class="skills-dynamic" style="display:inline-block;padding:2px 4px 2px 4px; background-color: rgb(255, 0, 0); margin: 2px; border-radius: 4px; height: 30px; text-align: center; color: white;">
-                        {{ skill }}
+                        {% comment %} <span class="skills-dynamic" style="display:inline-block;padding:2px 4px 2px 4px; background-color: rgb(255, 0, 0); margin: 2px; border-radius: 4px; height: 30px; text-align: center; color: white;"> {% endcomment %}
+                          <span class="skills-dynamic">
+                          
+                          {% if skill %}
+                          <img class="skill-img" src="https://img.shields.io/badge/{{skill.ski}}-{{skill.col}}?style=for-the-badge&logo={{skill.ski}}&logoColor=white">
+                          {% endif %}
                       </span>
                       {% endfor %}
                     </div>
@@ -256,18 +270,50 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	const addBtn = document.querySelector('.add-btn');
+	// const addBtn = document.querySelector('.add-btn');
   const modalContainer = document.querySelector('.modal-container');
 
   const closebtn = document.querySelector('.closee');
 
-  addBtn.addEventListener('click', function(){
-    modalContainer.classList.add('showw');
-  });
+  // addBtn.addEventListener('click', function(){
+  //   modalContainer.classList.add('showw');
+  // });
 
   closebtn.addEventListener('click', function(){
     modalContainer.classList.remove('showw');
   });
+
+//   let url = document.querySelector('.skill-img');
+//   console.log(url);
+//   url_str = String(url.getAttribute('src'));
+//   console.log("Url: "+url);
+
+
+//   var letters = "0123456789ABCDEF";
+//   var color = '';
+//   for (var i = 0; i < 6; i++)
+//      color += letters[(Math.floor(Math.random() * 16))];
+// document.write(color);
+
+//   // https://img.shields.io/badge/{{skill}}-2229D1?style=for-the-badge&logo={{skill}}&logoColor=white
+//   let arr = String(url_str).split('/');
+//   console.log(arr);
+//   let grabbedElement = arr[4];
+//   console.log(grabbedElement);
+//   const indexOfminus = grabbedElement.indexOf('-');
+//   console.log(indexOfminus);
+//   const indexOfQmark = grabbedElement.indexOf('?');
+//   console.log(indexOfQmark);
+//   let bgColor = grabbedElement.substring(indexOfminus+1, indexOfQmark);
+//   console.log(bgColor);
+//   changedGrabbedElement = grabbedElement.replace(bgColor, color);
+//   console.log(changedGrabbedElement);
+
+//   url_str = url_str.replace(grabbedElement, changedGrabbedElement);
+
+
+//   console.log("Changed:"+changedGrabbedElement);
+//   url.setAttribute("src", url_str);
 
 
   const editBtn = document.querySelector('.edit-name');
