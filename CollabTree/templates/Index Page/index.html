@@ -72,6 +72,7 @@
 
   </div>
 
+
   <div id="modal-wrapper2" class="modal">
 
     <form class="modal-content animate" action="signup/" method="post">
@@ -96,6 +97,7 @@
         <label for="password">Retype Password:</label>
         <br>
         <div>{{ form.password2 }}</div>
+          
         <!-- <input type="text" placeholder="Username" name="uname"> -->
         <!-- <input type="password" placeholder="Password" name="psw"> -->
         <!-- <input type="password" placeholder="Confirm Password" name="psw"> -->
@@ -376,6 +378,14 @@
     </div>
 
   </footer>
+  <script>
+  const message = "{{message}}"
+  if (message)
+  {
+    alert(message);
+  }
+
+  </script>
 
 
 </body>

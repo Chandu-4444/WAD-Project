@@ -7,6 +7,8 @@ import smtplib, ssl
 import random
 from backend.models import UserAttribs
 from django.contrib.auth.models import User, Permission
+from django import forms
+
 
 user = 0
 pin = 0
@@ -32,15 +34,107 @@ def index(request):
             return HttpResponse('<h1>Username cannot be empty</h1>')
 
 def profile(request):
-    if request.method == "GET":
-        user_skills = UserAttribs.objects.get(user=request.user).skills
-        user_skills = str(user_skills)
+    if request.method == "POST" and request.FILES.get('image'):
+        user_object = UserAttribs.objects.get(user = request.user)
+        user_object.user_image = request.FILES.get('image')
+        print(user_object.user_image)
+        user_object.save()
+        user_skills = str(user_object.skills)
+        # print('Printing: '+str(user_skills))
+        user_skills = user_skills.split(',')
+        while ('' in user_skills):
+            user_skills.remove('')
+        # print(user_skills)
+        skills = user_skills
+        color_list = []
+        skill_colors = dict()
+        list_color_pair = []
+        for _ in range(len(skills)):
+            random_number = random.randint(0,16777215)
+            hex_number = str(hex(random_number))
+            hex_number =hex_number[2:]
+            color_list.append(hex_number)
+            # skill_colors[skills[_]] = hex_number
+            skill_colors['ski'] = skills[_]
+            skill_colors['col'] = hex_number
+            list_color_pair.append({'ski': skills[_], 'col': hex_number})
+        # print(list_color_pair) 
+
+        full_name = user_object.full_name
+        phone = user_object.phone_number
+        mobile = user_object.mobile_number
+        address = user_object.address
+        website = user_object.website
+
+        return render(request, 'User Profile/profile.html', {'user_object':user_object ,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address })
+
+
+    elif request.method == "POST" and (request.POST.get('website')):
+        user_object = UserAttribs.objects.get(user = request.user)
+        user_object.website = request.POST['website']
+        user_object.save()
+        user_skills = str(user_object.skills)
+        # print('Printing: '+str(user_skills))
+        user_skills = user_skills.split(',')
+        while ('' in user_skills):
+            user_skills.remove('')
+        # print(user_skills)
+        skills = user_skills
+        color_list = []
+        skill_colors = dict()
+        list_color_pair = []
+        for _ in range(len(skills)):
+            random_number = random.randint(0,16777215)
+            hex_number = str(hex(random_number))
+            hex_number =hex_number[2:]
+            color_list.append(hex_number)
+            # skill_colors[skills[_]] = hex_number
+            skill_colors['ski'] = skills[_]
+            skill_colors['col'] = hex_number
+            list_color_pair.append({'ski': skills[_], 'col': hex_number})
+        # print(list_color_pair) 
+
+        full_name = user_object.full_name
+        phone = user_object.phone_number
+        mobile = user_object.mobile_number
+        address = user_object.address
+        website = user_object.website
+        print(website)
+
+        return render(request, 'User Profile/profile.html', {'user_object':user_object,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
+
+    elif request.method == "GET":
+        user_object = UserAttribs.objects.get(user=request.user)
+        user_skills = str(user_object.skills)
         print('Printing: '+str(user_skills))
         user_skills = user_skills.split(',')
         while ('' in user_skills):
             user_skills.remove('')
         print(user_skills)
-        return render(request, 'User Profile/profile.html', {'skills': user_skills})
+        skills = user_skills
+        color_list = []
+        skill_colors = dict()
+        list_color_pair = []
+        for _ in range(len(skills)):
+            random_number = random.randint(0,16777215)
+            hex_number = str(hex(random_number))
+            hex_number =hex_number[2:]
+            color_list.append(hex_number)
+            # skill_colors[skills[_]] = hex_number
+            skill_colors['ski'] = skills[_]
+            skill_colors['col'] = hex_number
+            list_color_pair.append({'ski': skills[_], 'col': hex_number})
+        print(list_color_pair) 
+
+        full_name = user_object.full_name
+        phone = user_object.phone_number
+        mobile = user_object.mobile_number
+        address = user_object.address
+        website = user_object.website
+
+
+
+        return render(request, 'User Profile/profile.html', {'user_object':user_object,'skills': list_color_pair,'website': website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
         # if user_skills[0] != '':
         #     user_skills = set(user_skills)
         #     return render(request, 'User Profile/profile.html', {'skills':user_skills})
@@ -117,12 +211,13 @@ def profile(request):
         phone = updated_skills.phone_number
         mobile = updated_skills.mobile_number
         address = updated_skills.address
+        website = updated_skills.website
         # updated_skills.skill = str(skills)
         # updated_skills.save()
         # print("Saved in model: "+str(updated_skills.skills))
         # request.POST = request.POST.copy()
         # request.POST['skills'] = ''
-        return render(request, 'User Profile/profile.html', {'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
+        return render(request, 'User Profile/profile.html', {'user_object':updated_skills,'skills': list_color_pair,'website':website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
         
 
 
@@ -133,6 +228,12 @@ def sign_up(request):
         form = UserCreation(request.POST)
         if form.is_valid:
             signup_form = form
+            if request.POST['password1'] != request.POST['password2']:
+                print("Passwords didn't match")
+                return HttpResponse("<h1>Passwords didn't match</h1>")
+                
+                # raise forms.ValidationError("Your passwords didn't match!")
+                # return render(request , 'Index Page/index.html', {"form": UserCreation, "message": "Passwords did not match!"})
             # login(request, user)
             # return redirect("dashboard")
             request.session['email'] = request.POST['email']

@@ -9,7 +9,7 @@ class UserAttribs(models.Model):
     mobile_number = models.CharField(max_length=12,blank=True)
     full_name = models.CharField(max_length=30, blank=True)
     address = models.CharField(max_length=100, blank=True)
-
+    website = models.URLField(max_length=100, blank=True)
+    user_image = models.ImageField(upload_to="images" ,blank=True)
     def __str__(self):
         return self.user.username
-

@@ -6,10 +6,15 @@ body{
 }
 .main-body {
     padding: 15px;
-
 }
 .card {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.edit-web{
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card {
@@ -97,7 +102,7 @@ body{
 }
 
 
-.modal-container, .modal-details{
+.modal-container, .modal-details, .details-contact, .image-modal{
     z-index: 2;
     border-radius: 40px;
     position: absolute;
@@ -113,6 +118,12 @@ body{
     margin: 0 auto;
     padding: 20px;
     transition: all 0.2s ease-in-out;
+}
+
+.image-label{
+    margin-left: 118px;
+    margin-bottom: 4px;
+
 }
 
 .modal-details{
@@ -146,6 +157,14 @@ label{
     margin: 5px;
 }
 
+.user-img
+{
+    padding: 5px;
+    border: 1px solid black;
+    margin: 5px;
+
+}
+
 .showw {
     z-index: 2;
     opacity: 1;
@@ -161,5 +180,29 @@ label{
       display: inline;
       margin-left: 85%;
   }
+
+  .details-contact{
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -130px;
+      
+  }
+
+  @media screen and (max-width: 800px){
+    .modal-details{
+        margin-left: 52%;
+    }
+    .add{
+        margin-right: 20px;
+    }
+
+   
+}
+
+@media screen and (max-width: 764px){
+    .details-contact{
+        margin-left: 200px;
+    }
+}
 
 
