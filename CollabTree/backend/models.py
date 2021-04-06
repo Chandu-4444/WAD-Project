@@ -23,4 +23,15 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+class Project(models.Model):
+    title = models.CharField(max_length=200,blank=True)
+    description = models.TextField(max_length=400,blank=True)
+    owner = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, related_name="owner")
+    duration = models.IntegerField(blank=True)
+    assigned_user = models.OneToOneField(UserAttribs, on_delete = models.CASCADE, related_name="assigned_user", null=True, blank=True)
+    stipend = models.IntegerField(blank=True)
+    def __str__(self):
+        return self.title
+
+
 

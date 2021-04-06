@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from backend.forms import UserCreation
 import smtplib, ssl
 import random
-from backend.models import UserAttribs, Blog
+from backend.models import UserAttribs, Blog, Project
 from django.contrib.auth.models import User, Permission
 from django import forms
 
@@ -305,5 +305,26 @@ def new_blog(request):
         blog_object.save()
         
         return redirect(reverse("blogs"))
+
+def my_projects(request):
+    return render(request, 'My Projects/myProjects.html')
+
+def project_form(request):
+    if request.method == "GET":
+        return render(request,'My Projects/project_form.html')
+    elif request.method == 'POST':
+        title = request.POST["title"]
+        description = request.POST["description"]
+        duration = int(request.POST["duration"])
+        stipend = int(request.POST["stipend"])
+
+        owner_object = UserAttribs.objects.get(user=request.user)
+        project_object = Project(owner=owner_object)
+        project_object.title = title
+        project_object.description = description
+        project_object.duration = duration
+        project_object.stipend = stipend
+        project_object.save()
         
-    
+        return redirect(reverse("dashboard"))
+        
