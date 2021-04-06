@@ -27,7 +27,8 @@ def index(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'After Login/home.html')
+                project_objects = Project.objects.all()
+                return render(request, 'After Login/home.html', {"project_objects" : project_objects })
             else:
                 return HttpResponse('<h1>Wrong</h1>')
         else:
@@ -282,7 +283,9 @@ def dashboard(request):
     print(request.user.username)
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
-        return render(request, 'After Login/home.html')
+        project_objects = Project.objects.all()
+        print(project_objects)
+        return render(request, 'After Login/home.html', {"project_objects" : project_objects })
     else:
         return HttpResponse('<h1>Please Login</h1>')
 def blog(request):

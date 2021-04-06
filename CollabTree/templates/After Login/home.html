@@ -31,7 +31,7 @@
         border-radius: 4px;
         padding: 4px;
         height: 40px;
-        background: url("../images/search.png") no-repeat scroll 4px 6px;
+        background: url("{% static 'images/search.png' %}") no-repeat scroll 4px 6px;
         padding-left: 40px;
       }
 
@@ -153,70 +153,12 @@
     <div class="latest">Latest</div>
 
     <div class="container">
+      {% for project in project_objects %}
       <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
+        <div class="title">{{ project.title }}</div>
+        <div class="desc">{{ project.description }}</div>
       </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
-      <a href="#" class="job">
-        <div class="title">Job</div>
-        <div class="desc">Description</div>
-      </a>
+      {% endfor %}
     </div>
 
     <div class="latest">Categories</div>
