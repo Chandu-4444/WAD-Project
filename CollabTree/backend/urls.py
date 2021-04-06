@@ -12,7 +12,7 @@ urlpatterns = [
     path('profile/', views.profile, name = 'profile'),
     path('dashboard/', views.dashboard, name = 'dashboard'),
     path('otp_verification/', views.otp_verification, name="otp_verification"),
-    path('blogs/', views.blog, name="blogs")
-
+    path('blogs/', views.blog, name="blogs"),
+    path('new_blog',views.new_blog, name="new_blog")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

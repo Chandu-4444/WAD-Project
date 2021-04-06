@@ -174,7 +174,7 @@
     <div id="intro" class="p-5 text-center bg-light">
       <h1 class="mb-3 h2">CollabTree Blogs</h1>
       <p class="mb-3">Best & free guide to develope yourselves.</p>
-      <a class="btn btn-primary m-2" href="#" role="button" rel="nofollow"
+      <a class="btn btn-primary m-2" href="{% url 'new_blog' %}" role="button" rel="nofollow"
         target="_blank">Write a Blog</a>
       <a class="btn btn-primary m-2" href="../After Login/home.html" target="_blank"
         role="button">Go to Home</a>
@@ -191,19 +191,24 @@
         <h4 class="mb-5"><strong>Latest posts</strong></h4>
 
         <div class="row">
+          {% for blog in blog_objects %}
           <div class="col-lg-4 col-md-12 mb-4">
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
+                {% if blog.cover_image %}
+                <img src="{{blog.cover_image.url}}" class="img-fluid" />
+                {% endif %}
                 <a href="#!">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </a>
               </div>
               <div class="card-body">
-                <h5 class="card-title">Post title</h5>
+                <h5 class="card-title">{{blog.title}}</h5>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the
-                  card's content.
+                  {{blog.body}}
+                </p>
+                <p>
+                  {{blog.date_time}}
                 </p>
                 <div class="tags-container">
                   <span>#tags</span>
@@ -214,8 +219,8 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
+          {% endfor %}
+          <!-- <div class="col-lg-4 col-md-6 mb-4">
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
@@ -335,7 +340,7 @@
                 <a href="#!" class="btn btn-primary">Read</a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
       <!--Section: Content-->

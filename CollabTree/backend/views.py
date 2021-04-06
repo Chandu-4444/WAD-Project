@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from backend.forms import UserCreation
 import smtplib, ssl
 import random
-from backend.models import UserAttribs
+from backend.models import UserAttribs, Blog
 from django.contrib.auth.models import User, Permission
 from django import forms
 
@@ -286,4 +286,24 @@ def dashboard(request):
     else:
         return HttpResponse('<h1>Please Login</h1>')
 def blog(request):
-    return render(request, 'Blog Section/blog.html')
+    blog_objects = Blog.objects.all().order_by('-date_time')
+    blog_objects = blog_objects[:9]
+    # print(blog_objects)
+    return render(request, 'Blog Section/blog.html', {"blog_objects" : blog_objects})
+
+def new_blog(request):
+    if request.method == "GET":
+        return render(request,'Blog Section/new_blog.html')
+    elif request.method == "POST":
+        title = request.POST["title"]
+        body = request.POST["body"]
+        user_object = UserAttribs.objects.get(user=request.user)
+        blog_object = Blog(author=user_object)
+        blog_object.title = title
+        blog_object.body = body
+        blog_object.cover_image = request.FILES["cover_image"]
+        blog_object.save()
+        
+        return redirect(reverse("blogs"))
+        
+    
