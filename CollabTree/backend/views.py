@@ -28,7 +28,8 @@ def index(request):
             if user.is_active:
                 login(request, user)
                 project_objects = Project.objects.all()
-                return render(request, 'After Login/home.html', {"project_objects" : project_objects })
+                # return render(request, 'After Login/home.html', {"project_objects" : project_objects })
+                return redirect(reverse('dashboard'))
             else:
                 return HttpResponse('<h1>Wrong</h1>')
         else:
