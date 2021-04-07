@@ -30,8 +30,8 @@ class Project(models.Model):
     duration = models.IntegerField(blank=True)
     assigned_user = models.OneToOneField(UserAttribs, on_delete = models.CASCADE, related_name="assigned_user", null=True, blank=True)
     stipend = models.IntegerField(blank=True)
+    applied_candidates = models.ForeignKey(UserAttribs, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.title
-
 
 

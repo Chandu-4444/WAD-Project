@@ -158,6 +158,11 @@
       <a href="#" class="job">
         <div class="title">{{ project.title }}</div>
         <div class="desc">{{ project.description }}</div>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="text" placeholder="Enter title" name="project_title">
+          <input type="submit" value="Apply">
+        </form>
       </a>
       {% endfor %}
     </div>

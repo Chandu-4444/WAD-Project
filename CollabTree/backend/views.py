@@ -284,11 +284,24 @@ def dashboard(request):
     print(request.user.username)
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
-        project_objects = Project.objects.all()
-        print(project_objects)
-        return render(request, 'After Login/home.html', {"project_objects" : project_objects })
+        if request.method == "GET":
+            project_objects = Project.objects.all()
+            print(project_objects)
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects })
+        elif request.method == "POST":
+            project_objects = Project.objects.all()
+            # project_object = Project.objects.get(title = request.POST["project_title"])
+            # project_object.applied_candidates += UserAttribs.objects.get(user=request.user)
+            # project_object.save()
+            user_obj = UserAttribs.objects.get(user=request.user)
+            proj_obj = Project.objects.get(title=request.POST["project_title"])
+            user_obj.project_set.add(proj_obj)
+            user_obj.save()
+            # proj_obj.save()
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects })
     else:
         return HttpResponse('<h1>Please Login</h1>')
+
 def blog(request):
     blog_objects = Blog.objects.all().order_by('-date_time')
     blog_objects = blog_objects[:9]
