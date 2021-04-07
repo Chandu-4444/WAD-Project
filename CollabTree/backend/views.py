@@ -286,7 +286,6 @@ def dashboard(request):
     if request.user.is_authenticated:
         if request.method == "GET":
             project_objects = Project.objects.all()
-            print(project_objects)
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
         elif request.method == "POST":
             project_objects = Project.objects.all()
@@ -294,10 +293,11 @@ def dashboard(request):
             # project_object.applied_candidates += UserAttribs.objects.get(user=request.user)
             # project_object.save()
             user_obj = UserAttribs.objects.get(user=request.user)
-            proj_obj = Project.objects.get(title=request.POST["project_title"])
-            user_obj.project_set.add(proj_obj)
+            proj_obj = Project.objects.get(id=request.POST["project_title"])
+            proj_obj.userattribs_set.add(user_obj)
             user_obj.save()
-            # proj_obj.save()
+            proj_obj.save()
+            print(proj_obj.userattribs_set.all())
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
     else:
         return HttpResponse('<h1>Please Login</h1>')
