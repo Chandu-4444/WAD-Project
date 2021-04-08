@@ -34,8 +34,47 @@ def index(request):
                 return HttpResponse('<h1>Wrong</h1>')
         else:
             return HttpResponse('<h1>Username cannot be empty</h1>')
+# def profile_name(request, id):
+#     user_obj = UserAttribs.objects.get(id = id)
+#     print(user_obj)
+#     return HttpResponse("<h1>Hello {{ user_obj }} </h1>")
 
-def profile(request):
+
+def profile(request, id=None):
+    current_user = UserAttribs.objects.get(user = request.user)
+    if id:
+        # return HttpResponse('<h1>Hello, {} {}</h1>'.format(id, UserAttribs.objects.get(id=id).user.username))
+        # user_display_obj = UserAttribs.objects.get(id=id)
+        user_object = UserAttribs.objects.get(id=id)
+        user_skills = str(user_object.skills)
+        print('Printing: '+str(user_skills))
+        user_skills = user_skills.split(',')
+        while ('' in user_skills):
+            user_skills.remove('')
+        print(user_skills)
+        skills = user_skills
+        color_list = []
+        skill_colors = dict()
+        list_color_pair = []
+        for _ in range(len(skills)):
+            random_number = random.randint(0,16777215)
+            hex_number = str(hex(random_number))
+            hex_number =hex_number[2:]
+            color_list.append(hex_number)
+            # skill_colors[skills[_]] = hex_number
+            skill_colors['ski'] = skills[_]
+            skill_colors['col'] = hex_number
+            list_color_pair.append({'ski': skills[_], 'col': hex_number})
+        print(list_color_pair) 
+
+        full_name = user_object.full_name
+        phone = user_object.phone_number
+        mobile = user_object.mobile_number
+        address = user_object.address
+        website = user_object.website
+        return render(request, 'User Profile/profile_to_display.html', {'user_display': user_object,'user_object':user_object,'skills': list_color_pair,'website': website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all()})
+
+        # return render(request, 'User Profile/profile.html', {'user_object':user_display_obj, 'user_display': current_user })
     if request.method == "POST" and request.FILES.get('image'):
         user_object = UserAttribs.objects.get(user = request.user)
         user_object.user_image = request.FILES.get('image')
@@ -68,7 +107,7 @@ def profile(request):
         address = user_object.address
         website = user_object.website
 
-        return render(request, 'User Profile/profile.html', {'user_object':user_object ,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address })
+        return render(request, 'User Profile/profile.html', {'user_display': user_object,'user_object':user_object ,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all() })
 
 
     elif request.method == "POST" and (request.POST.get('website')):
@@ -103,7 +142,7 @@ def profile(request):
         website = user_object.website
         print(website)
 
-        return render(request, 'User Profile/profile.html', {'user_object':user_object,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
+        return render(request, 'User Profile/profile.html', {'user_display': user_object,'user_object':user_object,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all()})
 
     elif request.method == "GET":
         user_object = UserAttribs.objects.get(user=request.user)
@@ -136,7 +175,7 @@ def profile(request):
 
 
 
-        return render(request, 'User Profile/profile.html', {'user_object':user_object,'skills': list_color_pair,'website': website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
+        return render(request, 'User Profile/profile.html', {'user_display': user_object,'user_object':user_object,'skills': list_color_pair,'website': website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all()})
         # if user_skills[0] != '':
         #     user_skills = set(user_skills)
         #     return render(request, 'User Profile/profile.html', {'skills':user_skills})
@@ -219,7 +258,7 @@ def profile(request):
         # print("Saved in model: "+str(updated_skills.skills))
         # request.POST = request.POST.copy()
         # request.POST['skills'] = ''
-        return render(request, 'User Profile/profile.html', {'user_object':updated_skills,'skills': list_color_pair,'website':website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address})
+        return render(request, 'User Profile/profile.html', {'user_display':updated_skills,'user_object':updated_skills,'skills': list_color_pair,'website':website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all()})
         
 
 
@@ -280,12 +319,20 @@ def otp_verification(request):
         else:
             return render(request, "Registration/otp_form.html", {'message' : "Wrong OTP"}) 
 
+project_dict = {}
+
 def dashboard(request):
+    global project_dict
     print(request.user.username)
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
         if request.method == "GET":
             project_objects = Project.objects.all()
+            for i in project_objects:
+                try:
+                    print(i.title,i.applied_users.all())
+                except :
+                    print("Error")
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
         elif request.method == "POST":
             project_objects = Project.objects.all()
@@ -294,10 +341,12 @@ def dashboard(request):
             # project_object.save()
             user_obj = UserAttribs.objects.get(user=request.user)
             proj_obj = Project.objects.get(id=request.POST["project_title"])
-            proj_obj.userattribs_set.add(user_obj)
+            proj_obj.applied_users.add(user_obj)
             user_obj.save()
             proj_obj.save()
-            print(proj_obj.userattribs_set.all())
+            print(proj_obj.applied_users.all())
+            # project_dict[proj_obj] = proj_obj.userattribs_set.all()
+            
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
     else:
         return HttpResponse('<h1>Please Login</h1>')
@@ -324,7 +373,22 @@ def new_blog(request):
         return redirect(reverse("blogs"))
 
 def my_projects(request):
-    return render(request, 'My Projects/myProjects.html')
+    project_objects = Project.objects.all()
+    project_list=[]
+    for project in project_objects:
+        if project.owner == UserAttribs.objects.get(user=request.user):
+            print(project.id)
+            # proj_obj = Project.objects.get(id=project.id)
+            applied_users = project.applied_users.all()
+            # print("Applied users"+str(applied_users))
+            project_list.append({'project':project,'applied_users':applied_users})
+
+
+            
+
+    # print(project_list)
+    print(project_list)
+    return render(request, 'My Projects/myProjects.html' ,{'project_list': project_list})
 
 def project_form(request):
     if request.method == "GET":
@@ -345,3 +409,15 @@ def project_form(request):
         
         return redirect(reverse("dashboard"))
         
+def assign_user(request, id, proj_id):
+    print("In assign_user")
+    user_obj = UserAttribs.objects.get(id=id)
+    proj_obj = Project.objects.get(id=proj_id)
+
+    proj_obj.assigned_user = user_obj
+    user_obj.assigned_project.add(proj_obj)
+    print(user_obj.assigned_project.all())
+    proj_obj.save()
+    return redirect(reverse("my_projects"))
+
+

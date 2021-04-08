@@ -70,13 +70,12 @@
                 <div class="card-body" style="background-color: rgb(148, 230, 202);">
                   <div class="d-flex flex-column align-items-center text-center">
                     {% if user_object.user_image %}
-                      
                     <img src="{{user_object.user_image.url}}" alt="Admin" class="rounded-circle user-img" width="150">
                     {% endif %}
 
                       
                     
-                    <button class="edit-image-btn">Change Image</button>
+                    <!-- <button class="edit-image-btn">Change Image</button>
                     <div class="image-modal">
                       <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -84,9 +83,9 @@
                         <input type="submit" value="Upload">
                         <input type="button" value="Close" class="close-image-modal">
                       </form>
-                    </div>
+                    </div> -->
                     <div class="mt-3">
-                      <h4>{{user.username}}</h4>
+                      <h4>{{user_object.user.username}}</h4>
                       <p class="text-secondary mb-1">{{user_object.job_title}}</p>
                       <p class="text-muted font-size-sm">{{address}}</p>
                       {% comment %} <button class="btn btn-primary">Follow</button>
@@ -96,7 +95,7 @@
                 </div>
               </div>
               <div class="card mt-3" >
-                <button class="edit-web">Edit</button>
+                <!-- <button class="edit-web">Edit</button>
 
                 <div class="details-contact">
                   <form action="" method="post">
@@ -114,7 +113,7 @@
                     <input type="submit" value="Submit">
                     <input type="button" value="Close" class="close-contact-details">
                   </form>
-                </div>
+                </div> -->
 
                 <ul class="list-group list-group-flush" >
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -142,8 +141,9 @@
             </div>
             <div class="col-md-8">
               <div class="card mb-3" style="background-color: rgb(182, 218, 206);">
-                <button class="edit-name">Edit</button>
                 <div class="card-body" style="background-color: rgb(182, 218, 206);"> 
+
+                <!-- <button class="edit-name">Edit</button>
 
 
                   <div class="modal-details">
@@ -165,7 +165,7 @@
 
                     </form>
                   </div>
-                
+                 -->
                   
                   <div class="row">
                     <div class="col-sm-3">
@@ -181,7 +181,7 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{user.email}}
+                      {{user_object.user.email}}
                     </div>
                   </div>
                   <hr>
@@ -222,7 +222,7 @@
                       <h6 class="skill-head d-flex align-items-center mb-3 " style="font-size: 1.3em;">My Skills &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6>
                   
                       <!-- Modal Container -->
-                      <div class="modal-container">
+                      <!-- <div class="modal-container">
                         <form method="post">
                           {% csrf_token %}
                           <label >Add Skills (Comma-seperated)</label>
@@ -230,11 +230,10 @@
                           <input name="skills" type="text">
                           <br>
                           <input type="submit" value="Submit">
-                          <!-- <button type="close" value="Close" name="close" class="close add"> -->
-                            <!-- <button class="close add">Close</button> -->
+
                             <input type="button" value="close" class="closee">
                         </form>
-                      </div>
+                      </div> -->
                       
                       <div class="skills-section" style="display: block;">
                         {% for skill in skills %}
@@ -281,7 +280,8 @@
                       <small>{{ assigned }}</small>
                       <br>
                       {% endfor %}
-                      <!-- <div class="progress mb-3" style="height: 5px">
+                      <!-- <small>Web Design</small>
+                      <div class="progress mb-3" style="height: 5px">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                       <small>Website Markup</small>

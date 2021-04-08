@@ -14,7 +14,8 @@ class UserAttribs(models.Model):
     address = models.CharField(max_length=100, blank=True)
     website = models.URLField(max_length=100, blank=True)
     user_image = models.ImageField(upload_to="images" ,blank=True)
-    applied_projects = models.ForeignKey('Project', on_delete = models.CASCADE, blank=True, null=True)
+    assigned_project = models.ManyToManyField('Project', blank=True)
+    # applied_projects = models.ForeignKey('Project', on_delete = models.CASCADE, blank=True, null=True)
     def __str__(self):
         return self.user.username
 
@@ -33,9 +34,9 @@ class Project(models.Model):
     description = models.TextField(max_length=400,blank=True)
     owner = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, related_name="owner")
     duration = models.IntegerField(blank=True)
-    assigned_user = models.OneToOneField(UserAttribs, on_delete = models.CASCADE, related_name="assigned_user", null=True, blank=True)
+    assigned_user = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, related_name="assigned_user", null=True, blank=True)
     stipend = models.IntegerField(blank=True)
-    # applied_candidates = models.ForeignKey(UserAttribs, on_delete=models.CASCADE, null=True, blank=True)
+    applied_users = models.ManyToManyField(UserAttribs,  null=True, blank=True)
     def __str__(self):
         return self.title
 

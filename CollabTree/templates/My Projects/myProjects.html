@@ -75,5 +75,23 @@
       <section>
         <a href="{% url 'project_form' %}">Add a project</a>
       </section>
+      <div class="my-projects">
+        {% for project in project_list %}
+        <div>
+          {{project.project.title}} :
+          {% if not project.project.assigned_user %}
+            
+          
+          {% for user in project.applied_users %}
+            <a href="{% url 'profile' user.id %}">{{ user }}</a> <a href="{% url 'assign_user' user.id project.project.id %}">Accept</a> | 
+          {% endfor %}
+          {% else %}
+          Assigned <a href="{% url 'profile' project.project.assigned_user.id %}">{{ project.project.assigned_user }}</a>
+
+          {% endif %}
+
+        </div>
+        {% endfor %}
+      </div>
 </body>
 </html>
