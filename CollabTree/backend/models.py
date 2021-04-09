@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 # from backend.models import UserAttribs
 
 
@@ -24,8 +25,10 @@ class Blog(models.Model):
     title = models.CharField(max_length=100,blank=True)
     body = models.TextField(blank=True)
     cover_image = models.ImageField(upload_to="blog_images", blank=True) 
-    author = models.ForeignKey(UserAttribs, on_delete = models.CASCADE)
-    date_time = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, blank=True, null=True)
+    date_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    tags = TaggableManager()
+
     def __str__(self):
         return self.title
 

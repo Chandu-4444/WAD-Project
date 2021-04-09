@@ -375,6 +375,8 @@ def blog(request):
     blog_objects = Blog.objects.all().order_by('-date_time')
     blog_objects = blog_objects[:9]
     # print(blog_objects)
+    # for i in blog_objects:
+    #     print(i.tags.all())
     return render(request, 'Blog Section/blog.html', {"blog_objects" : blog_objects})
 
 def new_blog(request):
@@ -384,10 +386,14 @@ def new_blog(request):
         title = request.POST["title"]
         body = request.POST["body"]
         user_object = UserAttribs.objects.get(user=request.user)
-        blog_object = Blog(author=user_object)
+        blog_object = Blog.objects.create(author=user_object)
         blog_object.title = title
         blog_object.body = body
         blog_object.cover_image = request.FILES["cover_image"]
+        tags = request.POST['tags']
+        for tag in tags.split(','):
+            blog_object.tags.add(tag)
+        print(blog_object.tags)
         blog_object.save()
         
         return redirect(reverse("blogs"))
