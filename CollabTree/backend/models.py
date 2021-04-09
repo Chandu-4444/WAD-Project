@@ -14,7 +14,7 @@ class UserAttribs(models.Model):
     address = models.CharField(max_length=100, blank=True)
     website = models.URLField(max_length=100, blank=True)
     user_image = models.ImageField(upload_to="images" ,blank=True)
-    assigned_project = models.ManyToManyField('Project', blank=True)
+    assigned_project = models.ManyToManyField('Project', blank=True, null=True)
     # applied_projects = models.ForeignKey('Project', on_delete = models.CASCADE, blank=True, null=True)
     def __str__(self):
         return self.user.username

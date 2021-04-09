@@ -324,20 +324,35 @@ def otp_verification(request):
 
 def dashboard(request):
     user_object = UserAttribs(user = request.user)
-
-    messages.success(request, 'Welcome to Collabtree {}'.format(user_object.user.username))
-    messages.info(request, "Info Message")
+    store=""
+    f = open("messages_data.txt","r")
+    for line in f:
+        line = str(line)[:-1]
+        a = line.split(",")
+        print(a)
+        if a[0]==user_object.user.username and a[2]=='1':
+            print("Yes")
+            messages.success(request, f"{a[0]} you have been accepted for {a[1]} project.")
+            x = list(line)
+            x[-1]='0'
+            store+="".join(x)+"\n"
+        else:
+            store+=str(line)+"\n"
+    f = open("messages_data.txt","w")
+    f.write(store)
+    f.close()
+    # messages.info(request, "Info Message")
 
 
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
         if request.method == "GET":
             project_objects = Project.objects.all()
-            for i in project_objects:
-                try:
-                    print(i.title,i.applied_users.all())
-                except :
-                    print("Error")
+            # for i in project_objects:
+            #     try:
+            #         print(i.title,i.applied_users.all())
+            #     except :
+            #         print("Error")
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
         elif request.method == "POST":
             project_objects = Project.objects.all()
@@ -349,7 +364,7 @@ def dashboard(request):
             proj_obj.applied_users.add(user_obj)
             user_obj.save()
             proj_obj.save()
-            print(proj_obj.applied_users.all())
+            # print(proj_obj.applied_users.all())
             # project_dict[proj_obj] = proj_obj.userattribs_set.all()
             
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
@@ -421,7 +436,9 @@ def assign_user(request, id, proj_id):
 
     proj_obj.assigned_user = user_obj
     user_obj.assigned_project.add(proj_obj)
-    
+    f = open("messages_data.txt","a")
+    f.write(str(user_obj.user.username)+","+str(proj_obj.title)+","+str(1)+"\n")
+    f.close()     
     print(user_obj.assigned_project.all())
     proj_obj.save()
     return redirect(reverse("my_projects"))
