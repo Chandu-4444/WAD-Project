@@ -426,11 +426,15 @@ def project_form(request):
         stipend = int(request.POST["stipend"])
 
         owner_object = UserAttribs.objects.get(user=request.user)
-        project_object = Project(owner=owner_object)
+        project_object = Project.objects.create(owner=owner_object)
         project_object.title = title
         project_object.description = description
         project_object.duration = duration
         project_object.stipend = stipend
+        tags = request.POST['tags']
+        for tag in tags.split(','):
+            project_object.tags_requirement.add(tag)
+        print(project_object.tags_requirement)
         project_object.save()
         
         return redirect(reverse("dashboard"))

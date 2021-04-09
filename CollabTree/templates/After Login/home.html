@@ -207,12 +207,18 @@
 
     <div class="container">
       {% for project in project_objects %}
-      <a href="#" class="job">
+      <div class="job">
         <div class="title">{{ project.title }}</div>
         <div class="desc">{{ project.description }}</div>
+        <div class = "tags-container">
+          {% for tag in project.tags_requirement.all %}
+          <a href="">#{{tag}}&nbsp;</a>
+          {% endfor %}
+        </div>
         <form action="" method="POST">
           {% csrf_token %}
           <input
+            style = "display: none;"
             type="text"
             placeholder="Enter title"
             name="project_title"
@@ -220,7 +226,7 @@
           />
           <input type="submit" value="Apply" />
         </form>
-      </a>
+      </div>
       {% endfor %}
     </div>
 
