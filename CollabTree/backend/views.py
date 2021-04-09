@@ -1,3 +1,4 @@
+from django.core.checks import messages
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
@@ -5,6 +6,7 @@ from django.http import HttpResponse
 from backend.forms import UserCreation
 import smtplib, ssl
 import random
+from django.contrib import messages
 from backend.models import UserAttribs, Blog, Project
 from django.contrib.auth.models import User, Permission
 from django import forms
@@ -319,11 +321,14 @@ def otp_verification(request):
         else:
             return render(request, "Registration/otp_form.html", {'message' : "Wrong OTP"}) 
 
-project_dict = {}
 
 def dashboard(request):
-    global project_dict
-    print(request.user.username)
+    user_object = UserAttribs(user = request.user)
+
+    messages.success(request, 'Welcome to Collabtree {}'.format(user_object.user.username))
+    messages.info(request, "Info Message")
+
+
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
         if request.method == "GET":
@@ -416,6 +421,7 @@ def assign_user(request, id, proj_id):
 
     proj_obj.assigned_user = user_obj
     user_obj.assigned_project.add(proj_obj)
+    
     print(user_obj.assigned_project.all())
     proj_obj.save()
     return redirect(reverse("my_projects"))

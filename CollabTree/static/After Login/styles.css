@@ -4,6 +4,29 @@
   box-sizing: border-box;
   overflow-x: hidden;
 }
+.toast-body {
+  padding: 5px;
+  width: auto;
+  margin: 6px;
+}
+
+.messages{
+  margin: 10px;
+  padding: 4px;
+}
+
+.messages li{
+  margin: 5px;
+}
+ 
+
+.messages li:first-child{
+  margin-top: 60px;
+}
+
+.messages ul:not(:first-child){
+  margin-top: 60px;
+}
 
 body {
   background-image: url("../images/bk.jpg");
@@ -13,6 +36,7 @@ body {
 
 .show {
   display: block;
+  /* margin-top: 20px; */
 }
 
 /* nav {

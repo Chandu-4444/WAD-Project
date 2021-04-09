@@ -17,6 +17,10 @@
       integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="{% static 'After Login/styles.css' %}" />
     <style>
       .searchbar {
@@ -31,7 +35,8 @@
         border-radius: 4px;
         padding: 4px;
         height: 40px;
-        background: url("{% static 'images/search.png' %}") no-repeat scroll 4px 6px;
+        background: url("{% static 'images/search.png' %}") no-repeat scroll 4px
+          6px;
         padding-left: 40px;
       }
 
@@ -96,8 +101,13 @@
       </ul>
     </nav> -->
 
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom" style="background-color: black;">
-      <a class="navbar-brand navbar-color" style="color: white;" href="#">COLLABTREE</a>
+    <nav
+      class="navbar navbar-expand-lg navbar-light navbar-custom"
+      style="z-index: 4; background-color: black; position: fixed; width: 100%"
+    >
+      <a class="navbar-brand navbar-color" style="color: white" href="#"
+        >COLLABTREE</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -107,25 +117,51 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span style="background-color: white;" class="navbar-toggler-icon"></span>
+        <span
+          style="background-color: white"
+          class="navbar-toggler-icon"
+        ></span>
       </button>
 
-      <div class="collapse navbar-collapse" style="background-color: black;" id="NavbarCollapsedContent">
+      <div
+        class="collapse navbar-collapse"
+        style="background-color: black"
+        id="NavbarCollapsedContent"
+      >
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link active" style="color: white;" href="{% url 'profile' %}">About Me</a>
+            <a
+              class="nav-link active"
+              style="color: white"
+              href="{% url 'profile' %}"
+              >About Me</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white;" href="#">Home</a>
+            <a class="nav-link navbar-color" style="color: white" href="#"
+              >Home</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white;" href="{% url 'my_projects' %}">My Projects</a>
+            <a
+              class="nav-link navbar-color"
+              style="color: white"
+              href="{% url 'my_projects' %}"
+              >My Projects</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white;" href="{% url 'blogs' %}">Blogs</a>
+            <a
+              class="nav-link navbar-color"
+              style="color: white"
+              href="{% url 'blogs' %}"
+              >Blogs</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white;" href="#">Messages</a>
+            <a class="nav-link navbar-color" style="color: white" href="#"
+              >Messages</a
+            >
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -142,6 +178,22 @@
         </form>
       </div>
     </nav>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>
+      <div class="toast" data-autohide="false" style="margin-top:60px; position: absolute;">
+        <div class="toast-body">
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+              <span class="{{ message.tags }} alert alert-primary" role="alert" >{{ message }}</span>
+        </div>
+      </div>
+    </li>
+      {% endfor %}
+    </ul>  
+    {% endif %}
+   
 
     <div class="s">
       <input placeholder="search" type="text" class="searchbar" />
@@ -160,8 +212,13 @@
         <div class="desc">{{ project.description }}</div>
         <form action="" method="POST">
           {% csrf_token %}
-          <input type="text" placeholder="Enter title" name="project_title" value={{ project.id }}>
-          <input type="submit" value="Apply">
+          <input
+            type="text"
+            placeholder="Enter title"
+            name="project_title"
+            value="{{project.id}}"
+          />
+          <input type="submit" value="Apply" />
         </form>
       </a>
       {% endfor %}
@@ -191,7 +248,7 @@
       <a href="#" class="cats">
         <div class="image">
           <!-- <img src="../images/finance.jpg" alt="" srcset="" /> -->
-          <img src="{% static 'images/finance.jpg' %}" alt="">
+          <img src="{% static 'images/finance.jpg' %}" alt="" />
         </div>
         <div class="name">Finance and Accounting</div>
       </a>
@@ -250,6 +307,11 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <script>
+      $(document).ready(function () {
+        $(".toast").toast("show");
+      });
+      
+
       function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
       }
