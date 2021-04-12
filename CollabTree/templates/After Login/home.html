@@ -215,17 +215,25 @@
           <a href="">#{{tag}}&nbsp;</a>
           {% endfor %}
         </div>
-        <form action="" method="POST">
-          {% csrf_token %}
-          <input
-            style = "display: none;"
-            type="text"
-            placeholder="Enter title"
-            name="project_title"
-            value="{{project.id}}"
-          />
-          <input type="submit" value="Apply" />
-        </form>
+        <button type="submit" class="apply-btn">Apply</button>
+        <div class="modal-container">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input
+              style = "display: none;"
+              type="text"
+              placeholder="Enter title"
+              name="project_title"
+              value="{{project.id}}"
+            />
+            <label for="q1">Why do you think you are fit for this role?(Please answer this question carefully)</label>
+            <input type="text" name="a1">
+            <label for="q2">Are you available for the time mentioned?</label>
+            <input type="text" name="a2">
+            <input type="submit" value="Apply" />
+          </form>
+        </div>
+        
       </div>
       {% endfor %}
     </div>
@@ -334,6 +342,12 @@
           }
         }
       };
+      
+      const applyBtn = document.querySelector(".apply-btn");
+      const container = document.querySelector(".modal-container");
+      container.addEventListener("click",function(){
+        container.classList.add("showw");
+      });
     </script>
   </body>
 </html>
