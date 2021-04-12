@@ -215,7 +215,7 @@
           <a href="">#{{tag}}&nbsp;</a>
           {% endfor %}
         </div>
-        <button type="submit" class="apply-btn">Apply</button>
+        <input type="button" class="apply-btn" value="Apply">
         <div class="modal-container">
           <form action="" method="POST">
             {% csrf_token %}
@@ -230,7 +230,8 @@
             <input type="text" name="a1">
             <label for="q2">Are you available for the time mentioned?</label>
             <input type="text" name="a2">
-            <input type="submit" value="Apply" />
+            <input type="submit" value="Apply" >
+            <input type="button" value="Close" class="closee">
           </form>
         </div>
         
@@ -345,8 +346,12 @@
       
       const applyBtn = document.querySelector(".apply-btn");
       const container = document.querySelector(".modal-container");
-      container.addEventListener("click",function(){
+      const close = document.querySelector(".closee");
+      applyBtn.addEventListener("click",function(){
         container.classList.add("showw");
+      });
+      close.addEventListener("click", function(){
+        container.classList.remove("showw");
       });
     </script>
   </body>
