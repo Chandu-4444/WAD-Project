@@ -34,10 +34,11 @@ class Blog(models.Model):
 
 
 class Project_Question(models.Model):
+    project_title = models.CharField(max_length = 200, blank=True)
     Q1 = models.TextField(blank=True)
     Q2 = models.TextField(blank=True)
     def __str__(self):
-        return "Question_object"
+        return self.project_title
 
 class Project(models.Model):
     title = models.CharField(max_length=200,blank=True)
@@ -48,7 +49,7 @@ class Project(models.Model):
     stipend = models.IntegerField(blank=True, null=True)
     applied_users = models.ManyToManyField(UserAttribs,  null=True, blank=True)
     tags_requirement = TaggableManager()
-    project_questions = models.ForeignKey(Project_Question,on_delete=models.CASCADE,null=True, blank=True)
+    project_questions = models.OneToOneField(Project_Question,on_delete=models.CASCADE,null=True, blank=True)
     def __str__(self):
         return self.title
 

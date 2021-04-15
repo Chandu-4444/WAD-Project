@@ -7,7 +7,7 @@ from backend.forms import UserCreation
 import smtplib, ssl
 import random
 from django.contrib import messages
-from backend.models import UserAttribs, Blog, Project
+from backend.models import UserAttribs, Blog, Project, Project_Question
 from django.contrib.auth.models import User, Permission
 from django import forms
 
@@ -354,20 +354,31 @@ def dashboard(request):
             #     except :
             #         print("Error")
             return render(request, 'After Login/home.html', {"project_objects" : project_objects })
-        elif request.method == "POST":
+        elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"):
+            question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
+            question_obj.Q2 = request.POST["a2"]
+            question_obj.project_title = Project.objects.get(id=request.POST["project_title"]).title
+            question_obj.save()
             project_objects = Project.objects.all()
+            
             # project_object = Project.objects.get(title = request.POST["project_title"])
             # project_object.applied_candidates += UserAttribs.objects.get(user=request.user)
             # project_object.save()
             user_obj = UserAttribs.objects.get(user=request.user)
             proj_obj = Project.objects.get(id=request.POST["project_title"])
             proj_obj.applied_users.add(user_obj)
+            proj_obj.project_questions = question_obj
             user_obj.save()
             proj_obj.save()
-            # print(proj_obj.applied_users.all())
-            # project_dict[proj_obj] = proj_obj.userattribs_set.all()
+
+            return HttpResponse("Succesfully Applied!")
+        elif request.method == "POST" and request.POST.get("project_title"):
+            proj_obj = Project.objects.get(id = request.POST['project_title'])
+
             
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects })
+            return render(request, 'questions.html', {"project_id" : proj_obj.id})
+        
+
     else:
         return HttpResponse('<h1>Please Login</h1>')
 

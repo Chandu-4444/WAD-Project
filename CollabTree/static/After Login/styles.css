@@ -345,12 +345,12 @@ nav ul .right {
 
 
 /*# sourceMappingURL=styles.css.map */
-.modal-container, .modal-details, .details-contact, .image-modal{
-  /* z-index: 2;
-  border-radius: 40px;
+.modal-container{
+  z-index: 2;
+  /* border-radius: 40px; */
   position: absolute;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.35);
+  /* background-color: rgba(0, 0, 0, 0.35); */
   height: auto;
   width: 300px;
   display: flex;
@@ -359,12 +359,12 @@ nav ul .right {
   opacity: 0;
   pointer-events: none;
   margin: 0 auto;
-  padding: 20px; */
+  padding: 20px;
   transition: all 0.2s ease-in-out; 
-  display: none;
+  /* display: none; */
 }
 
 .showw{
-  display: block;
+  /* display: block; */
   opacity: 1;
 }
