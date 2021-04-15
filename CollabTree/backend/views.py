@@ -357,26 +357,27 @@ def dashboard(request):
         elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"):
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
             question_obj.Q2 = request.POST["a2"]
+            question_obj.resume = request.FILES["resume"]
             question_obj.project_title = Project.objects.get(id=request.POST["project_title"]).title
-            question_obj.save()
             project_objects = Project.objects.all()
             
             # project_object = Project.objects.get(title = request.POST["project_title"])
             # project_object.applied_candidates += UserAttribs.objects.get(user=request.user)
             # project_object.save()
             user_obj = UserAttribs.objects.get(user=request.user)
+            question_obj.answered_user = user_obj
             proj_obj = Project.objects.get(id=request.POST["project_title"])
             proj_obj.applied_users.add(user_obj)
             proj_obj.project_questions = question_obj
             user_obj.save()
             proj_obj.save()
-
-            return HttpResponse("Succesfully Applied!")
+            question_obj.save()
+            return redirect(reverse("dashboard"))
         elif request.method == "POST" and request.POST.get("project_title"):
             proj_obj = Project.objects.get(id = request.POST['project_title'])
 
             
-            return render(request, 'questions.html', {"project_id" : proj_obj.id})
+            return render(request, 'questions.html', {"project_id" : proj_obj.id,"project" : proj_obj})
         
 
     else:
@@ -465,3 +466,13 @@ def assign_user(request, id, proj_id):
     return redirect(reverse("my_projects"))
 
 
+def view_user(request, id, proj_id):
+    question_objs = Project_Question.objects.all()
+    print(question_objs)
+    for q_obj in question_objs:
+        print(q_obj.project_title , proj_id)
+        proj_obj = Project.objects.get(title=q_obj.project_title)
+        if proj_id==proj_obj.id and q_obj.user.id==id:
+            return render(request, "view_user.html", {'q_user_obj':q_obj})
+
+            

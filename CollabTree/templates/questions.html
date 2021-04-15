@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questions</title>
 </head>
-<body>
-    <div class="modal-container">
-      <form action="" method="POST">
+<body style = "text-align:center">
+    <div class="modal-container" >
+      <div>
+        <h3>{{project.title}}</h3>
+        <h4>{{project.description}}</h4>
+        <p>Stipend : ${{project.stipend}}</p>
+        <p>Duration : {{project.duration}} days</p>
+        {% for tag in project.tags_requirement.all %}
+        <span>{{tag}},</span>
+        {% endfor %}
+      </div>
+      <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input
           style = "display: none;"
@@ -17,12 +26,24 @@
           name="project_title"
           value="{{project_id}}"
         />
+        <br>
+        <label for="">Upload your Resume</label>
+        <br>
+        <input type="file" name="resume">
+        <br>
+        <br>
         <label for="q1">Why do you think you are fit for this role?(Please answer this question carefully)</label>
+        <br>
         <input type="text" name="a1">
+        <br>
+        <br>
         <label for="q2">Are you available for the time mentioned?</label>
+        <br>
         <input type="text" name="a2">
-        <input type="submit" value="Apply" >
-        <input type="button" value="Close" class="closee">
+        <br>
+        <br>
+        <input type="submit" value="Apply">
+        <a href="{% url 'dashboard' %}">Close</a>
       </form>
     </div>
     <script>
