@@ -35,7 +35,8 @@ class Blog(models.Model):
 
 class Project_Question(models.Model):
     answered_user = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, blank=True, null=True)
-    project_title = models.CharField(max_length = 200, blank=True)
+    project_id = models.ForeignKey("Project", on_delete=models.CASCADE,null=True, blank=True)
+    project_title = models.CharField(max_length=200,blank=True)
     resume = models.FileField(upload_to="resumes",blank=True)
     Q1 = models.TextField(blank=True)
     Q2 = models.TextField(blank=True)

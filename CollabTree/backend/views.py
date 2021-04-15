@@ -358,7 +358,7 @@ def dashboard(request):
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
             question_obj.Q2 = request.POST["a2"]
             question_obj.resume = request.FILES["resume"]
-            question_obj.project_title = Project.objects.get(id=request.POST["project_title"]).title
+            question_obj.project_id = Project.objects.get(id=request.POST["project_title"])
             project_objects = Project.objects.all()
             
             # project_object = Project.objects.get(title = request.POST["project_title"])
@@ -366,6 +366,7 @@ def dashboard(request):
             # project_object.save()
             user_obj = UserAttribs.objects.get(user=request.user)
             question_obj.answered_user = user_obj
+            question_obj.project_title =  Project.objects.get(id=request.POST["project_title"]).title
             proj_obj = Project.objects.get(id=request.POST["project_title"])
             proj_obj.applied_users.add(user_obj)
             proj_obj.project_questions = question_obj
@@ -470,9 +471,12 @@ def view_user(request, id, proj_id):
     question_objs = Project_Question.objects.all()
     print(question_objs)
     for q_obj in question_objs:
-        print(q_obj.project_title , proj_id)
-        proj_obj = Project.objects.get(title=q_obj.project_title)
-        if proj_id==proj_obj.id and q_obj.user.id==id:
-            return render(request, "view_user.html", {'q_user_obj':q_obj})
+        if q_obj.answered_user:
+        # print(q_obj.project_title , proj_id)
+            proj_obj = Project.objects.get(id=proj_id)
+            print("Proj Obj: ",proj_obj, q_obj)
+            if proj_id==proj_obj.id and q_obj.answered_user.id==id:
+                print("q_obj.answered_user: ", q_obj.answered_user.id )
+                return render(request, "My Projects/view_user.html", {'q_user_obj':q_obj})
 
             
