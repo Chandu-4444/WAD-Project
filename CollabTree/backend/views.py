@@ -467,16 +467,13 @@ def assign_user(request, id, proj_id):
     return redirect(reverse("my_projects"))
 
 
-def view_user(request, id, proj_id):
+def view_user(request, id=None, proj_id=None):
     question_objs = Project_Question.objects.all()
     print(question_objs)
     for q_obj in question_objs:
         if q_obj.answered_user:
-        # print(q_obj.project_title , proj_id)
-            proj_obj = Project.objects.get(id=proj_id)
-            print("Proj Obj: ",proj_obj, q_obj)
-            if proj_id==proj_obj.id and q_obj.answered_user.id==id:
-                print("q_obj.answered_user: ", q_obj.answered_user.id )
+            if proj_id==q_obj.project_id.id and q_obj.answered_user.id==id:
+                # print("q_obj.answered_user: ", q_obj.answered_user.id, q_obj.Q1, q_obj.Q2, q_obj.project_id, q_obj.project_title, proj_id)
                 return render(request, "My Projects/view_user.html", {'q_user_obj':q_obj})
 
             
