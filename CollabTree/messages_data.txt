@@ -2,3 +2,6 @@ Karalius,Web Development,0
 t6,RCB vs MI LIVE,0
 t2,Project by t6,0
 admin,Python,0
+t6,Game Designer,1
+t2,For t2,1
+admin,Test Project,1

@@ -21,7 +21,50 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="styles.css">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <style>
+    button a{
+      color: white;
+    }
+    .btn-success {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:100px;
+      }
+
+      
+        .to-be-white{
+          color: black;
+        }
+
+        .to-be-black{
+          color:black;
+        }
+        .dropdown-menu{
+          padding:20px;
+          /* width: 200px; */
+          
+        }
+        .dropdown-submenu{
+          margin: 10px;
+          
+        }
+        .dropdown-btn{
+          width: 200px;
+
+          margin: 10px;
+          margin-left: 0;
+        }
+        .dropdown{
+          display: flex;
+        }
+        .dropdown-head{
+          display: inline-block;
+        }
+        
+       
+  </style>
 </head>
 
 <body>
@@ -71,27 +114,55 @@
           </form>
         </div>
       </nav>
-
-      <section>
-        <a href="{% url 'project_form' %}">Add a project</a>
-      </section>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h2 class="display-4">My Projects</h2>
+          <p class="lead">This page contains all the information related to the projects posted by you.</p>
+        </div>
+      </div>
+      <section class="container">
+        <button type="button" style="margin: 0 auto ;" class="btn btn-success"><a href="{% url 'project_form' %}">Add a project</a></button>
+      
       <div class="my-projects">
         {% for project in project_list %}
-        <div> 
-          {{project.project.title}} :
-          {% if not project.project.assigned_user %}
+        <span class="dropdown">
+            <span class="btn btn-secondary dropdown-toggle dropdown-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"  data-toggle="dropdown">{{project.project.title}}</span>
+            <ul class="dropdown-menu" id="menu">
+              <span class="dropdown-head">Applied Users</span>
+              {% if not project.project.assigned_user %}
+              {% for user in project.applied_users %}
+            <li class="dropdown-submenu"><button type="button" class="btn btn-outline-primary"><a class="to-be-black" href="{% url 'profile' user.id %}">{{ user }}</a></button> <button type="button" class="btn btn-outline-secondary"><a class="to-be-white" href="{% url 'view_user' user.id project.project.id%}">View</a></button> <button type="button" class="btn btn-outline-success"><a class="to-be-white" href="{% url 'assign_user' user.id project.project.id %}">Accept</a></button> </li>
             
-          
-          {% for user in project.applied_users %}
-            <a href="{% url 'profile' user.id %}">{{ user }}</a> <a href="{% url 'view_user' user.id project.project.id%}">View</a><a href="{% url 'assign_user' user.id project.project.id %}">Accept</a> | 
-          {% endfor %}
-          {% else %}
-          Assigned <a href="{% url 'profile' project.project.assigned_user.id %}">{{ project.project.assigned_user }}</a>
-
-          {% endif %}
-
+            {% endfor %}
+            {% else %}
+            <button type="button" class="btn btn-outline-success">Assigned</button> <button type="button" class="btn btn-outline-primary"><a class="to-be-white" href="{% url 'profile' project.project.assigned_user.id %}">{{ project.project.assigned_user }}</a></button>
+            {% endif %}
+            </ul>
+          </span>
+         
         </div>
         {% endfor %}
-      </div>
+
+    </section>
+    <script>
+    // var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+    // var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+    // return new bootstrap.Dropdown(dropdownToggleEl)
+    // });
+
+
+    $(document).on("contextmenu", "body", function (event) {
+    //we won't show the default context menu
+    // event.preventDefault();
+
+    //showing it close to our cursor
+    $('#menu').dropdown('toggle').css({
+        top: (event.pageY) + "px",
+        left: (event.pageX) + "px"
+    });
+});
+    
+</script>
+
 </body>
 </html>
