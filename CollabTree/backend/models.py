@@ -44,6 +44,7 @@ class Project_Question(models.Model):
         return self.project_title
 
 class Project(models.Model):
+    status = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=200,blank=True)
     description = models.TextField(max_length=400,blank=True)
     owner = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, related_name="owner")

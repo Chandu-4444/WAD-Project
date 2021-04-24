@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   {% load static %}
+  {% load custom_tags %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -76,30 +77,7 @@
     </style>
   </head>
   <body>
-    <!-- <nav>
-      <ul>
-        <li><a class="barlinks" href="../Index Page/index.html" class="brand">CollabTree</a></li>
-        <div class="right">
-          <li><a class="barlinks" href="../Blog Section/blog-template.html">Blogs</a></li>
-            <li>
-              <div class="dropdown">
-                <button  onclick="myFunction()" class="dropbtn">
-                   <span class="user">Username</span>
-                  Username
-            <i  class="fas fa-caret-down"></i>
-                </button>
-                <div id="myDropdown" class="dropdown-content">
-                  <a href="../User Profile/profile.html">My profile</a>
-                  <a href="#">My Blogs</a>
-                  <hr>
-                  <a href="#">Settings</a>
-                  <a href="../Index Page/index.html">Logout</a>
-                </div>
-              </div>
-            </li>
-        </div>
-      </ul>
-    </nav> -->
+
 
     <nav
       class="navbar navbar-expand-lg navbar-light navbar-custom"
@@ -198,22 +176,23 @@
     <div class="s">
       <input placeholder="search" type="text" class="searchbar" />
       <button class="sbtn">Search</button>
-      <!-- <a href="{% url 'logout' %}">Logout</a> -->
     </div>
 
-    <!-- Latest -->
 
     <div class="latest">Latest</div>
 
     <div class="container">
       {% for project in project_objects %}
+      
       <div class="job">
         <div class="title">{{ project.title }}</div>
         <div class="desc">{{ project.description }}</div>
         <div class = "tags-container">
+
           {% for tag in project.tags_requirement.all %}
           <a href="">#{{tag}}&nbsp;</a>
           {% endfor %}
+
         </div>
         <form action="" method="post">
           {% csrf_token %}
@@ -224,7 +203,18 @@
           name="project_title"
           value="{{project.id}}"
         />
-        <input type="submit" value="Apply" >
+       
+        {% comment %} <!-- {% for user in project.applied_users.all %} --> {% endcomment %}
+             {% check_user project.applied_users.all curr_user as flag %}
+             
+
+             {% ifequal flag "found" %}
+             <input type="submit" value="Applied" disabled>
+            
+             {% else %}
+             <input type="submit" value="Apply" >
+             {% endifequal %}
+          {% comment %} <!-- {% endfor %} --> {% endcomment %}
         </form>
       </div>
       {% endfor %}
@@ -254,7 +244,6 @@
       </a>
       <a href="#" class="cats">
         <div class="image">
-          <!-- <img src="../images/finance.jpg" alt="" srcset="" /> -->
           <img src="{% static 'images/finance.jpg' %}" alt="" />
         </div>
         <div class="name">Finance and Accounting</div>
@@ -306,9 +295,7 @@
           <li><a href="#">Upwork Reviews</a></li>
         </ul>
       </div>
-      <!-- <div class="middle">
-            2020 &#169;
-        </div> -->
+      
     </footer>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

@@ -347,23 +347,21 @@ def dashboard(request):
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
         if request.method == "GET":
-            project_objects = Project.objects.all()
-            # for i in project_objects:
-            #     try:
-            #         print(i.title,i.applied_users.all())
-            #     except :
-            #         print("Error")
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects })
-        elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"):
+            project_objects = Project.objects.filter(status="posted")
+            # for project in project_objects:
+            #     print(project.applied_users.all())
+            #     if project.applied_users.all()
+                    
+                    
+                    
+            
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user) })
+        elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"): # For manipulating when user applies for project by answering questions
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
             question_obj.Q2 = request.POST["a2"]
             question_obj.resume = request.FILES["resume"]
             question_obj.project_id = Project.objects.get(id=request.POST["project_title"])
             project_objects = Project.objects.all()
-            
-            # project_object = Project.objects.get(title = request.POST["project_title"])
-            # project_object.applied_candidates += UserAttribs.objects.get(user=request.user)
-            # project_object.save()
             user_obj = UserAttribs.objects.get(user=request.user)
             question_obj.answered_user = user_obj
             question_obj.project_title =  Project.objects.get(id=request.POST["project_title"]).title
@@ -374,7 +372,7 @@ def dashboard(request):
             proj_obj.save()
             question_obj.save()
             return redirect(reverse("dashboard"))
-        elif request.method == "POST" and request.POST.get("project_title"):
+        elif request.method == "POST" and request.POST.get("project_title"): # For displaying question form when user wants to apply for a project
             proj_obj = Project.objects.get(id = request.POST['project_title'])
 
             
@@ -444,6 +442,7 @@ def project_form(request):
         project_object.description = description
         project_object.duration = duration
         project_object.stipend = stipend
+        project_object.status = "posted"
         tags = request.POST['tags']
         for tag in tags.split(','):
             project_object.tags_requirement.add(tag)
@@ -458,6 +457,7 @@ def assign_user(request, id, proj_id):
     proj_obj = Project.objects.get(id=proj_id)
 
     proj_obj.assigned_user = user_obj
+    proj_obj.status="assigned"
     user_obj.assigned_project.add(proj_obj)
     f = open("messages_data.txt","a")
     f.write(str(user_obj.user.username)+","+str(proj_obj.title)+","+str(1)+"\n")
