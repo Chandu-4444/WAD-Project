@@ -7,6 +7,7 @@ from taggit.managers import TaggableManager
 
 class UserAttribs(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
+    worth = models.IntegerField(blank=True, null=True, default='0')
     job_title = models.CharField(max_length=100, blank=True)
     skills = models.CharField(max_length=1000,blank=True)
     phone_number = models.CharField(max_length=12, blank=True)

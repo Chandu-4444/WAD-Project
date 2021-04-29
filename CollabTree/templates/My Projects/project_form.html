@@ -42,7 +42,9 @@
     </div>
         <div class="fields">
         <div><label for="stipend">Stipend</label></div>
-        <input type="text" name="stipend">
+        <!-- <input type="text" name="stipend"> -->
+        <input type="range" name ="stipend", min = "0", max="{{user_obj.worth}}", onChange="updateTextInput(this.value);">
+        <input name="stipend" id="textInput" value="">
     </div>
         <div class="fields">
         <div><label for="tags">Tags (Use TAB to add more than one tag)</label></div>
@@ -60,6 +62,14 @@
     <script>
     $("#post-form").submit(function(e){
         e.preventDefault();
-        });</script>
+        });
+
+        function updateTextInput(val){
+            document.getElementById('textInput').value = val;
+        }
+        
+        
+        
+        </script>
 </body>
 </html>

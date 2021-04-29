@@ -7,3 +7,5 @@ t2,For t2,0
 admin,Test Project,0
 Karalius,Another Tes Project,1
 t4,New Project,0
+t2,New Project,1
+Karalius,One more,1

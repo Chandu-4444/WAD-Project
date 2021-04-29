@@ -43,11 +43,12 @@
         }
         .dropdown-menu{
           padding:20px;
-          /* width: 200px; */
+          width:auto;
           
         }
         .dropdown-submenu{
           margin: 10px;
+          width:300px;
           
         }
         .dropdown-btn{
@@ -56,12 +57,20 @@
           margin: 10px;
           margin-left: 0;
         }
-        .dropdown{
-          display: flex;
-        }
+       
         .dropdown-head{
           display: inline-block;
         }
+        .dropdown{
+          display:flex;
+        }
+        .containerr{
+          display:flex;
+          flex-wrap:wrap;
+          justify-content:center;
+        }
+        
+        
         
        
   </style>
@@ -117,31 +126,45 @@
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h2 class="display-4">My Projects</h2>
+          <hr>
+            <br>
           <p class="lead">This page contains all the information related to the projects posted by you.</p>
         </div>
       </div>
-      <section class="container">
-        <button type="button" style="margin: 0 auto ;" class="btn btn-success"><a href="{% url 'project_form' %}">Add a project</a></button>
+      <button type="button" style="margin: 0 auto ;" class="btn btn-success"><a href="{% url 'project_form' %}">Add a project</a></button>
+      <br>
+      <section class="containerr">
       
       <div class="my-projects">
         {% for project in project_list %}
         <span class="dropdown">
             <span class="btn btn-secondary dropdown-toggle dropdown-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"  data-toggle="dropdown">{{project.project.title}}</span>
             <ul class="dropdown-menu" id="menu">
-              <span class="dropdown-head">Applied Users</span>
               {% if not project.project.assigned_user %}
+              <span class="dropdown-head">Applied Users</span>
               {% for user in project.applied_users %}
-            <li class="dropdown-submenu"><button type="button" class="btn btn-outline-primary"><a class="to-be-black" href="{% url 'profile' user.id %}">{{ user }}</a></button> <button type="button" class="btn btn-outline-secondary"><a class="to-be-white" href="{% url 'view_user' user.id project.project.id%}">View</a></button> <button type="button" class="btn btn-outline-success"><a class="to-be-white" href="{% url 'assign_user' user.id project.project.id %}">Accept</a></button> </li>
-            
+            <li class="dropdown-submenu"><button type="button" class="btn btn-outline-primary"><a class="to-be-black" href="{% url 'profile' user.id %}">{{ user }}</a></button> <button type="button" class="btn btn-outline-secondary"><a class="to-be-white" href="{% url 'view_user' user.id project.project.id%}">View Application</a></button> <button type="button" class="btn btn-outline-success"><a class="to-be-white" href="{% url 'assign_user' user.id project.project.id %}">Accept</a></button> </li>
             {% endfor %}
+
             {% else %}
-            <button type="button" class="btn btn-outline-success">Assigned</button> <button type="button" class="btn btn-outline-primary"><a class="to-be-white" href="{% url 'profile' project.project.assigned_user.id %}">{{ project.project.assigned_user }}</a></button>
+            {% ifequal project.project.status 'assigned' %}
+            <span class="dropdown-head">Assigned User</span>
+            <br>
+             <li class="dropdown-submenu"><button type="button" class="btn btn-outline-primary"><a class="to-be-white" href="{% url 'profile' project.project.assigned_user.id %}">{{ project.project.assigned_user }}</a></button><button type="button" class="btn btn-outline-secondary"><a class="to-be-white" href="{% url 'mark_complete' project.project.assigned_user.id project.project.id %}">Mark as Complete</a></button></li>
+            {% else %}
+            <span class="dropdown-head">Completed By:</span>
+            <button type="button" class="btn btn-outline-primary"><a class="to-be-white" href="{% url 'profile' project.project.assigned_user.id %}">{{ project.project.assigned_user }}</a></button>
+
+            <br>
+            {% endifequal %}
             {% endif %}
             </ul>
           </span>
+
          
         </div>
         {% endfor %}
+
 
     </section>
     <script>

@@ -409,27 +409,24 @@ def new_blog(request):
         
         return redirect(reverse("blogs"))
 
-def my_projects(request):
+def my_projects(request, message=None):
     project_objects = Project.objects.all()
     project_list=[]
     for project in project_objects:
         if project.owner == UserAttribs.objects.get(user=request.user):
-            print(project.id)
+            # print(project.id)
             # proj_obj = Project.objects.get(id=project.id)
             applied_users = project.applied_users.all()
             # print("Applied users"+str(applied_users))
             project_list.append({'project':project,'applied_users':applied_users})
-
-
-            
-
     # print(project_list)
-    print(project_list)
+    # print(project_list)
     return render(request, 'My Projects/myProjects.html' ,{'project_list': project_list})
 
 def project_form(request):
     if request.method == "GET":
-        return render(request,'My Projects/project_form.html')
+        user_obj = UserAttribs.objects.get(user=request.user)
+        return render(request,'My Projects/project_form.html', {'user_obj': user_obj})
     elif request.method == 'POST':
         title = request.POST["title"]
         description = request.POST["description"]
@@ -476,4 +473,20 @@ def view_user(request, id=None, proj_id=None):
                 # print("q_obj.answered_user: ", q_obj.answered_user.id, q_obj.Q1, q_obj.Q2, q_obj.project_id, q_obj.project_title, proj_id)
                 return render(request, "My Projects/view_user.html", {'q_user_obj':q_obj})
 
-            
+def mark_complete(request, user_id, project_id):
+    print("User_id = ",user_id,"Project_id = ",project_id)
+    user_obj = UserAttribs.objects.get(id = user_id)
+    project_obj = Project.objects.get(id=project_id)
+    print("User Object = ",user_obj)
+    if user_obj.worth is None:
+        user_obj.worth = 0
+        user_obj.save()
+    user_obj.worth += project_obj.stipend
+    print("Worth = ",user_obj.worth)
+    curr_user = UserAttribs.objects.get(user=request.user)
+    curr_user.worth -= project_obj.stipend
+    user_obj.save()
+    curr_user.save()
+    project_obj.status = 'completed'
+    project_obj.save()
+    return redirect(reverse("my_projects"))
