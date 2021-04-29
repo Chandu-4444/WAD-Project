@@ -10,11 +10,11 @@ from django.contrib import messages
 from backend.models import UserAttribs, Blog, Project, Project_Question
 from django.contrib.auth.models import User, Permission
 from django import forms
-
+from django.contrib.auth.models import User
 
 user = 0
 pin = 0
-signup_form = 0
+signup_form = {}
 
 # Create your views here.
 
@@ -271,15 +271,18 @@ def sign_up(request):
         form = UserCreation(request.POST)
         if form.is_valid:
             signup_form = form
-            if request.POST['password1'] != request.POST['password2']:
-                print("Passwords didn't match")
-                return HttpResponse("<h1>Passwords didn't match</h1>")
-                
-                # raise forms.ValidationError("Your passwords didn't match!")
-                # return render(request , 'Index Page/index.html', {"form": UserCreation, "message": "Passwords did not match!"})
+            # print(type(signup_form))
+            # print("sign_up, signup_form = ",signup_form)
+            # signup_form['name'] = request.POST['']
             # login(request, user)
             # return redirect("dashboard")
+            # print(request.POST['email'], request.POST['password1'])
             request.session['email'] = request.POST['email']
+            request.session.modified = True
+            request.session['username'] = request.POST['username']
+            request.session.modified = True
+            request.session['password'] = request.POST['password1']
+            request.session.modified = True
             # login(request, user)
             return redirect('otp_verification')
         else:
@@ -291,7 +294,8 @@ def sign_up(request):
     
 def otp_verification(request):
     global pin
-    if request.method == "GET":
+    global signup_form
+    if request.method == "GET" :
         email = request.session.get('email')
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.starttls()
@@ -300,18 +304,23 @@ def otp_verification(request):
         message = "Subject:{}\n\n{}".format("OTP", pin)
         s.sendmail("collabtree.team@gmail.com",email, message)
         s.quit()
-        return render(request, "Registration/otp_form.html",{'message' : "  "})
+        return render(request, "Registration/otp_form.html", {'message': ' '})
     if request.method=="POST":
         otp = request.POST['otp']
+        print(type(signup_form))
         if otp==str(pin):
+            print("signup_form = ",signup_form)
             # print(otp==pin)
             # return redirect(reverse("dashboard"))
-            user = signup_form.save()
+            # user = signup_form.save()
+            print('Username = ',request.session.get('username'))
+            user = User.objects.create_user(request.session.get('username'), request.session.get('email'), request.session.get('password'))
+            user.save()
             new_user = UserAttribs(user=user)
+            new_user.worth = 0
             new_user.phone_number = 'Empty!'
             new_user.mobile_number = 'Empty!'
             new_user.full_name = 'Empty!'
-            new_user.address = 'Empty!'
             new_user.save()
             login(request, user)
             return redirect(reverse("dashboard"))
@@ -319,9 +328,15 @@ def otp_verification(request):
             # request.method = "POST"
             # return redirect('signup')
         else:
-            return render(request, "Registration/otp_form.html", {'message' : "Wrong OTP"}) 
-
-
+            email = request.session.get('email')
+            s = smtplib.SMTP('smtp.gmail.com', 587)
+            s.starttls()
+            pin = random.randint(10000, 99999)
+            s.login("collabtree.team@gmail.com", "CollabTree1234")
+            message = "Subject:{}\n\n{}".format("OTP", pin)
+            s.sendmail("collabtree.team@gmail.com",email, message)
+            s.quit()
+            return render(request, "Registration/otp_form.html", {'message': 'Wrong OTP'}) 
 def dashboard(request):
     user_object = UserAttribs(user = request.user)
     store=""
