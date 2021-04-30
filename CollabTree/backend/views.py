@@ -11,6 +11,7 @@ from backend.models import UserAttribs, Blog, Project, Project_Question
 from django.contrib.auth.models import User, Permission
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 user = 0
 pin = 0
@@ -363,16 +364,23 @@ def dashboard(request):
 
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
-        if request.method == "GET":
+        if request.method == "GET" and request.GET.get('search_input'):
+            objects_set = set()
+            items_list = Project.objects.filter( Q(title__icontains=request.GET.get('search_input'), status="posted") | Q(description__icontains = request.GET.get('search_input')), Q(status="posted") ) 
+            # objects_set.add(items_list)
+            # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
+            # objects_set.add(items_list)
+            
+            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
+            
+        elif request.method == "GET" or not request.GET.get('search_input'):
             project_objects = Project.objects.filter(status="posted")
             # for project in project_objects:
             #     print(project.applied_users.all())
             #     if project.applied_users.all()
-                    
-                    
-                    
-            
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user) })
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'' })
+       
+
         elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"): # For manipulating when user applies for project by answering questions
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
             question_obj.Q2 = request.POST["a2"]

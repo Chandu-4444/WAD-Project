@@ -51,12 +51,13 @@
         position: relative;
         align-self: center;
         justify-self: center;
-        margin: 10px;
         margin-top: -30px;
         width: 100px;
         padding: 5px;
         background-color: rgb(22, 119, 35);
         color: white;
+        margin-left: 46%;
+        margin-right: auto;
       }
       .s .sbtn:active {
         color: white;
@@ -142,11 +143,12 @@
             >
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" method="get">
           {% csrf_token %}
           <input
             class="form-control mr-sm-2"
             type="search"
+            name="search_input"
             placeholder="Search"
             aria-label="Search"
           />
@@ -174,12 +176,20 @@
    
 
     <div class="s">
-      <input placeholder="search" type="text" class="searchbar" />
-      <button class="sbtn">Search</button>
+      <form action="" method="get">
+      <input placeholder="search" name="search_input" type="text" class="searchbar" />
+    
+
+    <button type="submit" class="sbtn">Search</button>
+  </form>
+
     </div>
 
 
     <div class="latest">Latest</div>
+    {% if message %}
+    <center>Results for '{{message}}'</center>
+    {% endif %}
 
     <div class="container">
       {% for project in project_objects %}
