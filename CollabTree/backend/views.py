@@ -337,6 +337,8 @@ def otp_verification(request):
             s.sendmail("collabtree.team@gmail.com",email, message)
             s.quit()
             return render(request, "Registration/otp_form.html", {'message': 'Wrong OTP'}) 
+
+
 def dashboard(request):
     user_object = UserAttribs(user = request.user)
     store=""
@@ -408,14 +410,14 @@ def blog(request):
 def new_blog(request):
     if request.method == "GET":
         return render(request,'Blog Section/new_blog.html')
-    elif request.method == "POST":
+    elif request.method == "POST" and request.POST.get('title') and request.POST.get('body') and request.POST.get("tags"):
         title = request.POST["title"]
         body = request.POST["body"]
         user_object = UserAttribs.objects.get(user=request.user)
         blog_object = Blog.objects.create(author=user_object)
         blog_object.title = title
         blog_object.body = body
-        blog_object.cover_image = request.FILES["cover_image"]
+        # blog_object.cover_image = request.FILES["cover_image"]
         tags = request.POST['tags']
         for tag in tags.split(','):
             blog_object.tags.add(tag)
@@ -423,6 +425,8 @@ def new_blog(request):
         blog_object.save()
         
         return redirect(reverse("blogs"))
+    else:
+        return HttpResponse("<h1>Invalid Fields/Empty Fields detected!</h1>")
 
 def my_projects(request, message=None):
     project_objects = Project.objects.all()
@@ -455,9 +459,11 @@ def project_form(request):
         project_object.duration = duration
         project_object.stipend = stipend
         project_object.status = "posted"
+        project_object.category = request.POST['category']
         tags = request.POST['tags']
         for tag in tags.split(','):
-            project_object.tags_requirement.add(tag)
+            print(type(tag))
+            project_object.tags_requirement.add(tag.lower())
         print(project_object.tags_requirement)
         project_object.save()
         
@@ -492,6 +498,7 @@ def mark_complete(request, user_id, project_id):
     print("User_id = ",user_id,"Project_id = ",project_id)
     user_obj = UserAttribs.objects.get(id = user_id)
     project_obj = Project.objects.get(id=project_id)
+    project_obj.status = "complete"
     print("User Object = ",user_obj)
     if user_obj.worth is None:
         user_obj.worth = 0
@@ -505,3 +512,10 @@ def mark_complete(request, user_id, project_id):
     project_obj.status = 'completed'
     project_obj.save()
     return redirect(reverse("my_projects"))
+def view_project(request, proj_id):
+    proj_obj = Project.objects.get(id = proj_id)
+    return render(request, 'My Projects/project_info.html', {'project': proj_obj, "curr_user": UserAttribs.objects.get(user=request.user)})
+
+def view_blog(request, blog_id):
+    blog_obj = Blog.objects.get(id=blog_id)
+    return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})

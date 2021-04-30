@@ -20,5 +20,7 @@ urlpatterns = [
     path('project_form',views.project_form, name='project_form'),
     path('view_user/<int:id>/<int:proj_id>',views.view_user,name='view_user'),
     path('mark_complete/<int:user_id>/<int:project_id>', views.mark_complete, name='mark_complete'),
+    path('view_project/<int:proj_id>',views.view_project, name='view_project'),
+    path('view_blog/<int:blog_id>', views.view_blog, name='view_blog'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

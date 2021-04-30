@@ -45,6 +45,7 @@ class Project_Question(models.Model):
         return self.project_title
 
 class Project(models.Model):
+    category = models.CharField(max_length=30, blank=True, null=True)
     status = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=200,blank=True)
     description = models.TextField(max_length=400,blank=True)

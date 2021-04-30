@@ -28,7 +28,6 @@
         {% csrf_token %}
         <h3 class="head">New Project</h3>
         <div class="fields">
-
         <div><label for="title">Title</label></div>
         <input type="text" name="title">
     </div>
@@ -45,6 +44,20 @@
         <!-- <input type="text" name="stipend"> -->
         <input type="range" name ="stipend", min = "0", max="{{user_obj.worth}}", onChange="updateTextInput(this.value);">
         <input name="stipend" id="textInput" value="">
+    </div>
+    <div class="fields">
+        <div><label for="category">Category:</label></div>
+        <!-- <input type="text" name="stipend"> -->
+        <select name="category" id="">
+            <option value="artificial intelligence">Artificial Intelligence</option>
+            <option value="development and it">Davelopment and it</option>
+            <option value="electronics">Electronics</option>
+            <option value="finance and accounting">Finance and Accounting</option>
+            <option value="machine learning">Machine Learning</option>
+            <option value="sales and marketing">Sales and Marketing</option>
+            <option value="content wrting">Content Writing</option>
+            <option value="others">Others</option>
+          </select>
     </div>
         <div class="fields">
         <div><label for="tags">Tags (Use TAB to add more than one tag)</label></div>

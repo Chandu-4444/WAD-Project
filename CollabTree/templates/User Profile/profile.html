@@ -276,9 +276,9 @@
                     <div class="card-body" style="background-color: rgb(202, 235, 224);">
                       <h6 class="d-flex align-items-center mb-3">My Projects</h6>
                       {% for assigned in assigned_projects %}
-                        
-                     
-                      <small>{{ assigned }}</small>
+                    
+                   
+                      <small><a href="{% url 'view_project' assigned.id %}">{{ assigned }}</a></small>
                       <br>
                       {% endfor %}
                       <!-- <div class="progress mb-3" style="height: 5px">

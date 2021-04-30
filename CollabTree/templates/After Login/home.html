@@ -187,13 +187,14 @@
       <div class="job">
         <div class="title">{{ project.title }}</div>
         <div class="desc">{{ project.description }}</div>
+        <br>
+        <a href="{% url 'view_project' project.id %}">View</a>
         <div class = "tags-container">
-
           {% for tag in project.tags_requirement.all %}
           <a href="">#{{tag}}&nbsp;</a>
           {% endfor %}
-
         </div>
+
         <form action="" method="post">
           {% csrf_token %}
           <input

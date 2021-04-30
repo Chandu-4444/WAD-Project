@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    <div class="container">
+        <h1>{{blog.title}}</h1>
+        <hr>
+        <img src="{{blog.cover_image.url}}" style="height:auto; width:200px;" alt="">
+        <h5>{{blog.body}}</h5>
+        <span>Author: {{blog.author}}</span>
+        <br>
+        <span>Moment: {{blog.date_time}}</span>
+        <br>
+        <div class="tags-container">
+            Tags:
+            {% for tag in blog.tags.all %}
+              <a href="">{{tag}}</a>
+            {% endfor %}
+            
+           
+          </div>
+        
+    </div>
+</body>
+</html>

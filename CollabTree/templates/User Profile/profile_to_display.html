@@ -277,7 +277,7 @@
                       {% for assigned in assigned_projects %}
                         
                      
-                      <small>{{ assigned }}</small>
+                      <small><a href="{% url 'view_project' assigned.id %}">{{ assigned }}</a></small>
                       <br>
                       {% endfor %}
                       <!-- <small>Web Design</small>

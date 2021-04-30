@@ -1,0 +1,32 @@
+{% extends "My Projects/project_info_parent.html" %}
+{% load custom_tags %}
+{% block content %}
+{% if not project.assigned_user %}
+<form action="{% url 'dashboard' %}" method="post">
+    {% csrf_token %}
+    <input
+    style = "display: none;"
+    type="text"
+    placeholder="Enter title"
+    name="project_title"
+    value="{{project.id}}"
+  />
+       {% check_user project.applied_users.all curr_user as flag %}
+       
+
+       {% ifequal flag "found" %}
+       <a href="{% url 'dashboard' %}">Back</a>
+       <input type="submit" value="Applied" disabled>
+      
+       {% else %}
+       <a href="{% url 'dashboard' %}">Back</a>
+       <input type="submit" value="Apply" >
+       {% endifequal %}
+    {% comment %} <!-- {% endfor %} --> {% endcomment %}
+  </form>
+  {% else %}
+  Assigned User: {{project.assigned_user}}
+  <br>
+Status: {{project.status}}
+{% endif %}
+{% endblock %}

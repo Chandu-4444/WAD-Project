@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load custom_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>{{project.title}}</h1>
+        <br>
+        <h2>Category: {{project.category|title}}</h2>
+        <hr>
+        <h3>{{project.description}}</h3>
+        <br>
+        <span>Owner: {{project.owner}}</span>
+        <br>
+        <span>Duration: {{project.duration}}</span>
+        <br>
+        <span>Virtual Worth: {{project.stipend}}</span>
+        <br>
+        {% for tag in project.tags_requirement.all %}
+          <a href="">#{{tag}}&nbsp;</a>
+          {% endfor %}
+          <br>
+          
+          {% block content %}
+
+          {% endblock %}
+
+    </div>
+    
+</body>
+</html>
