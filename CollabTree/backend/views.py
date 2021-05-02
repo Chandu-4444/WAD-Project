@@ -369,14 +369,13 @@ def dashboard(request):
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
         
-        if request.method == "GET" and not request.GET.get('search_input'):
+        if request.method == "GET" and not request.GET.get('search_input') and not request.GET.get('category_search_input'):
             project_objects = Project.objects.filter(status="posted")
             # for project in project_objects:
             #     print(project.applied_users.all())
             #     if project.applied_users.all()
             print("I'm in GET")
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'' })
-       
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message':"Latest" })
 
         elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"): # For manipulating when user applies for project by answering questions
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
@@ -405,20 +404,43 @@ def dashboard(request):
             # objects_set.add(items_list)
             # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
             # objects_set.add(items_list)
-            
-            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
+            print("search_input")
+            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input'), 'search_message': request.GET.get('search_input')})
+        elif request.method == "GET" and request.GET.get('category_search_input'):
+            objects_set = set()
+            # items_list = Project.objects.filter( Q(title__icontains=request.GET.get('category_search_input'), status="posted") | Q(description__icontains = request.GET.get('category_search_input')), Q(status="posted") | Q(category = request.GET.get('category_search_input')), Q(status="posted") ) 
+            a = []
+            for i in Project.objects.all():
+                if i.category==request.GET.get('category_search_input') and i.status=="posted":
+                    a.append(i)
+            # objects_set.add(items_list)
+            # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
+            # objects_set.add(items_list)
+            print("HEy")
+            print(request.GET.get('category_search_input'))
+            # print(items_list)
+            return render(request, 'After Login/home.html', {'project_objects': a, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('category_search_input'), 'search_message': request.GET.get('category_search_input')})
             
 
     else:
         return HttpResponse('<h1>Please Login</h1>')
 
 def blog(request):
-    blog_objects = Blog.objects.all().order_by('-date_time')
-    blog_objects = blog_objects[:9]
-    # print(blog_objects)
-    # for i in blog_objects:
-    #     print(i.tags.all())
-    return render(request, 'Blog Section/blog.html', {"blog_objects" : blog_objects})
+    if request.method == "GET" and request.GET.get('search_input'):
+        objects_set = set()
+        items_list = Blog.objects.filter( Q(title__icontains=request.GET.get('search_input')) | Q(body__icontains = request.GET.get('search_input'))) 
+        # objects_set.add(items_list)
+        # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
+        # objects_set.add(items_list)
+        
+        return render(request, 'Blog Section/blog.html', {'blog_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
+    else:
+        blog_objects = Blog.objects.all().order_by('-date_time')
+        blog_objects = blog_objects[:9]
+        # print(blog_objects)
+        # for i in blog_objects:
+        #     print(i.tags.all())
+        return render(request, 'Blog Section/blog.html', {"blog_objects" : blog_objects})
 
 def new_blog(request):
     if request.method == "GET":

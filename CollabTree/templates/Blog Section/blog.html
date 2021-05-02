@@ -81,10 +81,12 @@
             <a class="nav-link navbar-color" style="color: white;" href="{% url 'logout' %}">Logout</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form  method="get">
+          {% csrf_token %}
           <input
             class="form-control mr-sm-2"
             type="search"
+            name="search_input"
             placeholder="Search"
             aria-label="Search"
           />

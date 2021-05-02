@@ -192,7 +192,7 @@
     </div>
 
 
-    <div class="latest">Latest</div>
+    <div class="latest">{{search_message | title}}</div>
     {% if message %}
     <center>Results for '{{message}}'</center>
     {% endif %}
@@ -244,49 +244,169 @@
         <div class="image">
           <img src="{% static 'images/comp.jpg' %}" alt="" srcset="" />
         </div>
-        <div class="name">Development and IT</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="development and it"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Development and IT
+          </button>
+        </form>
+        
+        <!-- <div class="name">Development and IT</div> -->
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/AI.jpg' %}" alt="" srcset="" />
         </div>
-        <div class="name">Artificial Intelligence</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="artificial intelligence"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Artificial Intelligence
+          </button>
+        </form>
+        <!-- <div class="name">Artificial Intelligence</div> -->
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/chip.jpg' %}" alt="" srcset="" />
         </div>
-        <div class="name">Electronics</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="electronics"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Electronics
+          </button>
+        </form>
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/finance.jpg' %}" alt="" />
         </div>
-        <div class="name">Finance and Accounting</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="finance and accounting"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Finance and Accounting
+          </button>
+        </form>
+        <!-- <div class="name"></div> -->
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/ML.jpg' %}" alt="" srcset="" />
         </div>
-        <div class="name">Machine Learning</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="machine learning"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Machine Learning
+          </button>
+        </form>
+        <!-- <div class="name"></div> -->
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/marketing.jpg' %}" alt="" srcset="" />
         </div>
-        <div class="name">Sales and Marketing</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="sales and marketing"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Sales and Marketing
+          </button>
+        </form>
+        <!-- <div class="name"></div> -->
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/content.jpg' %}" alt="" srcset="" />
         </div>
-        <div class="name">Content Writing</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="content writing"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Content Writing
+          </button>
+        </form>
+        <!-- <div class="name"></div> -->
       </a>
       <a href="#" class="cats">
         <div class="image">
           <img src="{% static 'images/more.png' %}" alt="" srcset="" />
         </div>
-        <div class="name">More</div>
+        <form  method="get">
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="category_search_input"
+            placeholder="Search"
+            aria-label="Search"
+            value="other"
+            style="display: none;"
+          />  
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Other
+          </button>
+        </form>
+        <!-- <div class="name"></div> -->
       </a>
     </div>
 
