@@ -113,13 +113,18 @@ def profile(request, id=None):
         return render(request, 'User Profile/profile.html', {'user_display': user_object,'user_object':user_object ,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all() })
 
 
-    elif request.method == "POST" and (request.POST.get('website') or request.POST['github'] or request.POST['twitter'] or request.POST['instagram'] or request.POST['facebook']):
+    elif request.method == "POST" and (request.POST.get('website') or request.POST.get('github') or request.POST.get('twitter') or request.POST.get('instagram') or request.POST.get('facebook')):
         user_object = UserAttribs.objects.get(user = request.user)
-        user_object.website = request.POST['website']
-        user_object.github = request.POST['github']
-        user_object.twitter = request.POST['twitter']
-        user_object.instagram = request.POST['instagram']
-        user_object.facebook = request.POST['facebook']
+        if request.POST['website']!="":
+            user_object.website = request.POST['website']
+        if request.POST['github']: 
+            user_object.github = request.POST['github']
+        if request.POST['twitter']:
+            user_object.twitter = request.POST['twitter']
+        if request.POST['instagram']:
+            user_object.instagram = request.POST['instagram']
+        if request.POST['facebook']:
+            user_object.facebook = request.POST['facebook']
         user_object.save()
         user_skills = str(user_object.skills)
         # print('Printing: '+str(user_skills))
@@ -265,7 +270,7 @@ def profile(request, id=None):
         # print("Saved in model: "+str(updated_skills.skills))
         # request.POST = request.POST.copy()
         # request.POST['skills'] = ''
-        return render(request, 'User Profile/profile.html', {'user_display':updated_skills,'user_object':updated_skills,'skills': list_color_pair,'website':website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all()})
+        return render(request, 'User Profile/profile.html', {'user_display':updated_skills,'user_object':updated_skills,'skills': list_color_pair,'website':website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': UserAttribs.objects.get(user=request.user).assigned_project.all()})
         
 
 
