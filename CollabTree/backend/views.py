@@ -343,8 +343,12 @@ def otp_verification(request):
             s.quit()
             return render(request, "Registration/otp_form.html", {'message': 'Wrong OTP'}) 
 
+my_search = ""
+category = False
 
 def dashboard(request):
+    global my_search
+    global category
     user_object = UserAttribs(user = request.user)
     store=""
     f = open("messages_data.txt","r")
@@ -369,7 +373,53 @@ def dashboard(request):
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
         
-        if request.method == "GET" and not request.GET.get('search_input') and not request.GET.get('category_search_input'):
+        if request.method == "GET" and request.GET.get('filter'):
+            if category:
+                items_list = []
+                for i in Project.objects.all():
+                    if i.category==my_search and i.status=="posted":
+                        items_list.append(i)
+            else:
+                items_list = Project.objects.filter( Q(title__icontains=my_search, status="posted") | Q(description__icontains = my_search), Q(status="posted") ) 
+                items_list = set(items_list)
+                for project in Project.objects.filter(status="posted"):
+                    for tag in project.tags_requirement.all():
+                        print(tag,my_search)
+                        if str(tag) == my_search:
+                            # print("DONE")
+                            items_list.add(project)
+                            break
+            print(request.GET.get('filter'))
+            if request.GET.get('filter') == 'latest':
+                print("latest")
+                print(items_list)
+                project_objects = sorted(items_list,key = lambda x : -x.id)
+                print(project_objects)
+            elif request.GET.get('filter') == 'stipend':
+                print("stipend")
+                project_objects = sorted(items_list,key = lambda x : -x.stipend)
+            elif request.GET.get('filter') == 'duration':
+                print("duration")
+                project_objects = sorted(items_list,key = lambda x : -x.duration)
+            # elif request.GET.get('filter') is 'latest':
+            elif request.GET.get('filter') == 'relavent':
+                project_objects = set()
+                my_skills = UserAttribs.objects.get(user=request.user).skills
+                my_skills = my_skills.split(",")
+                print(my_skills)
+                for project in items_list:    
+                    for tag in project.tags_requirement.all():
+                        if str(tag) in my_skills:
+                            project_objects.add(project)
+                            break
+            else:
+                print("default")
+                project_objects = Project.objects.filter(status="posted")
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message': request.GET.get('filter') })
+
+        elif request.method == "GET" and not request.GET.get('search_input') and not request.GET.get('category_search_input'):
+            my_search = ""
+            category = False
             print(request.GET.get('filter'))
             if request.GET.get('filter') == 'latest':
                 print("latest")
@@ -434,7 +484,8 @@ def dashboard(request):
                         items_list.add(project)
                         break
                     # else:   
-            
+            my_search = request.GET.get('search_input')
+            category = False
                         # print("NO")
             # objects_set.add(items_list)
             # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
@@ -448,6 +499,8 @@ def dashboard(request):
             for i in Project.objects.all():
                 if i.category==request.GET.get('category_search_input') and i.status=="posted":
                     a.append(i)
+            my_search = request.GET.get('category_search_input')
+            category = True
             # objects_set.add(items_list)
             # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
             # objects_set.add(items_list)
