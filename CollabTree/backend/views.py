@@ -351,9 +351,9 @@ def dashboard(request):
     for line in f:
         line = str(line)[:-1]
         a = line.split(",")
-        print(a)
+        # print(a)
         if a[0]==user_object.user.username and a[2]=='1':
-            print("Yes")
+            # print("Yes")
             messages.success(request, f"{a[0]} you have been accepted for {a[1]} project.")
             x = list(line)
             x[-1]='0'
@@ -370,12 +370,36 @@ def dashboard(request):
     if request.user.is_authenticated:
         
         if request.method == "GET" and not request.GET.get('search_input') and not request.GET.get('category_search_input'):
-            project_objects = Project.objects.filter(status="posted")
+            print(request.GET.get('filter'))
+            if request.GET.get('filter') == 'latest':
+                print("latest")
+                project_objects = Project.objects.filter(status="posted").order_by('-id')
+            elif request.GET.get('filter') == 'stipend':
+                print("stipend")
+                project_objects = Project.objects.filter(status="posted").order_by('-stipend')
+            elif request.GET.get('filter') == 'duration':
+                print("duration")
+                project_objects = Project.objects.filter(status="posted").order_by('-duration')
+            # elif request.GET.get('filter') is 'latest':
+            elif request.GET.get('filter') == 'relavent':
+                project_objects = set()
+                my_skills = UserAttribs.objects.get(user=request.user).skills
+                my_skills = my_skills.split(",")
+                print(my_skills)
+                for project in Project.objects.filter(status="posted"):    
+                    for tag in project.tags_requirement.all():
+                        if str(tag) in my_skills:
+                            project_objects.add(project)
+                            break
+            else:
+                print("default")
+                project_objects = Project.objects.filter(status="posted")
+             
             # for project in project_objects:
             #     print(project.applied_users.all())
             #     if project.applied_users.all()
-            print("I'm in GET")
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message':"Latest" })
+            # print("I'm in GET")
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message': request.GET.get('filter') })
 
         elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"): # For manipulating when user applies for project by answering questions
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
@@ -395,16 +419,27 @@ def dashboard(request):
             return redirect(reverse("dashboard"))
         elif request.method == "POST" and request.POST.get("project_title"): # For displaying question form when user wants to apply for a project
             proj_obj = Project.objects.get(id = request.POST['project_title'])
-            print("I'm Here!")
+            # print("I'm Here!")
             
             return render(request, 'questions.html', {"project_id" : proj_obj.id,"project" : proj_obj})
         elif request.method == "GET" and request.GET.get('search_input'):
             objects_set = set()
             items_list = Project.objects.filter( Q(title__icontains=request.GET.get('search_input'), status="posted") | Q(description__icontains = request.GET.get('search_input')), Q(status="posted") ) 
+            items_list = set(items_list)
+            for project in Project.objects.filter(status="posted"):
+                for tag in project.tags_requirement.all():
+                    print(tag,request.GET.get('search_input'))
+                    if str(tag) == request.GET.get('search_input'):
+                        # print("DONE")
+                        items_list.add(project)
+                        break
+                    # else:   
+            
+                        # print("NO")
             # objects_set.add(items_list)
             # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
             # objects_set.add(items_list)
-            print("search_input")
+            # print(items_list)
             return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input'), 'search_message': request.GET.get('search_input')})
         elif request.method == "GET" and request.GET.get('category_search_input'):
             objects_set = set()
@@ -416,8 +451,8 @@ def dashboard(request):
             # objects_set.add(items_list)
             # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
             # objects_set.add(items_list)
-            print("HEy")
-            print(request.GET.get('category_search_input'))
+            # print("HEy")
+            # print(request.GET.get('category_search_input'))
             # print(items_list)
             return render(request, 'After Login/home.html', {'project_objects': a, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('category_search_input'), 'search_message': request.GET.get('category_search_input')})
             
@@ -429,6 +464,12 @@ def blog(request):
     if request.method == "GET" and request.GET.get('search_input'):
         objects_set = set()
         items_list = Blog.objects.filter( Q(title__icontains=request.GET.get('search_input')) | Q(body__icontains = request.GET.get('search_input'))) 
+        items_list = set(items_list)
+        for blog in Blog.objects.all():
+            for tag in blog.tags.all():
+                if str(tag)==request.GET.get("search_input"):
+                    items_list.add(blog)
+                    break
         # objects_set.add(items_list)
         # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
         # objects_set.add(items_list)
@@ -436,7 +477,7 @@ def blog(request):
         return render(request, 'Blog Section/blog.html', {'blog_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
     else:
         blog_objects = Blog.objects.all().order_by('-date_time')
-        blog_objects = blog_objects[:9]
+        # blog_objects = blog_objects[:9]
         # print(blog_objects)
         # for i in blog_objects:
         #     print(i.tags.all())
