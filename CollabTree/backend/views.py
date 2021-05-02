@@ -113,9 +113,13 @@ def profile(request, id=None):
         return render(request, 'User Profile/profile.html', {'user_display': user_object,'user_object':user_object ,'website':website, 'skills': list_color_pair, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all() })
 
 
-    elif request.method == "POST" and (request.POST.get('website')):
+    elif request.method == "POST" and (request.POST.get('website') or request.POST['github'] or request.POST['twitter'] or request.POST['instagram'] or request.POST['facebook']):
         user_object = UserAttribs.objects.get(user = request.user)
         user_object.website = request.POST['website']
+        user_object.github = request.POST['github']
+        user_object.twitter = request.POST['twitter']
+        user_object.instagram = request.POST['instagram']
+        user_object.facebook = request.POST['facebook']
         user_object.save()
         user_skills = str(user_object.skills)
         # print('Printing: '+str(user_skills))
@@ -364,20 +368,13 @@ def dashboard(request):
 
     # if request.user.is_authenticated and request.user.username != 'admin':
     if request.user.is_authenticated:
-        if request.method == "GET" and request.GET.get('search_input'):
-            objects_set = set()
-            items_list = Project.objects.filter( Q(title__icontains=request.GET.get('search_input'), status="posted") | Q(description__icontains = request.GET.get('search_input')), Q(status="posted") ) 
-            # objects_set.add(items_list)
-            # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
-            # objects_set.add(items_list)
-            
-            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
-            
-        elif request.method == "GET" or not request.GET.get('search_input'):
+        
+        if request.method == "GET" and not request.GET.get('search_input'):
             project_objects = Project.objects.filter(status="posted")
             # for project in project_objects:
             #     print(project.applied_users.all())
             #     if project.applied_users.all()
+            print("I'm in GET")
             return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'' })
        
 
@@ -399,10 +396,18 @@ def dashboard(request):
             return redirect(reverse("dashboard"))
         elif request.method == "POST" and request.POST.get("project_title"): # For displaying question form when user wants to apply for a project
             proj_obj = Project.objects.get(id = request.POST['project_title'])
-
+            print("I'm Here!")
             
             return render(request, 'questions.html', {"project_id" : proj_obj.id,"project" : proj_obj})
-        
+        elif request.method == "GET" and request.GET.get('search_input'):
+            objects_set = set()
+            items_list = Project.objects.filter( Q(title__icontains=request.GET.get('search_input'), status="posted") | Q(description__icontains = request.GET.get('search_input')), Q(status="posted") ) 
+            # objects_set.add(items_list)
+            # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
+            # objects_set.add(items_list)
+            
+            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
+            
 
     else:
         return HttpResponse('<h1>Please Login</h1>')
