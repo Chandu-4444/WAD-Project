@@ -14,3 +14,6 @@ admin,New Project on ML,0
 admin,Testing Actual Slider ,0
 admin,Another New Project,0
 admin,adksfsdjf,0
+admin,Just another project,0
+admin,Project for Testing,0
+admin,TeStInG,0

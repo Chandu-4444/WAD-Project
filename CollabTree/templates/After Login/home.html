@@ -75,6 +75,18 @@
       .searchbar:focus {
         border: 3px solid black;
       }
+      .filter-container {
+        display: inline-block;
+        float: left;
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+
+      .latest-text{
+        text-align: center;
+        display: inline-block;
+        margin-left: -170px;
+      }
     </style>
   </head>
   <body>
@@ -117,8 +129,8 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white" href="#"
-              >Home</a
+            <a class="nav-link navbar-color" style="color: white" href="{% url 'dashboard' %}"
+              >Dashboard</a
             >
           </li>
           <li class="nav-item">
@@ -163,17 +175,11 @@
     <ul class="messages">
       {% for message in messages %}
       <li>
-      <!-- <div class="toast" data-autohide="false" style="margin-top:60px; position: absolute;">
-        <div class="toast-body">
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" style="max-width: 600px !important;">&times;</button>
-              <span class="{{ message.tags }} alert alert-primary" role="alert" >{{ message }}</span>
-        </div>
-      </div> -->
       <div class="alert alert-success" role="alert">
         <h4 class="alert-heading {{ message.tags }}">Well done!</h4>
-        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+        <p>A notification to you {{user.username}}</p>
         <hr>
-        <p class="mb-0">{{ message }}</p>
+        <p class="mb-0"><a href="#">{{ message }}</a></p>
       </div>
     </li>
       {% endfor %}
@@ -191,8 +197,19 @@
 
     </div>
 
-
-    <div class="latest">{{search_message | title}}</div>
+    
+    <div class="latest"><span class="latest-text">{{search_message | title}}</span>
+    <span class="filter-container">
+      <form action="" method="get">
+        <select name="filter" id="">
+          <option value="latest" default>Latest</option>
+          <option value="stipend">stipend</option>
+          <option value="duration">Duration</option>
+          <option value="relavent">Relavence</option>
+        </select>
+      </form>
+    </span>
+  </div>
     {% if message %}
     <center>Results for '{{message}}'</center>
     {% endif %}
