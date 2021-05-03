@@ -98,12 +98,9 @@ def profile(request, id=None):
             hex_number = str(hex(random_number))
             hex_number =hex_number[2:]
             color_list.append(hex_number)
-            # skill_colors[skills[_]] = hex_number
             skill_colors['ski'] = skills[_]
             skill_colors['col'] = hex_number
             list_color_pair.append({'ski': skills[_], 'col': hex_number})
-        # print(list_color_pair) 
-
         full_name = user_object.full_name
         phone = user_object.phone_number
         mobile = user_object.mobile_number
@@ -127,11 +124,9 @@ def profile(request, id=None):
             user_object.facebook = request.POST['facebook']
         user_object.save()
         user_skills = str(user_object.skills)
-        # print('Printing: '+str(user_skills))
         user_skills = user_skills.split(',')
         while ('' in user_skills):
             user_skills.remove('')
-        # print(user_skills)
         skills = user_skills
         color_list = []
         skill_colors = dict()
@@ -141,11 +136,9 @@ def profile(request, id=None):
             hex_number = str(hex(random_number))
             hex_number =hex_number[2:]
             color_list.append(hex_number)
-            # skill_colors[skills[_]] = hex_number
             skill_colors['ski'] = skills[_]
             skill_colors['col'] = hex_number
             list_color_pair.append({'ski': skills[_], 'col': hex_number})
-        # print(list_color_pair) 
 
         full_name = user_object.full_name
         phone = user_object.phone_number
@@ -173,7 +166,6 @@ def profile(request, id=None):
             hex_number = str(hex(random_number))
             hex_number =hex_number[2:]
             color_list.append(hex_number)
-            # skill_colors[skills[_]] = hex_number
             skill_colors['ski'] = skills[_]
             skill_colors['col'] = hex_number
             list_color_pair.append({'ski': skills[_], 'col': hex_number})
@@ -188,12 +180,6 @@ def profile(request, id=None):
 
 
         return render(request, 'User Profile/profile.html', {'user_display': user_object,'user_object':user_object,'skills': list_color_pair,'website': website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': user_object.assigned_project.all()})
-        # if user_skills[0] != '':
-        #     user_skills = set(user_skills)
-        #     return render(request, 'User Profile/profile.html', {'skills':user_skills})
-        # else:
-        #     print('Entered else')
-        #     return render(request, 'User Profile/profile.html')
     elif request.method == "POST":
         print("Initial Request.POST: "+request.POST['skills'])
         skills = request.POST['skills']
@@ -239,7 +225,6 @@ def profile(request, id=None):
 
 
    
-        # skills = str(skills).lower()
         color_list = []
         skill_colors = dict()
         list_color_pair = []
@@ -248,7 +233,6 @@ def profile(request, id=None):
             hex_number = str(hex(random_number))
             hex_number =hex_number[2:]
             color_list.append(hex_number)
-            # skill_colors[skills[_]] = hex_number
             skill_colors['ski'] = skills[_]
             skill_colors['col'] = hex_number
             list_color_pair.append({'ski': skills[_], 'col': hex_number})
@@ -257,7 +241,6 @@ def profile(request, id=None):
 
         
 
-        # skills = set(skills)
 
         updated_skills.save()
         full_name = updated_skills.full_name
@@ -265,11 +248,6 @@ def profile(request, id=None):
         mobile = updated_skills.mobile_number
         address = updated_skills.address
         website = updated_skills.website
-        # updated_skills.skill = str(skills)
-        # updated_skills.save()
-        # print("Saved in model: "+str(updated_skills.skills))
-        # request.POST = request.POST.copy()
-        # request.POST['skills'] = ''
         return render(request, 'User Profile/profile.html', {'user_display':updated_skills,'user_object':updated_skills,'skills': list_color_pair,'website':website, 'name': full_name, 'phone': phone, 'mobile': mobile, 'address': address, 'assigned_projects': UserAttribs.objects.get(user=request.user).assigned_project.all()})
         
 
@@ -281,19 +259,12 @@ def sign_up(request):
         form = UserCreation(request.POST)
         if form.is_valid:
             signup_form = form
-            # print(type(signup_form))
-            # print("sign_up, signup_form = ",signup_form)
-            # signup_form['name'] = request.POST['']
-            # login(request, user)
-            # return redirect("dashboard")
-            # print(request.POST['email'], request.POST['password1'])
             request.session['email'] = request.POST['email']
             request.session.modified = True
             request.session['username'] = request.POST['username']
             request.session.modified = True
             request.session['password'] = request.POST['password1']
             request.session.modified = True
-            # login(request, user)
             return redirect('otp_verification')
         else:
             return render(request, 'Index Page/index.html', {"form":UserCreation})
@@ -320,9 +291,6 @@ def otp_verification(request):
         print(type(signup_form))
         if otp==str(pin):
             print("signup_form = ",signup_form)
-            # print(otp==pin)
-            # return redirect(reverse("dashboard"))
-            # user = signup_form.save()
             print('Username = ',request.session.get('username'))
             user = User.objects.create_user(request.session.get('username'), request.session.get('email'), request.session.get('password'))
             user.save()
@@ -334,9 +302,6 @@ def otp_verification(request):
             new_user.save()
             login(request, user)
             return redirect(reverse("dashboard"))
-
-            # request.method = "POST"
-            # return redirect('signup')
         else:
             email = request.session.get('email')
             s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -356,19 +321,20 @@ def dashboard(request):
     global category
     user_object = UserAttribs(user = request.user)
     store=""
+    messages = []
     f = open("messages_data.txt","r")
     for line in f:
         line = str(line)[:-1]
         a = line.split(",")
-        # print(a)
         if a[0]==user_object.user.username and a[2]=='1':
-            # print("Yes")
-            messages.success(request, f"{a[0]} you have been accepted for {a[1]} project.")
+            proj_obj = Project.objects.get(title=a[1])
+            messages.append({'message': f"{a[0]} you have been accepted for {a[1]} project.", 'proj_id':proj_obj.id})
             x = list(line)
             x[-1]='0'
             store+="".join(x)+"\n"
         else:
             store+=str(line)+"\n"
+    print(messages)
     f = open("messages_data.txt","w")
     f.write(store)
     f.close()
@@ -389,22 +355,14 @@ def dashboard(request):
                 items_list = set(items_list)
                 for project in Project.objects.filter(status="posted"):
                     for tag in project.tags_requirement.all():
-                        print(tag,my_search)
                         if str(tag) == my_search:
-                            # print("DONE")
                             items_list.add(project)
                             break
-            print(request.GET.get('filter'))
             if request.GET.get('filter') == 'latest':
-                print("latest")
-                print(items_list)
                 project_objects = sorted(items_list,key = lambda x : -x.id)
-                print(project_objects)
             elif request.GET.get('filter') == 'stipend':
-                print("stipend")
                 project_objects = sorted(items_list,key = lambda x : -x.stipend)
             elif request.GET.get('filter') == 'duration':
-                print("duration")
                 project_objects = sorted(items_list,key = lambda x : -x.duration)
             # elif request.GET.get('filter') is 'latest':
             elif request.GET.get('filter') == 'relavent':
@@ -418,9 +376,8 @@ def dashboard(request):
                             project_objects.add(project)
                             break
             else:
-                print("default")
                 project_objects = Project.objects.filter(status="posted")
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message': request.GET.get('filter') })
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message': request.GET.get('filter'), 'messages':messages })
 
         elif request.method == "GET" and not request.GET.get('search_input') and not request.GET.get('category_search_input'):
             my_search = ""
@@ -454,7 +411,7 @@ def dashboard(request):
             #     print(project.applied_users.all())
             #     if project.applied_users.all()
             # print("I'm in GET")
-            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message': request.GET.get('filter') })
+            return render(request, 'After Login/home.html', {"project_objects" : project_objects, "flag":"true", "curr_user": UserAttribs.objects.get(user=request.user), 'message':'', 'search_message': request.GET.get('filter'), 'messages':messages })
 
         elif request.method=="POST" and request.POST.get("a1") and request.POST.get("a2"): # For manipulating when user applies for project by answering questions
             question_obj = Project_Question.objects.create(Q1 = request.POST["a1"])
@@ -496,7 +453,7 @@ def dashboard(request):
             # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
             # objects_set.add(items_list)
             # print(items_list)
-            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input'), 'search_message': request.GET.get('search_input')})
+            return render(request, 'After Login/home.html', {'project_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input'), 'search_message': request.GET.get('search_input'), 'messages':messages})
         elif request.method == "GET" and request.GET.get('category_search_input'):
             objects_set = set()
             # items_list = Project.objects.filter( Q(title__icontains=request.GET.get('category_search_input'), status="posted") | Q(description__icontains = request.GET.get('category_search_input')), Q(status="posted") | Q(category = request.GET.get('category_search_input')), Q(status="posted") ) 
@@ -512,7 +469,7 @@ def dashboard(request):
             # print("HEy")
             # print(request.GET.get('category_search_input'))
             # print(items_list)
-            return render(request, 'After Login/home.html', {'project_objects': a, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('category_search_input'), 'search_message': request.GET.get('category_search_input')})
+            return render(request, 'After Login/home.html', {'project_objects': a, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('category_search_input'), 'search_message': request.GET.get('category_search_input'), 'messages':messages})
             
 
     else:
@@ -532,7 +489,7 @@ def blog(request):
         # items_list = Project.objects.filter(description__icontains=request.GET.get('search_input'), status="posted" )
         # objects_set.add(items_list)
         
-        return render(request, 'Blog Section/blog.html', {'blog_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input')})
+        return render(request, 'Blog Section/blog.html', {'blog_objects': items_list, "curr_user": UserAttribs.objects.get(user=request.user), 'message': request.GET.get('search_input'), 'messages':messages})
     else:
         blog_objects = Blog.objects.all().order_by('-date_time')
         # blog_objects = blog_objects[:9]

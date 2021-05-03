@@ -41,6 +41,47 @@
         background-color: aquamarine;
       }
 
+      .row{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 4px;
+      }
+      .column{
+        flex:25%;
+        max-width: 25%;
+        padding: 0 4px;
+      }
+      .card{
+        margin: 3px;
+        height: auto;
+        
+      }
+
+      .img-post{
+        /* margin-top:2px;
+        vertical-align: middle;
+        width: 100%;
+        height:100%; */
+        float: left;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      /* .row{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .card{
+        width: 100%;
+      }
+       */
+
+      
+
+
     </style>
 
     
@@ -102,9 +143,9 @@
     <div id="intro" class="p-5 text-center bg-light">
       <h1 class="mb-3 h2">CollabTree Blogs</h1>
       <p class="mb-3">Best & free guide to develope yourselves.</p>
-      <a class="btn btn-primary m-2" href="{% url 'new_blog' %}" role="button" rel="nofollow"
+      <a class="btn btn-success m-2" href="{% url 'new_blog' %}" role="button" rel="nofollow"
         target="_blank">Write a Blog</a>
-      <a class="btn btn-primary m-2" href="../After Login/home.html" target="_blank"
+      <a class="btn btn-success m-2" href="../After Login/home.html" target="_blank"
         role="button">Go to Home</a>
     </div>
     <!-- Jumbotron -->
@@ -117,14 +158,14 @@
       <!--Section: Content-->
       <section class="text-center">
         <h4 class="mb-5"><strong>Latest posts</strong></h4>
-
+        <div class="container-fluid">
         <div class="row">
           {% for blog in blog_objects %}
-          <div class="col-lg-4 col-md-12 mb-4">
+          <div class="col-md-3 grid">
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 {% if blog.cover_image %}
-                <img src="{{blog.cover_image.url}}" class="img-fluid" />
+                <img src="{{blog.cover_image.url}}" class="img-post" />
                 {% endif %}
                 <a href="#!">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -132,8 +173,9 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{blog.title}}</h5>
+                <hr>
                 <p class="card-text">
-                  {{blog.body}}
+                  {{blog.body|truncatewords:3|slice:"-4"}}...
                 </p>
                 <p>
                   {{blog.date_time}}
@@ -145,152 +187,15 @@
                   
                  
                 </div>
-                <a href="{% url 'view_blog' blog.id %}" class="btn btn-primary">Read</a>
+                <a href="{% url 'view_blog' blog.id %}" class="btn btn-success">Read</a>
               </div>
             </div>
           </div>
           {% endfor %}
-          <!-- <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Post title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the
-                  card's content.
-                </p>
-                <div class="tags-container">
-                  <span>#tags</span>
-                  <span>#tags</span>
-                  <span>#tags</span>
-                </div>
-                <a href="#!" class="btn btn-primary">Read</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Post title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the
-                  card's content.
-                </p>
-                <div class="tags-container">
-                  <span>#tags</span>
-                  <span>#tags</span>
-                  <span>#tags</span>
-                </div>
-                <a href="#!" class="btn btn-primary">Read</a>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-12 mb-4">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/002.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Post title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the
-                  card's content.
-                </p>
-                <div class="tags-container">
-                  <span>#tags</span>
-                  <span>#tags</span>
-                  <span>#tags</span>
-                </div>
-                <a href="#!" class="btn btn-primary">Read</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/022.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Post title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the
-                  card's content.
-                </p>
-                <div class="tags-container">
-                  <span>#tags</span>
-                  <span>#tags</span>
-                  <span>#tags</span>
-                </div>
-                <a href="#!" class="btn btn-primary">Read</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/035.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Post title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the
-                  card's content.
-                </p>
-                <div class="tags-container">
-                  <span>#tags</span>
-                  <span>#tags</span>
-                  <span>#tags</span>
-                </div>
-                <a href="#!" class="btn btn-primary">Read</a>
-              </div>
-            </div>
-          </div> -->
-        </div>
+      </div>
       </section>
-      <!--Section: Content-->
-
-      <!-- Pagination -->
-      <!-- <nav class="my-4" aria-label="...">
-        <ul class="pagination pagination-circle justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav> -->
+    
     </div>
   </main>
   <!--Main layout-->
@@ -342,6 +247,7 @@
     <!-- Custom scripts -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
     <script type="text/javascript" src="js/script.js"></script> 
     <script >
@@ -361,6 +267,7 @@
         }
       }
     }
+
   </script>
 </body>
 </html>
