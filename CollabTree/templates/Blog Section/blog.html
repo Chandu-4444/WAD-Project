@@ -13,6 +13,7 @@
     <!-- MDB -->
      <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Custom styles -->
+    <link href="https://res.cloudinary.com/finnhvman/raw/upload/matter/matter-0.2.2.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" /> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
@@ -78,7 +79,15 @@
         width: 100%;
       }
        */
-
+       .matter-button-contained{
+         background-color:rgb(81, 205, 50);
+         padding: 0 20px;
+         transition: ease all 0.5s;
+       }
+       a:hover{
+       text-decoration:none;
+       }
+      
       
 
 
@@ -87,7 +96,7 @@
     
 
 
-    <nav class="navbarr navbar navbar-expand-lg navbar-light navbar-custom" style="background-color: black;">
+    <!-- <nav class="navbarr navbar navbar-expand-lg navbar-light navbar-custom" style="background-color: black;">
       <a class="navbar-brand navbar-color" style="color: white;" href="#">COLLABTREE</a>
       <button
         class="navbar-toggler"
@@ -136,6 +145,54 @@
           </button>
         </form>
       </div>
+    </nav> -->
+    <nav class="navbarr navbar navbar-expand-lg navbar-light navbar-custom" style="background-color: black;">
+      <a class="navbar-brand navbar-color" style="color: white;" href="#">COLLABTREE</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#NavbarCollapsedContent"
+        aria-controls="NavbarCollapsedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon" style="background-color: white;"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" style="background-color: black;" id="NavbarCollapsedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active navbar-color" style="color: white;" href="{% url 'profile' %}">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'my_projects' %}">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'blogs' %}">Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" style="color: white;" href="#">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
     </nav>
     <!-- Navbar -->
 
@@ -143,9 +200,9 @@
     <div id="intro" class="p-5 text-center bg-light">
       <h1 class="mb-3 h2">CollabTree Blogs</h1>
       <p class="mb-3">Best & free guide to develope yourselves.</p>
-      <a class="btn btn-success m-2" href="{% url 'new_blog' %}" role="button" rel="nofollow"
+      <a class="matter-button-contained" href="{% url 'new_blog' %}" role="button" rel="nofollow"
         target="_blank">Write a Blog</a>
-      <a class="btn btn-success m-2" href="../After Login/home.html" target="_blank"
+      <a class="matter-button-contained" href="../After Login/home.html" target="_blank"
         role="button">Go to Home</a>
     </div>
     <!-- Jumbotron -->
@@ -158,6 +215,7 @@
       <!--Section: Content-->
       <section class="text-center">
         <h4 class="mb-5"><strong>Latest posts</strong></h4>
+        <hr style="border: 1px dotted black;">
         <div class="container-fluid">
         <div class="row">
           {% for blog in blog_objects %}
@@ -187,7 +245,7 @@
                   
                  
                 </div>
-                <a href="{% url 'view_blog' blog.id %}" class="btn btn-success">Read</a>
+                <a href="{% url 'view_blog' blog.id %}" class="matter-button-contained">Read</a>
               </div>
             </div>
           </div>
@@ -203,11 +261,15 @@
   <!--Footer-->
   <footer class="bg-light text-lg-start">
     <div class="py-4 text-center">
-      <a role="button" class="btn btn-primary btn-lg m-2"
+      <!-- <a role="button" class="btn btn-primary btn-lg m-2"
+        href="#" rel="nofollow" target="_blank">
+        Write a Blog
+      </a> -->
+      <a role="button" class="matter-button-contained"
         href="#" rel="nofollow" target="_blank">
         Write a Blog
       </a>
-      <a role="button" class="btn btn-primary btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank">
+      <a role="button" class="matter-button-contained" href="https://mdbootstrap.com/docs/standard/" target="_blank">
         Go To Home
       </a>
     </div>

@@ -8,10 +8,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>New Blog</title>
     <link rel="stylesheet" href="{% static 'blog/tags.css' %}">
-
+    <link href="https://res.cloudinary.com/finnhvman/raw/upload/matter/matter-0.2.2.css" rel="stylesheet">
+    <style>
+        a:hover{
+            color:blue;
+            text-decoration:none;
+        }
+        .matter-button-contained:hover{
+            color:blue;
+        }
+        .buttons{
+            text-align: center;
+            margin: 10px;
+        }
+        .matter-h5{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            background-color: rgb(0, 204, 255);
+            color:white;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
+        <p class="matter-h5">New Blog</p>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="fields">
@@ -19,21 +42,26 @@
             <input type="file" name="cover_image"> -->
         </div>
             <div class="fields">
-            <label for="title">Title &nbsp;</label>
-            <input type="text" name="title">
+            <!--<label for="title">Title &nbsp;</label>
+            <input type="text" name="title"> -->
+            <label class="matter-textfield-filled">
+                <input name="title" placeholder=" "/>
+                <span>Title</span>
+            </label>
         </div>
             <div class="fields">
-            <label for="body">Body</label>
-            <textarea name="body" id="" cols="30" rows="10"></textarea>
-            
+            <label class="matter-textfield-filled" for="body">
+            <textarea placeholder=" " name="body"></textarea>
+            <span>Body</span>
+        </label>
         </div>
             <div class="fields">
             <label for="tags">Tags (Press Tab to add new tag)</label>
             <input type="text" data-role="tagsinput" class="form-control" name="tags">
         </div>
-            <div class="fields">
-            <input type="submit" value="Submit">
-            <a href="{% url 'blogs' %}" class="btn btn-primary">Cancel</a>
+            <div class="buttons">
+            <input class="matter-button-contained" type="submit" value="Submit">
+            <a href="{% url 'blogs' %}" class="matter-button-contained">Cancel</a>
 
         </div>
            

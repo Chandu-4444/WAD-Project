@@ -8,6 +8,8 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <link rel="stylesheet" href="{% static 'User Profile/styles.css' %}">
+    <link href="https://res.cloudinary.com/finnhvman/raw/upload/matter/matter-0.2.2.css" rel="stylesheet">
+
 
     
 </head>
@@ -76,13 +78,13 @@
 
                       
                     
-                    <button class="edit-image-btn">Change Image</button>
+                    <button class="matter-contained-button edit-image-btn">Change Image</button>
                     <div class="image-modal">
                       <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="file" name="image" class="image-label">
-                        <input type="submit" value="Upload">
-                        <input type="button" value="Close" class="close-image-modal">
+                        <input type="submit" class="matter-contained-button" value="Upload">
+                        <input type="button" value="Close" class="close-image-modal matter-contained-button">
                       </form>
                     </div>
                     <div class="mt-3">
@@ -98,7 +100,7 @@
                 </div>
               </div>
               <div class="card mt-3" >
-                <button class="edit-web">Edit</button>
+                <button class="edit-web matter-button-contained">Edit</button>
 
                 <div class="details-contact">
                   <form action="" method="post">
@@ -144,7 +146,7 @@
             </div>
             <div class="col-md-8">
               <div class="card mb-3" style="background-color: rgb(182, 218, 206);">
-                <button class="edit-name">Edit</button>
+                <button class="edit-name btn btn-outline-success my-2 my-sm-0">Edit</button>
                 <div class="card-body" style="background-color: rgb(182, 218, 206);"> 
 
 
