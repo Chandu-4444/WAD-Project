@@ -175,9 +175,6 @@
             <a class="nav-link navbar-color" style="color: white;" href="{% url 'blogs' %}">Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white;" href="#">Messages</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link navbar-color" style="color: white;" href="{% url 'logout' %}">Logout</a>
           </li>
         </ul>
@@ -202,7 +199,7 @@
       <p class="mb-3">Best & free guide to develope yourselves.</p>
       <a class="matter-button-contained" href="{% url 'new_blog' %}" role="button" rel="nofollow"
         target="_blank">Write a Blog</a>
-      <a class="matter-button-contained" href="../After Login/home.html" target="_blank"
+      <a class="matter-button-contained" href="{% url 'dashboard' %}"
         role="button">Go to Home</a>
     </div>
     <!-- Jumbotron -->
@@ -224,6 +221,8 @@
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 {% if blog.cover_image %}
                 <img src="{{blog.cover_image.url}}" class="img-post" />
+                {% else %}
+                <img src="{% static 'images/blog.jpeg' %}" class="img-post" />
                 {% endif %}
                 <a href="#!">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -266,10 +265,10 @@
         Write a Blog
       </a> -->
       <a role="button" class="matter-button-contained"
-        href="#" rel="nofollow" target="_blank">
+        href="{% url 'new_blog' %}" rel="nofollow" target="_blank">
         Write a Blog
       </a>
-      <a role="button" class="matter-button-contained" href="https://mdbootstrap.com/docs/standard/" target="_blank">
+      <a role="button" class="matter-button-contained" href="{% url 'dashboard' %}">
         Go To Home
       </a>
     </div>

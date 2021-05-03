@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,11 @@
     <div class="container">
         <h1>{{blog.title}}</h1>
         <hr>
+        {% if blog.cover_image %}
         <img src="{{blog.cover_image.url}}" style="height:auto; width:200px;" alt="">
+        {% else %}
+        <img src="{% static 'images/blog.jpeg' %}" style="height:auto; width:200px;" alt="">
+        {% endif %}
         <h5>{{blog.body}}</h5>
         <span>Author: {{blog.author}}</span>
         <br>
