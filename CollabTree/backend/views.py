@@ -586,23 +586,32 @@ def view_user(request, id=None, proj_id=None):
                 return render(request, "My Projects/view_user.html", {'q_user_obj':q_obj})
 
 def mark_complete(request, user_id, project_id):
-    print("User_id = ",user_id,"Project_id = ",project_id)
-    user_obj = UserAttribs.objects.get(id = user_id)
-    project_obj = Project.objects.get(id=project_id)
-    project_obj.status = "complete"
-    print("User Object = ",user_obj)
-    if user_obj.worth is None:
-        user_obj.worth = 0
+    if request.method == "GET":
+        project_obj = Project.objects.get(id=project_id)
+
+        return render(request, "My Projects/review.html", {'proj_obj': project_obj})
+    else:
+        rating = request.POST['rating']
+        review = request.POST['review']
+        print("User_id = ",user_id,"Project_id = ",project_id)
+        user_obj = UserAttribs.objects.get(id = user_id)
+        project_obj = Project.objects.get(id=project_id)
+        project_obj.status = "complete"
+        project_obj.project_rating = rating
+        project_obj.review = review
+        print("User Object = ",user_obj)
+        if user_obj.worth is None:
+            user_obj.worth = 0
+            user_obj.save()
+        user_obj.worth += project_obj.stipend
+        print("Worth = ",user_obj.worth)
+        curr_user = UserAttribs.objects.get(user=request.user)
+        curr_user.worth -= project_obj.stipend
         user_obj.save()
-    user_obj.worth += project_obj.stipend
-    print("Worth = ",user_obj.worth)
-    curr_user = UserAttribs.objects.get(user=request.user)
-    curr_user.worth -= project_obj.stipend
-    user_obj.save()
-    curr_user.save()
-    project_obj.status = 'completed'
-    project_obj.save()
-    return redirect(reverse("my_projects"))
+        curr_user.save()
+        project_obj.status = 'completed'
+        project_obj.save()
+        return redirect(reverse("my_projects"))
 def view_project(request, proj_id):
     proj_obj = Project.objects.get(id = proj_id)
     return render(request, 'My Projects/project_info.html', {'project': proj_obj, "curr_user": UserAttribs.objects.get(user=request.user)})

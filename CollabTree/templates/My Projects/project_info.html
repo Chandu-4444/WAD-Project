@@ -22,11 +22,16 @@
        <a href="{% url 'dashboard' %}">Back</a>
        <input type="submit" value="Apply" >
        {% endifequal %}
-    {% comment %} <!-- {% endfor %} --> {% endcomment %}
   </form>
   {% else %}
   Assigned User: {{project.assigned_user}}
   <br>
 Status: {{project.status}}
+<br>
+{% ifequal project.status 'completed' %}
+  Rating: {{project.project_rating}}
+  <br>
+  Review: {{project.review}}
+  {% endifequal %}
 {% endif %}
 {% endblock %}

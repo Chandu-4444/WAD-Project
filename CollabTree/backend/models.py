@@ -60,6 +60,8 @@ class Project(models.Model):
     applied_users = models.ManyToManyField(UserAttribs,  null=True, blank=True)
     tags_requirement = TaggableManager()
     project_questions = models.OneToOneField(Project_Question,on_delete=models.CASCADE,null=True, blank=True)
+    project_rating = models.FloatField(blank=True, default=0)
+    review = models.TextField(blank=True)
     def __str__(self):
         return self.title
 
