@@ -16,7 +16,7 @@
         {% else %}
         <img src="{% static 'images/blog.jpeg' %}" style="height:auto; width:200px;" alt="">
         {% endif %}
-        <h5>{{blog.body}}</h5>
+        <h5>{{blog.body|safe}}</h5>
         <span>Author: {{blog.author}}</span>
         <br>
         <span>Moment: {{blog.date_time}}</span>
