@@ -23,6 +23,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="{% static 'After Login/styles.css' %}" />
+    <link href="https://res.cloudinary.com/finnhvman/raw/upload/matter/matter-0.2.2.css" rel="stylesheet">
     <style>
       .searchbar {
         position: relative !important;
@@ -86,6 +87,10 @@
         text-align: center;
         display: inline-block;
         margin-left: -170px;
+      }
+
+      .btcolor {
+        width: 100%;
       }
 
       /* .container{
@@ -233,7 +238,7 @@
           <option value="duration">Duration</option>
           <option value="relavent">Relavence</option>
         </select>
-        <input type="submit" value="GO">
+        <input type="submit" value="GO" class="matter-button-contained">
       </form>
     </span>
   </div>
@@ -248,12 +253,12 @@
         <div class="title">{{ project.title }}</div>
         <div class="desc">{{ project.description }}</div>
         <br>
-        <a href="{% url 'view_project' project.id %}">View</a>
-        <div class = "tags-container">
+        <a href="{% url 'view_project' project.id %}" class="matter-button-contained" style="margin-bottom:10px">View</a>
+        <!-- <div class = "tags-container">
           {% for tag in project.tags_requirement.all %}
           <a href="">#{{tag}}&nbsp;</a>
           {% endfor %}
-        </div>
+        </div> -->
 
         <form action="" method="post">
           {% csrf_token %}
@@ -269,13 +274,13 @@
              
 
              {% if flag == 'found' %}
-             <input type="submit" value="Applied" disabled>
+             <input type="submit" value="Applied" class="matter-button-contained btcolor" disabled>
 
              {% elif flag == 'owner' %}
-       <input type="submit" value="Owned By You" disabled>
+            <input type="submit" value="Owned By You" class="matter-button-contained btcolor" disabled>
             
              {% else %}
-             <input type="submit" value="Apply" >
+             <input type="submit" value="Apply" class="matter-button-contained btcolor">
              {% endif %}
           {% comment %} <!-- {% endfor %} --> {% endcomment %}
         </form>
