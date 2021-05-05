@@ -11,17 +11,25 @@
     name="project_title"
     value="{{project.id}}"
   />
-       {% check_user project.applied_users.all curr_user as flag %}
+       {% check_user project.id project.applied_users.all curr_user as flag %}
        
 
-       {% ifequal flag "found" %}
-       <a href="{% url 'dashboard' %}">Back</a>
+       {% if flag == "found" %}
+       <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
        <input type="submit" value="Applied" disabled>
+
+       {% elif flag == 'owner' %}
+       <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
+       <input type="submit" value="Owned By You" disabled>
+
+       
+
+       
       
        {% else %}
-       <a href="{% url 'dashboard' %}">Back</a>
+       <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
        <input type="submit" value="Apply" >
-       {% endifequal %}
+       {% endif %}
   </form>
   {% else %}
   Assigned User: {{project.assigned_user}}

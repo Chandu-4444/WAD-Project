@@ -220,7 +220,6 @@ nav ul .right {
   flex-wrap: wrap;
 }
 .container .job:hover {
-  text-decoration: underline;
   transform: scale(1.1);
 }
 .container .job {

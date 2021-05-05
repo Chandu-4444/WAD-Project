@@ -87,6 +87,33 @@
         display: inline-block;
         margin-left: -170px;
       }
+
+      /* .container{
+        position: relative;
+      }
+
+      .job::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 1s;
+      }
+
+      .job:hover::after {
+        transform: scale(1.4) scale(1.6);
+        background-color:blue;
+        opacity: 0;
+      } */
+
+
+
+
     </style>
   </head>
   <body>
@@ -238,15 +265,18 @@
           value="{{project.id}}"/>
        
         {% comment %} <!-- {% for user in project.applied_users.all %} --> {% endcomment %}
-             {% check_user project.applied_users.all curr_user as flag %}
+             {% check_user project.id project.applied_users.all curr_user as flag %}
              
 
-             {% ifequal flag "found" %}
+             {% if flag == 'found' %}
              <input type="submit" value="Applied" disabled>
+
+             {% elif flag == 'owner' %}
+       <input type="submit" value="Owned By You" disabled>
             
              {% else %}
              <input type="submit" value="Apply" >
-             {% endifequal %}
+             {% endif %}
           {% comment %} <!-- {% endfor %} --> {% endcomment %}
         </form>
       </div>
@@ -275,9 +305,7 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
             Development and IT
           </button>
-        </form>
-        
-        <!-- <div class="name">Development and IT</div> -->
+        </form>        
       </a>
       <a href="#" class="cats">
         <div class="image">
