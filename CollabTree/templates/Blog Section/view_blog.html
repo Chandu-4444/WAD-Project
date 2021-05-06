@@ -6,10 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+    <link
+    href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    .like-dislike {
+      margin: 10px;
+      margin-left: 0px;
+    }
+    .like-count {
+      text-align: center;
+      display: inline;
+      background-color: white;
+      padding: 4px;
+      color: rgb(0, 0, 0);
+      width: 15px;
+      border-radius: 5px;
+      margin: 5px;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 <body>
     <div class="container">
-        <h1>{{blog.title}}</h1>
+        <h1>{{blog.title|title}}</h1>
         <hr>
         {% if blog.cover_image %}
         <img src="{{blog.cover_image.url}}" style="height:auto; width:200px;" alt="">
@@ -25,10 +57,21 @@
             Tags:
             {% for tag in blog.tags.all %}
               <a href="">{{tag}}</a>
-            {% endfor %}
-            
-           
-          </div>
+            {% endfor %} 
+        </div>
+
+        <div class="like-dislike">
+          {% if blog.author.user.username != request.user.username %}
+          <a disabled class="btn btn-success" href="{% url 'like_blog' blog.id %}">Like<span class="like-count">{{blog.likes}} </span></a>
+          <a class="btn btn-danger" href="{% url 'dislike_blog' blog.id %}">Dislike<span class="like-count">{{blog.dislikes}}</span></a>      
+          {% else %}
+          <a disabled class="btn btn-success" href="{% url 'edit_blog' blog.id %}">Edit Blog</a>
+          <a class="btn btn-danger" href="{% url 'delete_blog' blog.id %}">Delete Blog</a>      
+          
+
+          {% endif %}    
+        </div>
+        <a class="btn btn-secondary" href="{% url 'blogs' %}">Back</a>
         
     </div>
 </body>

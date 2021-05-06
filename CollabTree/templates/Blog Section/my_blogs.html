@@ -101,7 +101,7 @@
             <a class="nav-link navbar-color" style="color: white;" href="{% url 'my_projects' %}">My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link navbar-color" style="color: white;" href="{% url 'my_blogs' %}">My Blogs</a>
+            <a class="nav-link navbar-color" style="color: white;" href="{% url 'blogs' %}">Blogs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link navbar-color" style="color: white;" href="{% url 'logout' %}">Logout</a>
@@ -140,7 +140,7 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
-        <h4 class="mb-5"><strong>Latest posts</strong></h4>
+        <h4 class="mb-5"><strong>My Blogs</strong></h4>
         <hr style="border: 1px dotted black;">
         <div class="container-fluid">
         <div class="row">
@@ -170,8 +170,6 @@
                   {% for tag in blog.tags.all %}
                     <a href="">{{tag}}</a>
                   {% endfor %}
-                  
-                 
                 </div> -->
                 <a href="{% url 'view_blog' blog.id %}" class="matter-button-contained">Read</a>
               </div>

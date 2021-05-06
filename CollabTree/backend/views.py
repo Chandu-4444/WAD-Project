@@ -508,7 +508,7 @@ def new_blog(request):
         blog_object = Blog.objects.create(author=user_object)
         blog_object.title = title
         blog_object.body = body
-        # blog_object.cover_image = request.FILES["cover_image"]
+        blog_object.cover_image = request.FILES["cover_image"]
         tags = request.POST['tags']
         for tag in tags.split(','):
             blog_object.tags.add(tag)
@@ -619,3 +619,45 @@ def view_project(request, proj_id):
 def view_blog(request, blog_id):
     blog_obj = Blog.objects.get(id=blog_id)
     return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
+def like_blog(request, blog_id):
+    blog_obj = Blog.objects.get(id=blog_id)
+    blog_obj.likes += 1
+    blog_obj.save()
+    return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
+def dislike_blog(request, blog_id):
+    blog_obj = Blog.objects.get(id=blog_id)
+    blog_obj.dislikes += 1
+    blog_obj.save()
+    return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
+def my_blogs(request):
+    user_obj = UserAttribs.objects.get(user = request.user)
+    blog_objs = Blog.objects.filter(author = user_obj)
+    return render(request, 'Blog Section/my_blogs.html', {'blog_objects': blog_objs})
+def delete_blog(request, blog_id):
+    user_obj = UserAttribs.objects.get(user = request.user)
+    Blog.objects.filter(id=blog_id).delete()
+    blog_objs = Blog.objects.filter(author = user_obj)
+    return render(request, 'Blog Section/my_blogs.html', {'blog_objects': blog_objs})
+
+def edit_blog(request, blog_id):
+    if request.method == "GET":
+        blog_obj = Blog.objects.get(id=blog_id)
+        tags = ""
+        for tag in blog_obj.tags.all():
+            tags = tags+','+ str(tag)
+        return render(request, 'Blog Section/edit_blog.html', {'blog_obj': blog_obj, 'tags': tags})
+    else:
+        blog_obj = Blog.objects.get(id=blog_id)
+        blog_obj.title = request.POST['title']
+        blog_obj.body = request.POST['body']
+        if request.FILES.get('cover_image'):
+            blog_obj.cover_image = request.FILES['cover_image']
+        tags = request.POST['tags']
+        for tag in tags.split(','):
+            blog_obj.tags.add(tag)
+        blog_obj.save()
+        return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
+        
+
+
+        

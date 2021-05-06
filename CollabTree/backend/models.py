@@ -33,6 +33,8 @@ class Blog(models.Model):
     author = models.ForeignKey(UserAttribs, on_delete = models.CASCADE, blank=True, null=True)
     date_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     tags = TaggableManager()
+    likes = models.IntegerField(default=0, blank=True)
+    dislikes = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return self.title

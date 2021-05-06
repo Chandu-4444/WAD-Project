@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>New Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/tags.css' %}">
+    <link href="https://res.cloudinary.com/finnhvman/raw/upload/matter/matter-0.2.2.css" rel="stylesheet">
+    <style>
+        a:hover{
+            color:blue;
+            text-decoration:none;
+        }
+        .matter-button-contained:hover{
+            color:blue;
+        }
+        .buttons{
+            text-align: center;
+            margin: 10px;
+        }
+        .matter-h5{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            background-color: rgb(0, 204, 255);
+            color:white;
+            border-radius: 5px;
+        }
+        input[type='file'] {
+            color: transparent;
+            margin-right: -200px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <p class="matter-h5">New Blog</p>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="fields">
+            <label for="cover_image">Cover Image</label>
+            <br>
+            <input id="image-file" type="file" name="cover_image" value="{{blog_obj.cover_image.url}}">
+            <br>
+
+            <span class="file-value"></span>
+        </div>
+            <div class="fields">
+            <label class="matter-textfield-filled">
+                <input name="title" placeholder=" " value="{{blog_obj.title}}"/>
+                <span>Title</span>
+            </label>
+        </div>
+            <div class="fields">
+            <label class="matter-textfield-filled" for="body">
+            <textarea placeholder=" " name="body" >{{blog_obj.body}}</textarea>
+
+            <span>Body</span>
+        </label>
+        </div>
+            <div class="fields">
+            <label for="tags">Tags (Press Tab to add new tag)</label>
+            <input type="text" data-role="tagsinput" class="form-control" name="tags" value="{{tags}}">
+        </div>
+            <div class="buttons">
+            <input class="matter-button-contained" type="submit" value="Edit">
+            <a href="{% url 'view_blog' blog_obj.id %}" class="matter-button-contained">Cancel</a>
+
+        </div>
+           
+        </form>
+    </div>
+    <script>
+        const imgValue = "{{blog_obj.cover_image.url}}";
+        console.log(imgValue);
+        const imgFile = document.getElementById('image-file');
+        const tootip = document.querySelector('.file-value');
+        tootip.innerHTML = imgValue;
+
+        imgFile.addEventListener('change', function(){
+            const tootip = document.querySelector('.file-value');
+            tootip.innerHTML = imgFile.value;
+
+        })
+      
+
+        
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/static/blog/js/tags_input.js"></script>
+    <script>
+    $("#post-form").submit(function(e){
+        e.preventDefault();
+        });
+
+        
+        
+        
+        </script>
+
+</body>
+</html>
