@@ -10,15 +10,20 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
     <title>Project</title>
+    <style>
+      body {
+        text-align: justify;
+      }
+    </style>
 </head>
 <body>
     <div class="container">
         
         <h1>{{project.title}}</h1>
         <br>
-        <h2>Category: {{project.category|title}}</h2>
+        <h5>Category: {{project.category|title}}</h5>
         <hr>
-        <h3>{{project.description}}</h3>
+        <h3>{{project.description|safe}}</h3>
         <br>
         <span>Owner: {{project.owner}}</span>
         <br>
@@ -26,9 +31,11 @@
         <br>
         <span>Virtual Worth: {{project.stipend}}</span>
         <br>
+        <h6>Skills Required: </h6>
         {% for tag in project.tags_requirement.all %}
-          <a href="">#{{tag}}&nbsp;</a>
+          <a href="" class="btn btn-dark">#{{tag}}&nbsp;</a>
           {% endfor %}
+          <br>
           <br>
           
           {% block content %}

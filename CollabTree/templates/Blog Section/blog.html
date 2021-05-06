@@ -55,6 +55,7 @@
       .card{
         margin: 3px;
         height: auto;
+        transition: 0.2s all ease;
         
       }
 
@@ -72,6 +73,10 @@
        }
        a:hover{
        text-decoration:none;
+       }
+
+       .card:hover {
+         transform: scale(1.1);
        }
 
     </style>
@@ -128,7 +133,7 @@
       <h1 class="mb-3 h2">CollabTree Blogs</h1>
       <p class="mb-3">Best & free guide to develope yourselves.</p>
       <a class="matter-button-contained" href="{% url 'new_blog' %}" role="button" rel="nofollow"
-        target="_blank">Write a Blog</a>
+        >Write a Blog</a>
       <a class="matter-button-contained" href="{% url 'dashboard' %}"
         role="button">Go to Home</a>
     </div>
@@ -164,7 +169,7 @@
                 <p class="card-text">
                   {{blog.body|truncatewords:3|slice:"-4"}}...
                 </p>
-                <p>
+                <p style="color:gray; font-style: italic;">
                   {{blog.date_time}}
                 </p>
                 <!-- <div class="tags-container">

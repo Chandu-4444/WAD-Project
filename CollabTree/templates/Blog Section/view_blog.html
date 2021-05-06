@@ -22,6 +22,17 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
   <style>
+    body {
+      text-align: center;
+      
+    }
+    .blog-body {
+      text-align: justify;
+    }
+    .meta {
+      color: gray;
+      font-style: italic;
+    }
     .like-dislike {
       margin: 10px;
       margin-left: 0px;
@@ -37,6 +48,10 @@
       margin: 5px;
       font-size: 0.8rem;
     }
+    .container {
+      border: 1px solid black;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
@@ -44,14 +59,16 @@
         <h1>{{blog.title|title}}</h1>
         <hr>
         {% if blog.cover_image %}
-        <img src="{{blog.cover_image.url}}" style="height:auto; width:200px;" alt="">
+        <img src="{{blog.cover_image.url}}" style="height:auto; width:200px; margin-bottom:20px; margin-top: 20px;" alt="">
         {% else %}
         <img src="{% static 'images/blog.jpeg' %}" style="height:auto; width:200px;" alt="">
         {% endif %}
-        <h5>{{blog.body|safe}}</h5>
-        <span>Author: {{blog.author}}</span>
+        <hr>
+
+        <h5 class="blog-body">{{blog.body|safe}}</h5>
+        <span class="meta">Author: {{blog.author}}</span>
         <br>
-        <span>Moment: {{blog.date_time}}</span>
+        <span class="meta">At: {{blog.date_time}}</span>
         <br>
         <div class="tags-container">
             Tags:
@@ -66,7 +83,11 @@
           <a class="btn btn-danger" href="{% url 'dislike_blog' blog.id %}">Dislike<span class="like-count">{{blog.dislikes}}</span></a>      
           {% else %}
           <a disabled class="btn btn-success" href="{% url 'edit_blog' blog.id %}">Edit Blog</a>
-          <a class="btn btn-danger" href="{% url 'delete_blog' blog.id %}">Delete Blog</a>      
+          <a class="btn btn-danger" href="{% url 'delete_blog' blog.id %}">Delete Blog</a> 
+          <br>
+          <br>
+          <button class="btn btn-success" disabled>Likes<span class="like-count">{{blog.likes}} </span></button>
+          <button class="btn btn-danger" disabled>Dislikes<span class="like-count">{{blog.dislikes}}</span></button>       
           
 
           {% endif %}    

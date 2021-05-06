@@ -15,12 +15,12 @@
        
 
        {% if flag == "found" %}
-       <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
-       <input type="submit" value="Applied" disabled>
+       <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
+       <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Applied" disabled>
 
        {% elif flag == 'owner' %}
-       <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
-       <input type="submit" value="Owned By You" disabled>
+       <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
+       <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Owned By You" disabled>
 
        
 
@@ -28,7 +28,7 @@
       
        {% else %}
        <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'dashboard' %}">Back</a>
-       <input type="submit" value="Apply" >
+       <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Apply" >
        {% endif %}
   </form>
   {% else %}

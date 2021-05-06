@@ -19,6 +19,25 @@
             background-color:black;
             color:white;
         }
+        .bubble{
+            background-color:black;
+            color:white;
+            padding:4px;
+            border-radius: 2px;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .instructions-container {
+            margin-left: 50px;
+        }
+        .form-container{
+            width: 400px;
+        }
         
     </style>
 </head>
@@ -29,28 +48,37 @@
         <h3 class="head">New Project</h3>
         <div class="fields">
         <div><label for="title">Title</label></div>
-        <input type="text" name="title">
+        <input required type="text" name="title">
     </div>
+    <hr>
         <div class="fields">
         <div><label for="description">Description</label></div>
-        <input type="text" name="description">
+        <textarea required type="text" name="description"></textarea>
     </div>
+    <hr>
         <div class="fields">
         <div><label for="duration">Duration</label></div>
-        <input type="text" name="duration">
+        <input required placeholder="In days (Numberic input)" type="text" name="duration">
     </div>
+    <hr>
         <div class="fields">
-        <div><label for="stipend">Stipend</label></div>
+        <div><label for="stipend">Stipend (Based on your Worth!)</label></div>
         <!-- <input type="text" name="stipend"> -->
-        <input type="range" name ="stipend", min = "0", max="{{user_obj.worth}}", onChange="updateTextInput(this.value);">
-        <input name="stipend" id="textInput" value="">
+        <!-- <input type="range" name ="stipend", min = "0", max="{{user_obj.worth}}", onChange="updateTextInput(this.value);"> -->
+        <!-- <input name="stipend" id="textInput" value=""> -->
+
+        <div class="range-wrap">
+            <input required name="rating" type="range" class="range" min="0" max="{{user_obj.worth}}" step="5">
+            <output class="bubble"></output>
+          </div>
     </div>
+    <hr>
     <div class="fields">
         <div><label for="category">Category:</label></div>
         <!-- <input type="text" name="stipend"> -->
-        <select name="category" id="">
+        <select required name="category" id="">
             <option value="artificial intelligence">Artificial Intelligence</option>
-            <option value="development and it">Development and it</option>
+            <option value="development and it">Development and It</option>
             <option value="electronics">Electronics</option>
             <option value="finance and accounting">Finance and Accounting</option>
             <option value="machine learning">Machine Learning</option>
@@ -60,13 +88,26 @@
           </select>
     </div>
         <div class="fields">
-        <div><label for="tags">Tags (Use TAB to add more than one tag)</label></div>
-        <input type="text" data-role="tagsinput" class="form-control" name="tags">
+        <div><label for="tags">Tags (Use , to add more than one tag)</label></div>
+        <input required type="text" data-role="tagsinput" class="form-control" name="tags">
     </div>
         <div class="fields">
-        <input type="submit" value="Submit">
+        <!-- <input type="submit"  value="Submit"> -->
+        <input type="submit" value="Post Project" class="btn btn-outline-success my-2 my-sm-0">
+        <a href="{% url 'my_projects' %}" class="btn btn-outline-primary my-2 my-sm-0">Back</a>
+
     </div>
     </form>
+</div>
+<div class="instructions-container">
+    <h3>Markdown Instructions:</h3>
+    <ul class="list-group">
+        <li class="list-group-item">HTML Formatting is enabled for Description</li>
+        <li class="list-group-item">If you want to insert a link, Use &lta href="link" &gtLink name to be displayed &lt/a&gt</li>
+        <li class="list-group-item">For heading or subheading, use &lth1&gt..&lt/h1&gt, &lth2&gt..&lt/h2&gt, ..... &lth6&gt..&lt/h6&gt, </li>
+        <li class="list-group-item">For paragraph, use &ltp&gt....&lt/p&gt</li>
+        <li class="list-group-item">Likewise, You can use every HTML tags related to text!</li>
+    </ul>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -83,6 +124,38 @@
         
         
         
+        </script>
+           <script>
+            const allRanges = document.querySelectorAll(".range-wrap");
+    allRanges.forEach(wrap => {
+      const range = wrap.querySelector(".range");
+      const bubble = wrap.querySelector(".bubble");
+    
+      range.addEventListener("input", () => {
+        setBubble(range, bubble);
+      });
+      setBubble(range, bubble);
+    });
+    
+    function setBubble(range, bubble) {
+      const val = range.value;
+      const min = range.min ? range.min : 0;
+      const max = range.max ? range.max : 100;
+      const newVal = Number(((val - min) * 100) / (max - min));
+      bubble.innerHTML = val;
+    
+      // Sorta magic numbers based on size of the native UI thumb
+      bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+    }
+
+    $('#formid').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) { 
+    e.preventDefault();
+    return false;
+  }
+});
+    
         </script>
 </body>
 </html>
