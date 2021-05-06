@@ -562,8 +562,9 @@ def project_form(request):
             print(type(tag))
             project_object.tags_requirement.add(tag.lower())
         print(project_object.tags_requirement)
+        owner_object.worth-=stipend
         project_object.save()
-        
+        owner_object.save()
         return redirect(reverse("dashboard"))
         
 def assign_user(request, id, proj_id):
@@ -611,10 +612,10 @@ def mark_complete(request, user_id, project_id):
             user_obj.save()
         user_obj.worth += project_obj.stipend
         print("Worth = ",user_obj.worth)
-        curr_user = UserAttribs.objects.get(user=request.user)
-        curr_user.worth -= project_obj.stipend
+        # curr_user = UserAttribs.objects.get(user=request.user)
+        # curr_user.worth -= project_obj.stipend
         user_obj.save()
-        curr_user.save()
+        # curr_user.save()
         project_obj.status = 'completed'
         project_obj.save()
         return redirect(reverse("my_projects"))
