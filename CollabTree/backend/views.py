@@ -301,7 +301,7 @@ def otp_verification(request):
             user = User.objects.create_user(request.session.get('username'), request.session.get('email'), request.session.get('password'))
             user.save()
             new_user = UserAttribs(user=user)
-            new_user.worth = 0
+            new_user.worth = 300
             new_user.phone_number = 'Empty!'
             new_user.mobile_number = 'Empty!'
             new_user.full_name = 'Empty!'
