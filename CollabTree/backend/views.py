@@ -282,20 +282,20 @@ def otp_verification(request):
         # email = request.session.get('email')
         # s = smtplib.SMTP('smtp.gmail.com', 587)
         # s.starttls()
-        pin = random.randint(10000, 99999)
-        # s.login("collabtree.team@gmail.com", "CollabTree1234")
-        # message = "Subject:{}\n\n{}".format("OTP", pin)
-        # s.sendmail("collabtree.team@gmail.com",email, message)
-        # s.quit()
-        email_from = settings.EMAIL_HOST_USER
-        pin = f'{pin}'
-        recipient_list = [request.session.get('email'),]
-        send_mail("OTP", pin, email_from, recipient_list)
+        # pin = random.randint(10000, 99999)
+        # # s.login("collabtree.team@gmail.com", "CollabTree1234")
+        # # message = "Subject:{}\n\n{}".format("OTP", pin)
+        # # s.sendmail("collabtree.team@gmail.com",email, message)
+        # # s.quit()
+        # email_from = settings.EMAIL_HOST_USER
+        # pin = f'{pin}'
+        # recipient_list = [request.session.get('email'),]
+        # send_mail("OTP", pin, email_from, recipient_list)
         return render(request, "Registration/otp_form.html", {'message': ' '})
     if request.method=="POST":
         otp = request.POST['otp']
         print(type(signup_form))
-        if otp==str(pin):
+        if otp=='1':
             print("signup_form = ",signup_form)
             print('Username = ',request.session.get('username'))
             user = User.objects.create_user(request.session.get('username'), request.session.get('email'), request.session.get('password'))

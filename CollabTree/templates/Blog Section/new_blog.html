@@ -39,23 +39,23 @@
             {% csrf_token %}
             <div class="fields">
             <label for="cover_image">Cover Image</label>
-            <input type="file" name="cover_image">
+            <input type="file" name="cover_image" required>
         </div>
             <div class="fields">
             <label class="matter-textfield-filled">
-                <input name="title" placeholder=" "/>
+                <input name="title" placeholder=" " required/>
                 <span>Title</span>
             </label>
         </div>
             <div class="fields">
             <label class="matter-textfield-filled" for="body">
-            <textarea placeholder=" " name="body"></textarea>
+            <textarea placeholder=" " name="body" required></textarea>
             <span>Body</span>
         </label>
         </div>
             <div class="fields">
             <label for="tags">Tags (Press Tab to add new tag)</label>
-            <input type="text" data-role="tagsinput" class="form-control" name="tags">
+            <input required type="text" data-role="tagsinput" class="form-control" name="tags">
         </div>
             <div class="buttons">
             <input class="matter-button-contained" type="submit" value="Submit">
