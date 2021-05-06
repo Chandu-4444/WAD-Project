@@ -1,0 +1,152 @@
+name(elizabeth, "Queen Elizabeth II").
+name(phillip, "Phillip").
+name(diana, "Diana").
+name(charles, "Charles").
+name(camilla, "Cammila").
+name(mark, "Mark Phillips").
+name(anne,"Anne").
+name(timothy,"Timothy laurence").
+name(andrew,"Andrew").
+name(sarah,"Sarah").
+name(edward,"Edward").
+name(sophie,"Sophie").
+name(william,"William").
+name(catherine,"Catherine").
+name(harry,"Harry").
+name(meghan,"Meghan").
+name(autumn,"Autumn Phillips").
+name(peter,"Peter Phillips").
+name(zara,"Zara Tindall").
+name(mike,"Mike Tindall").
+name(beatrice,"Beatrice").
+name(edoardo,"Edoardo Mapelli Mozzi").
+name(eugenie,"Eugenie").
+name(jack,"Jack Brooksbank").
+name(louise,"Loouise").
+name(james,"James").
+name(george,"George").
+name(charlotte,"Charlotte").
+name(louis,"Louis").
+name(archie,"Archie Harrison").
+name(savannah,"Savannah").
+name(isla,"Isla").
+name(mia,"Mia Grace").
+name(lena,"Lena Elizabeht").
+name(august,"August Phillip").
+
+gender(elizabeth,female).
+gender(phillip,male).
+gender(diana,female).
+gender(charles,male).
+gender(camilla,female).
+gender(mark,male).
+gender(anne,female).
+gender(timothy,male).
+gender(andrew,male).
+gender(sarah,female).
+gender(edward,male).
+gender(sophie,female).
+gender(william,male).
+gender(catherine,female).
+gender(harry,male).
+gender(meghan,female).
+gender(autumn,male).
+gender(peter,male).
+gender(zara,female).
+gender(mike,male).
+gender(beatrice,female).
+gender(edoardo,male).
+gender(eugenie,female).
+gender(jack,male).
+gender(louise,female).
+gender(james,male).
+gender(george,male).
+gender(charlotte,female).
+gender(louis,male).
+gender(archie,female).
+gender(savannah,female).
+gender(isla,female).
+gender(mia,male).
+gender(lena,male).
+gender(august,male).
+
+parent(elizabeth,charles).
+parent(elizabeth,anne).
+parent(elizabeth,andrew).
+parent(elizabeth,edward).
+parent(phillip,charles).
+parent(phillip,anne).
+parent(phillip,andrew).
+parent(phillip,edward).
+parent(charles,william).
+parent(diana,william).
+parent(diana,harry).
+parent(charles,harry).
+parent(anne,peter).
+parent(anne,zara).
+parent(mark,peter).
+parent(mark,zara).
+parent(andrew,beatrice).
+parent(andrew,euginie).
+parent(sarah,beatrice).
+parent(sarah,euginie).
+parent(edward,louise).
+parent(edward,james).
+parent(sophie,louise).
+parent(sophie,james).
+parent(william,george).
+parent(william,charlotte).
+parent(william,louis).
+parent(catherine,george).
+parent(catherine,charlotte).
+parent(catherine,louis).
+parent(harry,archie).
+parent(meghan,archie).
+parent(autumn,savannah).
+parent(autumn,isla).
+parent(peter,autumn).
+parent(peter,isla).
+parent(zara,mia).
+parent(zara,lena).
+parent(mike,mia).
+parent(mike,lena).
+parent(jack,august).
+parent(eugenie,august).
+
+position(elizabeth,queen,england).
+position(phillip,duke,edinburgh).
+position(charles,prince,wales).
+position(diana,princess,wales).
+position(camilla,duchess,cornwall).
+position(anne,pricness,royal).
+position(mark,civillian,england).
+position(timothy,civillian,england).
+position(andrew,duke,york).
+position(sarah,duchess,york).
+position(edward,earl,wessex).
+position(sohpie,countess,wessex).
+position(william,duke,cambridge).
+position(catherine,duchess,cambridge).
+position(harry,duke,sussex).
+position(meghan,duchess,sussex).
+position(beatrice,princess,york).
+position(euginie,princess,york).
+position(louise,lady,windsor).
+position(james,viscount,severn).
+position(george,prince,cambridge).
+position(charlotte,princess,cambridge).
+position(george,prince,cambridge).
+position(louis,prince,cambridge).
+position(autumn,civillian,england).
+position(peter,civillian,england).
+position(zara,civillian,england).
+position(mike,civillian,england).
+position(edoardo,civillian,england).
+position(jack,civillian,england).
+position(autumn,civillian,england).
+position(archie,civillian,england).
+position(savannah,civillian,england).
+position(isla,civillian,england).
+position(mia,civillian,england).
+position(lena,civillian,england).
+position(august,civillian,england).
