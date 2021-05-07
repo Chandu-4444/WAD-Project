@@ -66,6 +66,7 @@
         <hr>
 
         <h5 class="blog-body">{{blog.body|safe}}</h5>
+        <br>
         <span class="meta">Author: {{blog.author}}</span>
         <br>
         <span class="meta">At: {{blog.date_time}}</span>
@@ -87,7 +88,8 @@
           <br>
           <br>
           <button class="btn btn-success" disabled>Likes<span class="like-count">{{blog.likes}} </span></button>
-          <button class="btn btn-danger" disabled>Dislikes<span class="like-count">{{blog.dislikes}}</span></button>       
+          <button class="btn btn-danger" disabled>Dislikes<span class="like-count">{{blog.dislikes}}</span></button>  
+          <br>     
           
 
           {% endif %}    

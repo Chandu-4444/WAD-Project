@@ -279,7 +279,14 @@
                       {% for assigned in assigned_projects %}
                     
                    
-                      <small><a href="{% url 'view_project' assigned.id %}">{{ assigned }}</a></small>
+                      <small><a href="{% url 'view_project' assigned.id %}">{{ assigned }}</a>
+                        {% if assigned.status == "assigned" %}
+                        (Assigned)
+                        {% else %}
+                        (Completed)
+                        {% endif %}
+
+                      </small>
                       <br>
                       {% endfor %}
                       <!-- <div class="progress mb-3" style="height: 5px">

@@ -265,7 +265,7 @@
       
       <div class="job">
         <div class="title">{{ project.title }}</div>
-        <div class="desc">{{ project.description }}</div>
+        <div class="desc">{{ project.description|safe }}</div>
         <br>
         <a href="{% url 'view_project' project.id %}" class="matter-button-contained" style="margin-bottom:10px">View</a>
         <!-- <div class = "tags-container">
