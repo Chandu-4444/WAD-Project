@@ -267,7 +267,14 @@ def sign_up(request):
             request.session.modified = True
             request.session['password'] = request.POST['password1']
             request.session.modified = True
+            user_objects = User.objects.all()
+            
+            for user_obj in user_objects:
+                print("Username: ",user_obj.username, "Resuested username: ", request.POST['username'])
+                if user_obj.username == request.POST['username']:
+                    return HttpResponse("<h1>Username is already taken! Please select another username</h1>")
             return redirect('otp_verification')
+
         else:
             return render(request, 'Index Page/index.html', {"form":UserCreation})
 
