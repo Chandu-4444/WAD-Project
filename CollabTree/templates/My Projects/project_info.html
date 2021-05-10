@@ -37,8 +37,10 @@
 Status: {{project.status}}
 <br>
 {% ifequal project.status 'completed' %}
-  Rating: {{project.project_rating}}
+<hr>
+  Rating: {{project.project_rating}}/5
   <br>
+  <hr>
   Review: {{project.review}}
   {% endifequal %}
   <a href="{% url 'dashboard' %}" class="btn btn-outline-primary my-2 my-sm-0">Back</a>

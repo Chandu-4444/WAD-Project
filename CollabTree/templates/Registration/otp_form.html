@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'Authentication Form/styles.css' %}">
 </head>
 <body>
-    <h1 class="heading">Enter OTP</h1>
+    <h1 class="heading">Enter Answer(If you're not a robot!): {{question}}</h1>
     <div class="container">
     <form action="" method="post">
         {% csrf_token %}
