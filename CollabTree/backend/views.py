@@ -2,7 +2,7 @@ from django.core.checks import messages
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from backend.forms import UserCreation
 import smtplib, ssl
 import random
@@ -641,14 +641,25 @@ def view_blog(request, blog_id):
     blog_obj = Blog.objects.get(id=blog_id)
     return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
 def like_blog(request, blog_id):
+            
     blog_obj = Blog.objects.get(id=blog_id)
     blog_obj.likes += 1
     blog_obj.save()
+    if request.is_ajax():
+        response = {
+            'like_count': blog_obj.likes
+        }
+        return JsonResponse(response)
     return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
 def dislike_blog(request, blog_id):
     blog_obj = Blog.objects.get(id=blog_id)
     blog_obj.dislikes += 1
     blog_obj.save()
+    if request.is_ajax():
+        response = {
+            'dislike_count': blog_obj.dislikes
+        }
+        return JsonResponse(response)
     return render(request, 'Blog Section/view_blog.html', {'blog': blog_obj})
 def my_blogs(request):
     user_obj = UserAttribs.objects.get(user = request.user)

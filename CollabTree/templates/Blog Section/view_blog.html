@@ -21,6 +21,9 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <style>
     body {
       text-align: center;
@@ -80,8 +83,45 @@
 
         <div class="like-dislike">
           {% if blog.author.user.username != request.user.username %}
-          <a disabled class="btn btn-success" href="{% url 'like_blog' blog.id %}">Like<span class="like-count">{{blog.likes}} </span></a>
-          <a class="btn btn-danger" href="{% url 'dislike_blog' blog.id %}">Dislike<span class="like-count">{{blog.dislikes}}</span></a>      
+          <a id="liked" disabled class="btn btn-success" href="{% url 'like_blog' blog.id %}">Like<span id="like-count-id" class="like-count">{{blog.likes}} </span></a>
+          <a id="disliked" class="btn btn-danger" href="{% url 'dislike_blog' blog.id %}">Dislike<span id="dislike-count-id" class="like-count">{{blog.dislikes}}</span></a>      
+          <script>
+
+            $('#liked').on('click', function(e){
+              e.preventDefault();
+              $.ajax({
+                type:'POST',
+                url: "{% url 'like_blog' blog.id %}",
+
+                data: {
+                  text: "",
+                  csrfmiddlewaretoken: '{{ csrf_token }}',
+                  dataType: "json",
+                },
+                success: function(data) {
+                  $('#like-count-id').html(data.like_count);
+                }
+              });
+            });
+
+            $('#disliked').on('click', function(e){
+              e.preventDefault();
+              $.ajax({
+                type:'POST',
+                url: "{% url 'dislike_blog' blog.id %}",
+
+                data: {
+                  text: "",
+                  csrfmiddlewaretoken: '{{ csrf_token }}',
+                  dataType: "json",
+                },
+                success: function(data) {
+                  $('#dislike-count-id').html(data.dislike_count);
+                }
+              });
+            });
+  
+          </script>
           {% else %}
           <a disabled class="btn btn-success" href="{% url 'edit_blog' blog.id %}">Edit Blog</a>
           <a class="btn btn-danger" href="{% url 'delete_blog' blog.id %}">Delete Blog</a> 
@@ -90,11 +130,11 @@
           <button class="btn btn-success" disabled>Likes<span class="like-count">{{blog.likes}} </span></button>
           <button class="btn btn-danger" disabled>Dislikes<span class="like-count">{{blog.dislikes}}</span></button>  
           <br>     
-          
-
           {% endif %}    
         </div>
         <a class="btn btn-secondary" href="{% url 'blogs' %}">Back</a>
+
+
         
     </div>
 </body>
