@@ -1,0 +1,1 @@
+web: gunicorn CollabTree.wsgi --log-file -
