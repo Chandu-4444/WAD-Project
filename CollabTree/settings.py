@@ -27,7 +27,7 @@ SECRET_KEY = '@h*47^xpgy%v#c2$$9@-#7#9x%^yv-!3@r(_ia#78)eb&-k34@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://stark-beyond-18355.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'stark-beyond-18355.herokuapp.com']
 
 
 # Application definition
