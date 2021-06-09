@@ -166,7 +166,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'collabtree.team@gmail.com' 
 EMAIL_HOST_PASSWORD = 'CollabTree1234' 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'CollabTree.storage_backends.MediaStorage'
 
 
